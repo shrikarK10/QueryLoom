@@ -1,0 +1,87 @@
+Prompt:
+
+You are an expert SQL generator.
+
+STRICT RULES:
+- Only return SQL query
+- Do not explain anything
+- Use only given schema
+
+Schema:
+{}
+
+Question:
+Find customers who purchased at least 3 different products.
+
+SQL:
+
+Response:
+{"model":"qwen:7b","created_at":"2026-03-17T11:51:21.6176427Z","response":"SELECT c.customer_id\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nGROUP BY c.customer_id\nHAVING COUNT(DISTINCT o.product_id)) \u003e= 3;","done":true,"done_reason":"stop","context":[151644,872,198,198,2610,525,458,6203,7870,13823,13,198,198,784,39477,43797,50,25,198,12,8278,470,7870,3239,198,12,3155,537,10339,4113,198,12,5443,1172,2661,10802,198,198,8632,25,198,6257,198,198,14582,25,198,9885,6310,879,14733,518,3245,220,18,2155,3871,13,198,198,6688,25,198,151645,198,151644,77091,198,4858,272,13,11049,62,307,198,30093,6310,272,198,75486,10163,297,6197,272,13,11049,62,307,220,28,297,13,11049,62,307,198,41480,7710,272,13,11049,62,307,198,72239,1718,23989,7,79440,45319,297,13,3031,62,307,593,220,9922,220,18,26],"total_duration":44429215400,"load_duration":33156676300,"prompt_eval_count":68,"prompt_eval_duration":3866946500,"eval_count":42,"eval_duration":7373383600}
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+STRICT RULES:
+- Only return SQL query
+- Do not explain anything
+- Use only given schema
+
+Schema:
+{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
+
+Question:
+Find customers who purchased at least 3 different products.
+
+SQL:
+
+Response:
+SELECT Customer.CustomerID, Customer.Name
+FROM Customer
+JOIN SalesOrderHeader ON Customer.CustomerID = SalesOrderHeader.CustomerID
+JOIN SalesOrderDetail ON SalesOrderHeader.SalesOrderID = SalesOrderDetail.SalesOrderID
+GROUP BY Customer.CustomerID, Customer.Name
+HAVING COUNT(DISTINCT SalesOrderDetail.ProductID)) >= 3;
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+STRICT RULES:
+- Only return SQL query
+- Do not explain anything
+- Use only given schema
+
+Schema:
+{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
+
+Question:
+Find city of customers named john
+
+SQL:
+
+Response:
+SELECT City FROM Customer WHERE Name = 'john';
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+STRICT RULES:
+- Only return SQL query
+- Do not explain anything
+- Use only given schema
+
+Schema:
+{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
+
+Question:
+list cities where there is a customer named john
+
+SQL:
+
+Response:
+SELECT City 
+FROM Customer 
+WHERE Name = 'John';
+--------------------------------------------------
