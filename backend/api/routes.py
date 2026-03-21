@@ -8,7 +8,9 @@ class QueryRequest(BaseModel):
 
 router = APIRouter()
 
-connector = SQLiteConnector(r"D:\PROJECT\QueryMind\backend\api\AdventureWorks-sqlite.db")
+import os
+db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "AdventureWorks-sqlite.db")
+connector = SQLiteConnector(db_path)
 
 @router.post("/query")
 def query(data: QueryRequest):

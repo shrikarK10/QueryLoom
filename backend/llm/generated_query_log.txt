@@ -85,3 +85,165 @@ SELECT City
 FROM Customer 
 WHERE Name = 'John';
 --------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+STRICT RULES:
+- Only return SQL query
+- Do not explain anything
+- Use only given schema
+
+Schema:
+{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
+
+Question:
+Countries of customer whose name is john
+
+SQL:
+
+Response:
+SELECT T2.CountryRegion 
+FROM Customer AS T1 
+JOIN Address AS T2 ON T1.BillToAddressID = T2.AddressID 
+WHERE T1.FirstName = 'John'
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+STRICT RULES:
+- Only return SQL query
+- Do not explain anything
+- Use only given schema
+
+Schema:
+{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
+
+Question:
+Get the different countries where there is a person named john
+
+SQL:
+
+Response:
+SELECT DISTINCT CountryRegion 
+FROM Customer 
+WHERE FirstName = 'John' AND rowguid IS NOT NULL
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+STRICT RULES:
+- Only return SQL query
+- Do not explain anything
+- Use only given schema
+
+Schema:
+{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
+
+Question:
+customers whose name is john
+
+SQL:
+
+Response:
+SELECT * FROM Customer WHERE FirstName = 'John'
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+You must follow these rules STRICTLY:
+
+1. Use ONLY the tables and columns provided in the schema
+2. DO NOT assume columns that are not listed
+3. If required data is not in a table, find the correct table and JOIN
+4. Use explicit JOINs (no implicit joins)
+5. Use correct aggregation and grouping when needed
+6. Return ONLY SQL query (no explanation, no markdown)
+
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS:
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+
+---------------------
+EXAMPLE:
+
+Schema:
+Customer(CustomerID, FirstName)
+CustomerAddress(CustomerID, AddressID)
+Address(AddressID, City)
+
+Question:
+List cities where customer name is John
+
+SQL:
+SELECT DISTINCT a.City
+FROM Customer c
+JOIN CustomerAddress ca ON c.CustomerID = ca.CustomerID
+JOIN Address a ON ca.AddressID = a.AddressID
+WHERE c.FirstName = 'John';
+
+---------------------
+NOW GENERATE SQL FOR:
+
+Question:
+different countries with customers named jack
+
+SQL:
+
+Response:
+SELECT DISTINCT a.CountryRegion
+FROM Customer c
+JOIN CustomerAddress ca ON c.CustomerID = ca.CustomerID
+JOIN Address a ON ca.AddressID = a.AddressID
+WHERE c.FirstName = 'Jack' AND c.Title = 'Mr';
+--------------------------------------------------

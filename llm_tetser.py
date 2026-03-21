@@ -2,8 +2,8 @@ import time
 import ollama
 start_time = time.time()
 response = ollama.chat(
-    model="qwen:7b",
-    messages=[{"role": "user", "content": "hi, how are you?"}]
+    model="qwen2.5:7b-instruct-q4_K_M",
+    messages=[{"role": "user", "content": "What is transformer architecture?"}],
 )
 
 end_time = time.time()
