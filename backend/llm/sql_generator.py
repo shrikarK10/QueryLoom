@@ -1,63 +1,63 @@
 import requests
 from pathlib import Path
-
+from utils.config import MODEL_NAME , DATABASE_LANGUAGE
+from utils.sql_cleaner import clean_sql_output
 OLLAMA_URL = "http://localhost:11434/api/generate"
 LOG_FILE = Path(__file__).resolve().parent / "generated_query_log.txt"
 
-def format_schema(schema: dict):
-    formatted = ""
-    for table, cols in schema.items():
-        formatted += f"\nTable: {table}\nColumns: {', '.join(cols)}\n"
-    return formatted
-
 
 def generate_sql(question: str, schema: dict):
-    formatted_schema = format_schema(schema)
+
     prompt = f"""
 You are an expert SQL generator.
+DATABASE: {DATABASE_LANGUAGE}
+
+
+You must follow these steps BEFORE writing SQL:
+
+STEP 1: Identify relevant columns from the question
+STEP 2: Find which tables contain those columns
+STEP 3: If columns are in different tables → use JOIN
+STEP 4: Generate the simplest correct query
+
 
 You must follow these rules STRICTLY:
 
-1. Use ONLY the tables and columns provided in the schema
-2. DO NOT assume columns that are not listed
-3. If required data is not in a table, find the correct table and JOIN
-4. Use explicit JOINs (no implicit joins)
-5. Use correct aggregation and grouping when needed
-6. Return ONLY SQL query (no explanation, no markdown)
+GENERAL RULES:
+- Use ONLY the tables and columns provided in the schema
+- DO NOT assume columns that are not listed
+- Output ONLY raw SQL (no explanation, no markdown)
+- Do NOT use ``` or any formatting
+- SQL must be compatible with {DATABASE_LANGUAGE}
+
+
+IMPORTANT:
+- Do NOT overcomplicate queries
+- Prefer simplest correct query
 
 ---------------------
 SCHEMA:
-{formatted_schema}
+{schema}
 
 ---------------------
-RELATIONSHIPS:
+RELATIONSHIPS (if needed):
 Customer.CustomerID = CustomerAddress.CustomerID
 CustomerAddress.AddressID = Address.AddressID
 SalesOrderHeader.CustomerID = Customer.CustomerID
 SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
 SalesOrderDetail.ProductID = Product.ProductID
-
 ---------------------
-EXAMPLE:
-
-Schema:
-Customer(CustomerID, FirstName)
-CustomerAddress(CustomerID, AddressID)
-Address(AddressID, City)
+EXAMPLE (SIMPLE_SELECT):
 
 Question:
-List cities where customer name is John
+Top 5 most expensive products
 
 SQL:
-SELECT DISTINCT a.City
-FROM Customer c
-JOIN CustomerAddress ca ON c.CustomerID = ca.CustomerID
-JOIN Address a ON ca.AddressID = a.AddressID
-WHERE c.FirstName = 'John';
-
+SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
 ---------------------
-NOW GENERATE SQL FOR:
-
 Question:
 {question}
 
@@ -67,7 +67,7 @@ SQL:
     response = requests.post(
         OLLAMA_URL,
         json={
-            "model": "qwen2.5:7b-instruct-q4_K_M",
+            "model": MODEL_NAME,
             "prompt": prompt,
             "stream": False
         }
@@ -78,4 +78,5 @@ SQL:
         log_file.write(f"Response:\n{response.json()['response'].strip()}\n")
         log_file.write("-" * 50 + "\n")
     
-    return response.json()["response"].strip()
+    raw_sql=response.json()["response"]
+    return clean_sql_output(raw_sql)

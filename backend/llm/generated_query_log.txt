@@ -2,158 +2,6 @@ Prompt:
 
 You are an expert SQL generator.
 
-STRICT RULES:
-- Only return SQL query
-- Do not explain anything
-- Use only given schema
-
-Schema:
-{}
-
-Question:
-Find customers who purchased at least 3 different products.
-
-SQL:
-
-Response:
-{"model":"qwen:7b","created_at":"2026-03-17T11:51:21.6176427Z","response":"SELECT c.customer_id\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nGROUP BY c.customer_id\nHAVING COUNT(DISTINCT o.product_id)) \u003e= 3;","done":true,"done_reason":"stop","context":[151644,872,198,198,2610,525,458,6203,7870,13823,13,198,198,784,39477,43797,50,25,198,12,8278,470,7870,3239,198,12,3155,537,10339,4113,198,12,5443,1172,2661,10802,198,198,8632,25,198,6257,198,198,14582,25,198,9885,6310,879,14733,518,3245,220,18,2155,3871,13,198,198,6688,25,198,151645,198,151644,77091,198,4858,272,13,11049,62,307,198,30093,6310,272,198,75486,10163,297,6197,272,13,11049,62,307,220,28,297,13,11049,62,307,198,41480,7710,272,13,11049,62,307,198,72239,1718,23989,7,79440,45319,297,13,3031,62,307,593,220,9922,220,18,26],"total_duration":44429215400,"load_duration":33156676300,"prompt_eval_count":68,"prompt_eval_duration":3866946500,"eval_count":42,"eval_duration":7373383600}
---------------------------------------------------
-Prompt:
-
-You are an expert SQL generator.
-
-STRICT RULES:
-- Only return SQL query
-- Do not explain anything
-- Use only given schema
-
-Schema:
-{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
-
-Question:
-Find customers who purchased at least 3 different products.
-
-SQL:
-
-Response:
-SELECT Customer.CustomerID, Customer.Name
-FROM Customer
-JOIN SalesOrderHeader ON Customer.CustomerID = SalesOrderHeader.CustomerID
-JOIN SalesOrderDetail ON SalesOrderHeader.SalesOrderID = SalesOrderDetail.SalesOrderID
-GROUP BY Customer.CustomerID, Customer.Name
-HAVING COUNT(DISTINCT SalesOrderDetail.ProductID)) >= 3;
---------------------------------------------------
-Prompt:
-
-You are an expert SQL generator.
-
-STRICT RULES:
-- Only return SQL query
-- Do not explain anything
-- Use only given schema
-
-Schema:
-{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
-
-Question:
-Find city of customers named john
-
-SQL:
-
-Response:
-SELECT City FROM Customer WHERE Name = 'john';
---------------------------------------------------
-Prompt:
-
-You are an expert SQL generator.
-
-STRICT RULES:
-- Only return SQL query
-- Do not explain anything
-- Use only given schema
-
-Schema:
-{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
-
-Question:
-list cities where there is a customer named john
-
-SQL:
-
-Response:
-SELECT City 
-FROM Customer 
-WHERE Name = 'John';
---------------------------------------------------
-Prompt:
-
-You are an expert SQL generator.
-
-STRICT RULES:
-- Only return SQL query
-- Do not explain anything
-- Use only given schema
-
-Schema:
-{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
-
-Question:
-Countries of customer whose name is john
-
-SQL:
-
-Response:
-SELECT T2.CountryRegion 
-FROM Customer AS T1 
-JOIN Address AS T2 ON T1.BillToAddressID = T2.AddressID 
-WHERE T1.FirstName = 'John'
---------------------------------------------------
-Prompt:
-
-You are an expert SQL generator.
-
-STRICT RULES:
-- Only return SQL query
-- Do not explain anything
-- Use only given schema
-
-Schema:
-{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
-
-Question:
-Get the different countries where there is a person named john
-
-SQL:
-
-Response:
-SELECT DISTINCT CountryRegion 
-FROM Customer 
-WHERE FirstName = 'John' AND rowguid IS NOT NULL
---------------------------------------------------
-Prompt:
-
-You are an expert SQL generator.
-
-STRICT RULES:
-- Only return SQL query
-- Do not explain anything
-- Use only given schema
-
-Schema:
-{'ErrorLog': ['ErrorLogID', 'ErrorTime', 'UserName', 'ErrorNumber', 'ErrorSeverity', 'ErrorState', 'ErrorProcedure', 'ErrorLine', 'ErrorMessage'], 'sqlite_sequence': ['name', 'seq'], 'BuildVersion': ['SystemInformationID', 'Database Version', 'VersionDate', 'ModifiedDate'], 'Address': ['AddressID', 'AddressLine1', 'AddressLine2', 'City', 'StateProvince', 'CountryRegion', 'PostalCode', 'rowguid', 'ModifiedDate'], 'Customer': ['CustomerID', 'NameStyle', 'Title', 'FirstName', 'MiddleName', 'LastName', 'Suffix', 'CompanyName', 'SalesPerson', 'EmailAddress', 'Phone', 'PasswordHash', 'PasswordSalt', 'rowguid', 'ModifiedDate'], 'CustomerAddress': ['CustomerID', 'AddressID', 'AddressType', 'rowguid', 'ModifiedDate'], 'Product': ['ProductID', 'Name', 'ProductNumber', 'Color', 'StandardCost', 'ListPrice', 'Size', 'Weight', 'ProductCategoryID', 'ProductModelID', 'SellStartDate', 'SellEndDate', 'DiscontinuedDate', 'ThumbNailPhoto', 'ThumbnailPhotoFileName', 'rowguid', 'ModifiedDate'], 'ProductCategory': ['ProductCategoryID', 'ParentProductCategoryID', 'Name', 'rowguid', 'ModifiedDate'], 'ProductDescription': ['ProductDescriptionID', 'Description', 'rowguid', 'ModifiedDate'], 'ProductModel': ['ProductModelID', 'Name', 'CatalogDescription', 'rowguid', 'ModifiedDate'], 'ProductModelProductDescription': ['ProductModelID', 'ProductDescriptionID', 'Culture', 'rowguid', 'ModifiedDate'], 'SalesOrderDetail': ['SalesOrderID', 'SalesOrderDetailID', 'OrderQty', 'ProductID', 'UnitPrice', 'UnitPriceDiscount', 'LineTotal', 'rowguid', 'ModifiedDate'], 'SalesOrderHeader': ['SalesOrderID', 'RevisionNumber', 'OrderDate', 'DueDate', 'ShipDate', 'Status', 'OnlineOrderFlag', 'SalesOrderNumber', 'PurchaseOrderNumber', 'AccountNumber', 'CustomerID', 'ShipToAddressID', 'BillToAddressID', 'ShipMethod', 'CreditCardApprovalCode', 'SubTotal', 'TaxAmt', 'Freight', 'TotalDue', 'Comment', 'rowguid', 'ModifiedDate']}
-
-Question:
-customers whose name is john
-
-SQL:
-
-Response:
-SELECT * FROM Customer WHERE FirstName = 'John'
---------------------------------------------------
-Prompt:
-
-You are an expert SQL generator.
-
 You must follow these rules STRICTLY:
 
 1. Use ONLY the tables and columns provided in the schema
@@ -162,7 +10,7 @@ You must follow these rules STRICTLY:
 4. Use explicit JOINs (no implicit joins)
 5. Use correct aggregation and grouping when needed
 6. Return ONLY SQL query (no explanation, no markdown)
-
+7. Do not use ```sql ``` or any markdown formatting in your response
 ---------------------
 SCHEMA:
 
@@ -236,14 +84,972 @@ WHERE c.FirstName = 'John';
 NOW GENERATE SQL FOR:
 
 Question:
-different countries with customers named jack
+Top 10 most expensive products
 
 SQL:
 
 Response:
-SELECT DISTINCT a.CountryRegion
+```sql
+SELECT TOP 10 ProductName, ListPrice
+FROM Product
+ORDER BY ListPrice DESC;
+```
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+You must follow these rules STRICTLY:
+
+1. Use ONLY the tables and columns provided in the schema
+2. DO NOT assume columns that are not listed
+3. If required data is not in a table, find the correct table and JOIN
+4. Use explicit JOINs (no implicit joins)
+5. Use correct aggregation and grouping when needed
+6. Return ONLY SQL query (no explanation, no markdown)
+7. Do not use code fences like ```sql or ```; return plain SQL text only
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS:
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+
+---------------------
+EXAMPLE:
+
+Schema:
+Customer(CustomerID, FirstName)
+CustomerAddress(CustomerID, AddressID)
+Address(AddressID, City)
+
+Question:
+List cities where customer name is John
+
+SQL:
+SELECT DISTINCT a.City
 FROM Customer c
 JOIN CustomerAddress ca ON c.CustomerID = ca.CustomerID
 JOIN Address a ON ca.AddressID = a.AddressID
-WHERE c.FirstName = 'Jack' AND c.Title = 'Mr';
+WHERE c.FirstName = 'John';
+
+---------------------
+NOW GENERATE SQL FOR:
+
+Question:
+Top 10 most expensive products
+
+SQL:
+
+Response:
+```sql
+SELECT ProductName, ListPrice
+FROM Product P
+ORDER BY ListPrice DESC
+LIMIT 10;
+```
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+You must follow these rules STRICTLY:
+
+1. Use ONLY the tables and columns provided in the schema
+2. DO NOT assume columns that are not listed
+3. If required data is not in a table, find the correct table and JOIN
+4. Use explicit JOINs (no implicit joins)
+5. Use correct aggregation and grouping when needed
+6. Return ONLY SQL query (no explanation, no markdown)
+7. Do not use code fences like ```sql or ```; return plain SQL text only
+8. Output ONLY raw SQL
+9. DO NOT use markdown (no ```sql)
+10. DO NOT explain anything
+11. SQL must be compatible with SQLite
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS:
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+
+---------------------
+EXAMPLE:
+
+Schema:
+Customer(CustomerID, FirstName)
+CustomerAddress(CustomerID, AddressID)
+Address(AddressID, City)
+
+Question:
+List cities where customer name is John
+
+SQL:
+SELECT DISTINCT a.City
+FROM Customer c
+JOIN CustomerAddress ca ON c.CustomerID = ca.CustomerID
+JOIN Address a ON ca.AddressID = a.AddressID
+WHERE c.FirstName = 'John';
+
+---------------------
+NOW GENERATE SQL FOR:
+
+Question:
+Top 10 most expensive products
+
+SQL:
+
+Response:
+```sql
+SELECT TOP (10) p.Name, p.ListPrice
+FROM Product p;
+```
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+You must follow these rules STRICTLY:
+
+- SQL must be compatible with SQLite
+- Use ONLY the tables and columns provided in the schema
+- DO NOT assume columns that are not listed
+- If required data is not in a table, find the correct table and JOIN
+- Use explicit JOINs (no implicit joins)
+- Use correct aggregation and grouping when needed
+- Return ONLY SQL query (no explanation, no markdown)
+- Do not use code fences like ```sql or ```; return plain SQL text only
+- Output ONLY raw SQL
+- DO NOT use markdown (no ```sql)
+- DO NOT explain anything
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS:
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+
+---------------------
+NOW GENERATE SQL FOR:
+
+Question:
+Top 10 most expensive products
+
+SQL:
+
+Response:
+```sql
+SELECT 
+    P.Name, 
+    PD.Description, 
+    SUM(SOD.UnitPrice * SOD.OrderQty) AS TotalCost
+FROM 
+    SalesOrderDetail SOD
+JOIN 
+    ProductModelProductDescription PD ON SOD.ProductID = PD.ProductModelID
+JOIN 
+    ProductModel PM ON SOD.ProductID = PM.ProductModelID
+JOIN 
+    Product P ON PM.ProductModelID = P.ProductModelID
+GROUP BY 
+    P.Name, PD.Description
+ORDER BY 
+    TotalCost DESC
+LIMIT 10;
+```
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+DATABASE: SQLite
+
+QUERY TYPE: SIMPLE_SELECT
+
+You must follow these rules STRICTLY:
+
+GENERAL RULES:
+- Use ONLY the tables and columns provided in the schema
+- DO NOT assume columns that are not listed
+- Output ONLY raw SQL (no explanation, no markdown)
+- Do NOT use ``` or any formatting
+- SQL must be compatible with SQLite
+
+QUERY TYPE RULES:
+
+IF QUERY TYPE = SIMPLE_SELECT:
+- Use ONLY ONE table
+- DO NOT use JOINs
+- Select the most relevant table
+- Use ORDER BY and LIMIT if needed
+
+IF QUERY TYPE = AGGREGATION:
+- Use GROUP BY correctly
+- Avoid duplicate inflation (use DISTINCT if needed)
+
+IF QUERY TYPE = JOIN:
+- Use proper JOIN conditions
+- Use relationships provided
+
+IF QUERY TYPE = ANALYTICAL:
+- Use aggregation, ranking, or window functions as needed
+
+IMPORTANT:
+- Do NOT overcomplicate queries
+- Prefer simplest correct query
+
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS (if needed):
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+---------------------
+EXAMPLE (SIMPLE_SELECT):
+
+Question:
+Top 5 most expensive products
+
+SQL:
+SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+---------------------
+Question:
+Top 10 most expensive products
+
+SQL:
+
+Response:
+```sql
+SELECT ProductName, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 10;
+```
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+DATABASE: SQLite
+
+QUERY TYPE: SIMPLE_SELECT
+
+You must follow these rules STRICTLY:
+
+GENERAL RULES:
+- Use ONLY the tables and columns provided in the schema
+- DO NOT assume columns that are not listed
+- Output ONLY raw SQL (no explanation, no markdown)
+- Do NOT use ``` or any formatting
+- SQL must be compatible with SQLite
+
+QUERY TYPE RULES:
+
+IF QUERY TYPE = SIMPLE_SELECT:
+- Use ONLY ONE table
+- DO NOT use JOINs
+- Select the most relevant table
+- Use ORDER BY and LIMIT if needed
+
+IF QUERY TYPE = AGGREGATION:
+- Use GROUP BY correctly
+- Avoid duplicate inflation (use DISTINCT if needed)
+
+IF QUERY TYPE = JOIN:
+- Use proper JOIN conditions
+- Use relationships provided
+
+IF QUERY TYPE = ANALYTICAL:
+- Use aggregation, ranking, or window functions as needed
+
+IMPORTANT:
+- Do NOT overcomplicate queries
+- Prefer simplest correct query
+
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS (if needed):
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+---------------------
+EXAMPLE (SIMPLE_SELECT):
+
+Question:
+Top 5 most expensive products
+
+SQL:
+SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+---------------------
+Question:
+Customers from Seattle
+
+SQL:
+
+Response:
+```sql
+SELECT CustomerID, FirstName, LastName
+FROM Customer
+WHERE City = 'Seattle';
+```
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+DATABASE: SQLite
+
+QUERY TYPE: SIMPLE_SELECT
+
+You must follow these rules STRICTLY:
+
+GENERAL RULES:
+- Use ONLY the tables and columns provided in the schema
+- DO NOT assume columns that are not listed
+- Output ONLY raw SQL (no explanation, no markdown)
+- Do NOT use ``` or any formatting
+- SQL must be compatible with SQLite
+
+QUERY TYPE RULES:
+
+IF QUERY TYPE = SIMPLE_SELECT:
+- Use ONLY ONE table
+- DO NOT use JOINs
+- Select the most relevant table
+- Use ORDER BY and LIMIT if needed
+
+IF QUERY TYPE = AGGREGATION:
+- Use GROUP BY correctly
+- Avoid duplicate inflation (use DISTINCT if needed)
+
+IF QUERY TYPE = JOIN:
+- Use proper JOIN conditions
+- Use relationships provided
+
+IF QUERY TYPE = ANALYTICAL:
+- Use aggregation, ranking, or window functions as needed
+
+IMPORTANT:
+- Do NOT overcomplicate queries
+- Prefer simplest correct query
+
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS (if needed):
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+---------------------
+EXAMPLE (SIMPLE_SELECT):
+
+Question:
+Top 5 most expensive products
+
+SQL:
+SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+---------------------
+Question:
+Customers from Seattle
+
+SQL:
+
+Response:
+```sql
+SELECT NameStyle, Title, FirstName, LastName, CompanyName
+FROM Customer
+WHERE City = 'Seattle'
+```
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+
+DATABASE: SQLite
+
+QUERY TYPE: SIMPLE_SELECT
+
+You must follow these rules STRICTLY:
+
+GENERAL RULES:
+- Use ONLY the tables and columns provided in the schema
+- DO NOT assume columns that are not listed
+- Output ONLY raw SQL (no explanation, no markdown)
+- Do NOT use ``` or any formatting
+- SQL must be compatible with SQLite
+
+QUERY TYPE RULES:
+
+IF QUERY TYPE = SIMPLE_SELECT:
+- Use ONLY ONE table
+- DO NOT use JOINs
+- Select the most relevant table
+- Use ORDER BY and LIMIT if needed
+
+IF QUERY TYPE = AGGREGATION:
+- Use GROUP BY correctly
+- Avoid duplicate inflation (use DISTINCT if needed)
+
+IF QUERY TYPE = JOIN:
+- Use proper JOIN conditions
+- Use relationships provided
+
+IF QUERY TYPE = ANALYTICAL:
+- Use aggregation, ranking, or window functions as needed
+
+IMPORTANT:
+- Do NOT overcomplicate queries
+- Prefer simplest correct query
+
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS (if needed):
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+---------------------
+EXAMPLE (SIMPLE_SELECT):
+
+Question:
+Top 5 most expensive products
+
+SQL:
+SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+---------------------
+Question:
+Customers from Seattle
+
+SQL:
+
+Response:
+```sql
+SELECT *
+FROM Customer
+WHERE City = 'Seattle';
+```
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+DATABASE: SQLite
+
+
+You must follow these steps BEFORE writing SQL:
+
+STEP 1: Identify relevant columns from the question
+STEP 2: Find which tables contain those columns
+STEP 3: If columns are in different tables → use JOIN
+STEP 4: Generate the simplest correct query
+
+
+You must follow these rules STRICTLY:
+
+GENERAL RULES:
+- Use ONLY the tables and columns provided in the schema
+- DO NOT assume columns that are not listed
+- Output ONLY raw SQL (no explanation, no markdown)
+- Do NOT use ``` or any formatting
+- SQL must be compatible with SQLite
+
+
+IMPORTANT:
+- Do NOT overcomplicate queries
+- Prefer simplest correct query
+
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS (if needed):
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+---------------------
+EXAMPLE (SIMPLE_SELECT):
+
+Question:
+Top 5 most expensive products
+
+SQL:
+SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+---------------------
+Question:
+Find customers from Seattle
+
+SQL:
+
+Response:
+```sql
+SELECT CustomerName, EmailAddress, AddressLine1 
+FROM Customer
+JOIN Address ON Customer.CustomerID = Address.CustomerID
+WHERE City = 'Seattle';
+```
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+DATABASE: SQLite
+
+
+You must follow these steps BEFORE writing SQL:
+
+STEP 1: Identify relevant columns from the question
+STEP 2: Find which tables contain those columns
+STEP 3: If columns are in different tables → use JOIN
+STEP 4: Generate the simplest correct query
+
+
+You must follow these rules STRICTLY:
+
+GENERAL RULES:
+- Use ONLY the tables and columns provided in the schema
+- DO NOT assume columns that are not listed
+- Output ONLY raw SQL (no explanation, no markdown)
+- Do NOT use ``` or any formatting
+- SQL must be compatible with SQLite
+
+
+IMPORTANT:
+- Do NOT overcomplicate queries
+- Prefer simplest correct query
+
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS (if needed):
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+---------------------
+EXAMPLE (SIMPLE_SELECT):
+
+Question:
+Top 5 most expensive products
+
+SQL:
+SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+---------------------
+Question:
+Find customers from Seattle
+
+SQL:
+
+Response:
+```sql
+SELECT CustomerName, FirstName, LastName, CompanyName
+FROM Customer
+JOIN Address ON Customer.CustomerID = Address.CustomerID
+WHERE City = 'Seattle';
+```
 --------------------------------------------------
