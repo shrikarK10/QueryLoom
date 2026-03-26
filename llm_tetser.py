@@ -1,9 +1,10 @@
 import time
 import ollama
+from backend.utils.config import MODEL_NAME
 start_time = time.time()
 response = ollama.chat(
-    model="qwen2.5:7b-instruct-q4_K_M",
-    messages=[{"role": "user", "content": "What is transformer architecture?"}],
+    model=MODEL_NAME,
+    messages=[{"role": "user", "content": "What is full form of WIFI?"}],
 )
 
 end_time = time.time()

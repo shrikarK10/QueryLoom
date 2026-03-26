@@ -5,8 +5,13 @@ class SQLiteConnector(BaseConnector):
     def __init__(self, db_path):
         self.db_path = db_path
 
-    def get_schema(self):
+    def _connect(self):
         conn = sqlite3.connect(self.db_path)
+        conn.text_factory = lambda b: b.decode("utf-8", errors="replace") if isinstance(b, (bytes, bytearray)) else b
+        return conn
+
+    def get_schema(self):
+        conn = self._connect()
         cursor = conn.cursor()
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         tables = cursor.fetchall()
@@ -20,10 +25,9 @@ class SQLiteConnector(BaseConnector):
         return schema
 
     def execute_query(self, query):
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         cursor = conn.cursor()
         cursor.execute(query)
         results = cursor.fetchall()
-        conn.commit()
         conn.close()
         return results

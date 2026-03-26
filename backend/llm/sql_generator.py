@@ -6,62 +6,110 @@ OLLAMA_URL = "http://localhost:11434/api/generate"
 LOG_FILE = Path(__file__).resolve().parent / "generated_query_log.txt"
 
 
-def generate_sql(question: str, schema: dict):
+def generate_sql(
+    question: str,
+    schema: str,
+    column_mapping: str,
+    query_type: str = "GENERAL",
+    previous_error: str | None = None
+):
+
+    feedback_block = ""
+    if previous_error:
+        feedback_block = f"""
+LAST ERROR FROM DB/VALIDATOR:
+{previous_error}
+
+Use this error to repair the SQL.
+"""
 
     prompt = f"""
 You are an expert SQL generator.
+
 DATABASE: {DATABASE_LANGUAGE}
+QUERY TYPE: {query_type}
 
-
-You must follow these steps BEFORE writing SQL:
-
-STEP 1: Identify relevant columns from the question
-STEP 2: Find which tables contain those columns
-STEP 3: If columns are in different tables → use JOIN
-STEP 4: Generate the simplest correct query
-
-
-You must follow these rules STRICTLY:
-
-GENERAL RULES:
-- Use ONLY the tables and columns provided in the schema
-- DO NOT assume columns that are not listed
-- Output ONLY raw SQL (no explanation, no markdown)
-- Do NOT use ``` or any formatting
-- SQL must be compatible with {DATABASE_LANGUAGE}
-
-
-IMPORTANT:
-- Do NOT overcomplicate queries
-- Prefer simplest correct query
+---------------------
+COLUMN MAPPING:
+{column_mapping}
 
 ---------------------
 SCHEMA:
 {schema}
 
 ---------------------
-RELATIONSHIPS (if needed):
-Customer.CustomerID = CustomerAddress.CustomerID
-CustomerAddress.AddressID = Address.AddressID
-SalesOrderHeader.CustomerID = Customer.CustomerID
-SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
-SalesOrderDetail.ProductID = Product.ProductID
+
+You must follow these steps BEFORE writing SQL:
+
+STEP 1: Identify relevant columns from the question
+STEP 2: Use COLUMN MAPPING to find correct tables
+STEP 3: If columns belong to different tables → use JOIN
+STEP 4: Generate the simplest correct query
+
+{feedback_block}
+
 ---------------------
-EXAMPLE (SIMPLE_SELECT):
+
+STRICT RULES:
+
+- Use ONLY tables and columns from schema
+- DO NOT assume columns
+- If a column is not in a table → use mapping to find correct table
+- DO NOT guess column locations
+
+- Prefer simplest correct query
+- DO NOT overuse JOINs
+- DO NOT add unnecessary tables
+- Prefer concrete business columns (for products use Product.Name, Product.ListPrice unless question asks otherwise)
+
+- Output format MUST explicitly use <thought> and <sql> tags
+- First, write a <thought> block explaining your reasoning
+- Then, output ONLY the raw SQL inside a <sql> block
+- SQL must be compatible with {DATABASE_LANGUAGE}
+
+---------------------
+STRICT SCHEMA CONSTRAINT:
+
+- You are ONLY allowed to use tables listed in SCHEMA
+- You are ONLY allowed to use columns listed in SCHEMA
+- DO NOT invent tables (e.g., City, AddressType, etc.)
+- DO NOT invent columns
+- If something is not in schema → it DOES NOT exist
+
+If you use any table or column not in schema → the query is INVALID
+
+---------------------
+Before writing SQL:
+
+- Verify every table used exists in SCHEMA
+- Verify every column used exists in that table
+---------------------
+
+
+EXAMPLE:
 
 Question:
 Top 5 most expensive products
 
-SQL:
+Response:
+<thought>
+The question asks for the top 5 most expensive products.
+I need the `Name` and `ListPrice` columns from the `Product` table.
+I will order by `ListPrice` descending and limit to 5.
+</thought>
+<sql>
 SELECT Name, ListPrice
 FROM Product
 ORDER BY ListPrice DESC
 LIMIT 5;
+</sql>
+
 ---------------------
+
 Question:
 {question}
 
-SQL:
+Response:
 """
 
     response = requests.post(
@@ -69,14 +117,17 @@ SQL:
         json={
             "model": MODEL_NAME,
             "prompt": prompt,
-            "stream": False
-        }
+            "stream": False,
+            "options": {
+                "num_predict": 400,
+                "temperature": 0.1,
+                "top_p": 0.9,
+                "repeat_penalty": 1.1
+            }
+        },
+        timeout=60
     )
+    response.raise_for_status()
 
-    with open(LOG_FILE, "a", encoding="utf-8") as log_file:
-        log_file.write(f"Prompt:\n{prompt}\n")
-        log_file.write(f"Response:\n{response.json()['response'].strip()}\n")
-        log_file.write("-" * 50 + "\n")
-    
-    raw_sql=response.json()["response"]
+    raw_sql = response.json()["response"]
     return clean_sql_output(raw_sql)

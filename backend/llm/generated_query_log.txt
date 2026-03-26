@@ -1053,3 +1053,217 @@ JOIN Address ON Customer.CustomerID = Address.CustomerID
 WHERE City = 'Seattle';
 ```
 --------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+DATABASE: SQLite
+
+
+You must follow these steps BEFORE writing SQL:
+
+STEP 1: Identify relevant columns from the question
+STEP 2: Find which tables contain those columns
+STEP 3: If columns are in different tables → use JOIN
+STEP 4: Generate the simplest correct query
+
+
+You must follow these rules STRICTLY:
+
+GENERAL RULES:
+- Use ONLY the tables and columns provided in the schema
+- DO NOT assume columns that are not listed
+- Output ONLY raw SQL (no explanation, no markdown)
+- Do NOT use ``` or any formatting
+- SQL must be compatible with SQLite
+
+
+IMPORTANT:
+- Do NOT overcomplicate queries
+- Prefer simplest correct query
+
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS (if needed):
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+---------------------
+EXAMPLE (SIMPLE_SELECT):
+
+Question:
+Top 5 most expensive products
+
+SQL:
+SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+---------------------
+Question:
+Total revenue per product category
+
+SQL:
+
+Response:
+```sql
+SELECT 
+    P.Name AS CategoryName,
+    SUM(SLineTotal) AS RevenuePerCategory
+FROM 
+    Product P
+JOIN 
+    SalesOrderHeader SH ON P.ProductID = SH.ProductID
+JOIN 
+    SalesOrderDetail SDet ON SH.SalesOrderID = SDet.SalesOrderID
+GROUP BY 
+    P.Name, SDet.LineTotal
+ORDER BY 
+    RevenuePerCategory DESC;
+```
+--------------------------------------------------
+Prompt:
+
+You are an expert SQL generator.
+DATABASE: SQLite
+
+
+You must follow these steps BEFORE writing SQL:
+
+STEP 1: Identify relevant columns from the question
+STEP 2: Find which tables contain those columns
+STEP 3: If columns are in different tables → use JOIN
+STEP 4: Generate the simplest correct query
+
+
+You must follow these rules STRICTLY:
+
+GENERAL RULES:
+- Use ONLY the tables and columns provided in the schema
+- DO NOT assume columns that are not listed
+- Output ONLY raw SQL (no explanation, no markdown)
+- Do NOT use ``` or any formatting
+- SQL must be compatible with SQLite
+
+
+IMPORTANT:
+- Do NOT overcomplicate queries
+- Prefer simplest correct query
+
+---------------------
+SCHEMA:
+
+Table: ErrorLog
+Columns: ErrorLogID, ErrorTime, UserName, ErrorNumber, ErrorSeverity, ErrorState, ErrorProcedure, ErrorLine, ErrorMessage
+
+Table: sqlite_sequence
+Columns: name, seq
+
+Table: BuildVersion
+Columns: SystemInformationID, Database Version, VersionDate, ModifiedDate
+
+Table: Address
+Columns: AddressID, AddressLine1, AddressLine2, City, StateProvince, CountryRegion, PostalCode, rowguid, ModifiedDate
+
+Table: Customer
+Columns: CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate
+
+Table: CustomerAddress
+Columns: CustomerID, AddressID, AddressType, rowguid, ModifiedDate
+
+Table: Product
+Columns: ProductID, Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto, ThumbnailPhotoFileName, rowguid, ModifiedDate
+
+Table: ProductCategory
+Columns: ProductCategoryID, ParentProductCategoryID, Name, rowguid, ModifiedDate
+
+Table: ProductDescription
+Columns: ProductDescriptionID, Description, rowguid, ModifiedDate
+
+Table: ProductModel
+Columns: ProductModelID, Name, CatalogDescription, rowguid, ModifiedDate
+
+Table: ProductModelProductDescription
+Columns: ProductModelID, ProductDescriptionID, Culture, rowguid, ModifiedDate
+
+Table: SalesOrderDetail
+Columns: SalesOrderID, SalesOrderDetailID, OrderQty, ProductID, UnitPrice, UnitPriceDiscount, LineTotal, rowguid, ModifiedDate
+
+Table: SalesOrderHeader
+Columns: SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, SalesOrderNumber, PurchaseOrderNumber, AccountNumber, CustomerID, ShipToAddressID, BillToAddressID, ShipMethod, CreditCardApprovalCode, SubTotal, TaxAmt, Freight, TotalDue, Comment, rowguid, ModifiedDate
+
+
+---------------------
+RELATIONSHIPS (if needed):
+Customer.CustomerID = CustomerAddress.CustomerID
+CustomerAddress.AddressID = Address.AddressID
+SalesOrderHeader.CustomerID = Customer.CustomerID
+SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
+SalesOrderDetail.ProductID = Product.ProductID
+---------------------
+EXAMPLE (SIMPLE_SELECT):
+
+Question:
+Top 5 most expensive products
+
+SQL:
+SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+---------------------
+Question:
+Customers from Seattle
+
+SQL:
+
+Response:
+```sql
+SELECT CustomerID, FirstName, LastName
+FROM Customer
+WHERE City = 'Seattle';
+```
+--------------------------------------------------
