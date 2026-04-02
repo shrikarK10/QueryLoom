@@ -1,4 +1,4 @@
-#
+#QueryMind
 
 QueryMind is an AI-powered data analyst that converts natural language queries into executable data operations across multiple data sources.
 
