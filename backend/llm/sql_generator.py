@@ -10,6 +10,7 @@ def generate_sql(
     question: str,
     schema: str,
     column_mapping: str,
+    query_plan: str,
     query_type: str = "GENERAL",
     previous_error: str | None = None
 ):
@@ -34,6 +35,10 @@ COLUMN MAPPING:
 {column_mapping}
 
 ---------------------
+QUERY PLAN:
+{query_plan}
+
+---------------------
 SCHEMA:
 {schema}
 
@@ -41,10 +46,10 @@ SCHEMA:
 
 You must follow these steps BEFORE writing SQL:
 
-STEP 1: Identify relevant columns from the question
-STEP 2: Use COLUMN MAPPING to find correct tables
-STEP 3: If columns belong to different tables → use JOIN
-STEP 4: Generate the simplest correct query
+STEP 1: Refer to the QUERY PLAN to know exactly what entities, columns, and conditions are needed.
+STEP 2: Use COLUMN MAPPING to find correct tables.
+STEP 3: If columns belong to different tables → use JOIN.
+STEP 4: Generate the simplest correct query matching the plan.
 
 {feedback_block}
 
@@ -60,23 +65,18 @@ STRICT RULES:
 - Prefer simplest correct query
 - DO NOT overuse JOINs
 - DO NOT add unnecessary tables
-- Prefer concrete business columns (for products use Product.Name, Product.ListPrice unless question asks otherwise)
 
-- Output format MUST explicitly use <thought> and <sql> tags
-- First, write a <thought> block explaining your reasoning
-- Then, output ONLY the raw SQL inside a <sql> block
+- First, write a <thought> block explaining your reasoning.
+- Then, output ONLY the raw SQL inside a <sql> block.
+- DO NOT use markdown code blocks like ```sql inside the <sql> tag. The <sql> tag should directly contain the query.
 - SQL must be compatible with {DATABASE_LANGUAGE}
 
 ---------------------
 STRICT SCHEMA CONSTRAINT:
 
-- You are ONLY allowed to use tables listed in SCHEMA
-- You are ONLY allowed to use columns listed in SCHEMA
-- DO NOT invent tables (e.g., City, AddressType, etc.)
-- DO NOT invent columns
-- If something is not in schema → it DOES NOT exist
-
-If you use any table or column not in schema → the query is INVALID
+- You are ONLY allowed to use tables and columns listed in SCHEMA
+- DO NOT invent tables or columns
+- If you use any table or column not in schema → the query is INVALID
 
 ---------------------
 Before writing SQL:

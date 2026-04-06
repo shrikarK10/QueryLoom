@@ -9,6 +9,7 @@ def reflect_sql(
     schema: str,
     sql_query: str,
     column_mapping: str,
+    query_plan: str,
     query_type: str = "GENERAL",
     previous_error: str | None = None
 ):
@@ -33,6 +34,10 @@ COLUMN MAPPING:
 {column_mapping}
 
 ---------------------
+QUERY PLAN:
+{query_plan}
+
+---------------------
 SCHEMA:
 {schema}
 
@@ -42,7 +47,7 @@ Your job is to VALIDATE and CORRECT the SQL query.
 
 STRICT PROCESS:
 
-STEP 1: Identify columns used in SQL (SELECT, WHERE, JOIN)
+STEP 1: Verify SQL logic against QUERY PLAN elements. Then identify columns used in SQL.
 
 STEP 2: For EACH column:
 - Verify it exists in the table used
@@ -64,9 +69,8 @@ STEP 5: Validate SQL:
 
 STEP 6: Schema Validation
 
-- Remove any table not present in SCHEMA
-- Remove any column not present in SCHEMA
-- Replace with correct table using COLUMN MAPPING
+- Identify any tables or columns not present in SCHEMA
+- If incorrect, rewrite using the correct tables/columns from COLUMN MAPPING
 ---------------------
 
 {feedback_block}
@@ -86,13 +90,9 @@ IMPORTANT RULES:
 ---------------------
 STRICT SCHEMA CONSTRAINT:
 
-- You are ONLY allowed to use tables listed in SCHEMA
-- You are ONLY allowed to use columns listed in SCHEMA
-- DO NOT invent tables (e.g., City, AddressType, etc.)
-- DO NOT invent columns
-- If something is not in schema → it DOES NOT exist
-
-If you use any table or column not in schema → the query is INVALID
+- You are ONLY allowed to use tables and columns listed in SCHEMA
+- DO NOT invent tables or columns
+- If you use any table or column not in schema → the query is INVALID
 ---------------------
 QUESTION:
 {question}

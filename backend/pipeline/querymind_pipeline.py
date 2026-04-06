@@ -1,5 +1,6 @@
 from llm.sql_reflector import reflect_sql
 from llm.sql_generator import generate_sql
+from llm.llm_planner import plan_query
 from utils.logger import logger as log
 from utils.sql_validator import validate_sql
 from utils.schema_updater import format_schema , build_column_mapping
@@ -57,11 +58,14 @@ def run_querymind(query: str, connector):
     column_mapping = build_column_mapping(schema)
     log("Column Mapping", column_mapping)
 
-    sql_query = generate_sql(query, formatted_schema, column_mapping, query_type=query_type)
+    query_plan = plan_query(query, formatted_schema, column_mapping)
+    log("Query Plan", query_plan)
+
+    sql_query = generate_sql(query, formatted_schema, column_mapping, query_plan=query_plan, query_type=query_type)
     sql_query = _enforce_simple_limit(sql_query, query, query_type)
     log("Generated SQL", sql_query)
 
-    corrected_sql = reflect_sql(query, formatted_schema, sql_query, column_mapping, query_type=query_type)
+    corrected_sql = reflect_sql(query, formatted_schema, sql_query, column_mapping, query_plan=query_plan, query_type=query_type)
     corrected_sql = _enforce_simple_limit(corrected_sql, query, query_type)
     log("Reflected SQL", corrected_sql)
 
@@ -79,6 +83,7 @@ def run_querymind(query: str, connector):
             query,
             formatted_schema,
             column_mapping,
+            query_plan=query_plan,
             query_type=query_type,
             previous_error=retry_error
         )
@@ -87,6 +92,7 @@ def run_querymind(query: str, connector):
             formatted_schema,
             sql_query,
             column_mapping,
+            query_plan=query_plan,
             query_type=query_type,
             previous_error=retry_error
         )
