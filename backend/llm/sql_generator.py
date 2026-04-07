@@ -11,6 +11,7 @@ def generate_sql(
     schema: str,
     column_mapping: str,
     query_plan: str,
+    joins: str,
     query_type: str = "GENERAL",
     previous_error: str | None = None
 ):
@@ -31,12 +32,12 @@ DATABASE: {DATABASE_LANGUAGE}
 QUERY TYPE: {query_type}
 
 ---------------------
-COLUMN MAPPING:
-{column_mapping}
-
----------------------
 QUERY PLAN:
 {query_plan}
+
+---------------------
+JOINS (MANDATORY USE):
+{joins}
 
 ---------------------
 SCHEMA:
@@ -44,61 +45,56 @@ SCHEMA:
 
 ---------------------
 
-You must follow these steps BEFORE writing SQL:
-
-STEP 1: Refer to the QUERY PLAN to know exactly what entities, columns, and conditions are needed.
-STEP 2: Use COLUMN MAPPING to find correct tables.
-STEP 3: If columns belong to different tables → use JOIN.
-STEP 4: Generate the simplest correct query matching the plan.
-
 {feedback_block}
+
+---------------------
+
+YOUR TASK:
+
+- Generate SQL strictly based on:
+  1. QUERY PLAN (columns + conditions)
+  2. PROVIDED JOINS
 
 ---------------------
 
 STRICT RULES:
 
-- Use ONLY tables and columns from schema
+- You MUST use the provided JOIN clauses EXACTLY as given
+- DO NOT modify joins
+- DO NOT invent joins
+- DO NOT add new tables
+
+- Use ONLY columns from QUERY PLAN
 - DO NOT assume columns
-- If a column is not in a table → use mapping to find correct table
-- DO NOT guess column locations
-
+- DO NOT use COLUMN MAPPING
+- You MUST use ONLY the provided JOIN clauses
+- You are NOT allowed to create your own JOINs
+- If JOIN is empty, use only single table
 - Prefer simplest correct query
-- DO NOT overuse JOINs
-- DO NOT add unnecessary tables
-- ALWAYS prefer direct JOINs (e.g., ON a.CustomerID = b.CustomerID) over using intermediate bridging tables (like Address) if a direct relationship exists.
-- Properly map analytical intents (like ranking, running totals, partitioning) to the correct SQL window functions (e.g., RANK(), DENSE_RANK(), OVER()) rather than basic analytical workarounds.
+- DO NOT add unnecessary logic
 
-- First, write a <thought> block explaining your reasoning.
-- Then, output ONLY the raw SQL inside a <sql> block.
-- DO NOT use markdown code blocks like ```sql inside the <sql> tag. The <sql> tag should directly contain the query.
 - SQL must be compatible with {DATABASE_LANGUAGE}
 
 ---------------------
-STRICT SCHEMA CONSTRAINT:
 
-- You are ONLY allowed to use tables and columns listed in SCHEMA
-- DO NOT invent tables or columns
-- If you use any table or column not in schema → the query is INVALID
+OUTPUT FORMAT:
+
+<thought>
+Brief reasoning (1-2 lines max)
+</thought>
+
+<sql>
+FINAL SQL HERE
+</sql>
 
 ---------------------
-Before writing SQL:
-
-- Verify every table used exists in SCHEMA
-- Verify every column used exists in that table
----------------------
-
 
 EXAMPLE:
 
-Question:
-Top 5 most expensive products
-
-Response:
 <thought>
-The question asks for the top 5 most expensive products.
-I need the `Name` and `ListPrice` columns from the `Product` table.
-I will order by `ListPrice` descending and limit to 5.
+Using Product table, sorting by ListPrice, limiting to 5
 </thought>
+
 <sql>
 SELECT Name, ListPrice
 FROM Product

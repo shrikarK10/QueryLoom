@@ -713,3 +713,359 @@ Step: Selected SQL Source
 Data: reflection
 Step: Execution Result
 Data: [(5, 170825.88600000003), (6, 183130.29680800004), (7, 220655.3757960002), (8, 1192.968), (9, 1320.1680000000001), (10, 830.7), (11, 97.152), (12, 3968.868), (13, 1296.63), (16, 54949.60200000001), (17, 2996.495999999999), (18, 24346.583999999995), (19, 1010.3039999999997), (20, 19066.26), (23, 277.363076), (24, 837.5580000000001), (25, 7017.880276000001), (26, 3299.8045320000006), (27, 345.20880800000003), (29, 4309.90375), (30, 2304), (32, 158.206952), (33, 251.875875), (35, 2523.8811849999997), (36, 1649.7000000000003), (41, 27.48)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: get customers from Seattle
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: get customers from Seattle
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['CustomerID', 'City'], 'conditions': "City = 'Seattle'"}
+Step: Column to Table Map
+Data: {'ErrorLogID': 'ErrorLog', 'ErrorTime': 'ErrorLog', 'UserName': 'ErrorLog', 'ErrorNumber': 'ErrorLog', 'ErrorSeverity': 'ErrorLog', 'ErrorState': 'ErrorLog', 'ErrorProcedure': 'ErrorLog', 'ErrorLine': 'ErrorLog', 'ErrorMessage': 'ErrorLog', 'name': 'sqlite_sequence', 'seq': 'sqlite_sequence', 'SystemInformationID': 'BuildVersion', 'Database Version': 'BuildVersion', 'VersionDate': 'BuildVersion', 'ModifiedDate': 'SalesOrderHeader', 'AddressID': 'CustomerAddress', 'AddressLine1': 'Address', 'AddressLine2': 'Address', 'City': 'Address', 'StateProvince': 'Address', 'CountryRegion': 'Address', 'PostalCode': 'Address', 'rowguid': 'SalesOrderHeader', 'CustomerID': 'SalesOrderHeader', 'NameStyle': 'Customer', 'Title': 'Customer', 'FirstName': 'Customer', 'MiddleName': 'Customer', 'LastName': 'Customer', 'Suffix': 'Customer', 'CompanyName': 'Customer', 'SalesPerson': 'Customer', 'EmailAddress': 'Customer', 'Phone': 'Customer', 'PasswordHash': 'Customer', 'PasswordSalt': 'Customer', 'AddressType': 'CustomerAddress', 'ProductID': 'SalesOrderDetail', 'Name': 'ProductModel', 'ProductNumber': 'Product', 'Color': 'Product', 'StandardCost': 'Product', 'ListPrice': 'Product', 'Size': 'Product', 'Weight': 'Product', 'ProductCategoryID': 'ProductCategory', 'ProductModelID': 'ProductModelProductDescription', 'SellStartDate': 'Product', 'SellEndDate': 'Product', 'DiscontinuedDate': 'Product', 'ThumbNailPhoto': 'Product', 'ThumbnailPhotoFileName': 'Product', 'ParentProductCategoryID': 'ProductCategory', 'ProductDescriptionID': 'ProductModelProductDescription', 'Description': 'ProductDescription', 'CatalogDescription': 'ProductModel', 'Culture': 'ProductModelProductDescription', 'SalesOrderID': 'SalesOrderHeader', 'SalesOrderDetailID': 'SalesOrderDetail', 'OrderQty': 'SalesOrderDetail', 'UnitPrice': 'SalesOrderDetail', 'UnitPriceDiscount': 'SalesOrderDetail', 'LineTotal': 'SalesOrderDetail', 'RevisionNumber': 'SalesOrderHeader', 'OrderDate': 'SalesOrderHeader', 'DueDate': 'SalesOrderHeader', 'ShipDate': 'SalesOrderHeader', 'Status': 'SalesOrderHeader', 'OnlineOrderFlag': 'SalesOrderHeader', 'SalesOrderNumber': 'SalesOrderHeader', 'PurchaseOrderNumber': 'SalesOrderHeader', 'AccountNumber': 'SalesOrderHeader', 'ShipToAddressID': 'SalesOrderHeader', 'BillToAddressID': 'SalesOrderHeader', 'ShipMethod': 'SalesOrderHeader', 'CreditCardApprovalCode': 'SalesOrderHeader', 'SubTotal': 'SalesOrderHeader', 'TaxAmt': 'SalesOrderHeader', 'Freight': 'SalesOrderHeader', 'TotalDue': 'SalesOrderHeader', 'Comment': 'SalesOrderHeader'}
+Step: Columns Needed
+Data: ['CustomerID', 'City']
+Step: Condition Columns
+Data: ['City', 'Seattle']
+Step: All Columns
+Data: ['CustomerID', 'Seattle', 'City']
+Step: Resolved Tables
+Data: ['Address', 'SalesOrderHeader']
+Step: Generated Joins
+Data: JOIN SalesOrderHeader ON SalesOrderHeader.BillToAddressID = Address.AddressID
+Step: Generated SQL
+Data: SELECT c.CustomerID, a.City
+FROM Customer c
+JOIN CustomerAddress ca ON ca.CustomerID = c.CustomerID
+JOIN Address a ON a.AddressID = ca.AddressID
+JOIN SalesOrderHeader soh ON soh.BillToAddressID = a.AddressID
+WHERE a.City = 'Seattle';
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: get customers from Seattle
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['CustomerID', 'City'], 'conditions': "City = 'Seattle'"}
+Step: Column to Table Map
+Data: {'ErrorLogID': 'ErrorLog', 'ErrorTime': 'ErrorLog', 'UserName': 'ErrorLog', 'ErrorNumber': 'ErrorLog', 'ErrorSeverity': 'ErrorLog', 'ErrorState': 'ErrorLog', 'ErrorProcedure': 'ErrorLog', 'ErrorLine': 'ErrorLog', 'ErrorMessage': 'ErrorLog', 'name': 'sqlite_sequence', 'seq': 'sqlite_sequence', 'SystemInformationID': 'BuildVersion', 'Database Version': 'BuildVersion', 'VersionDate': 'BuildVersion', 'ModifiedDate': 'SalesOrderHeader', 'AddressID': 'CustomerAddress', 'AddressLine1': 'Address', 'AddressLine2': 'Address', 'City': 'Address', 'StateProvince': 'Address', 'CountryRegion': 'Address', 'PostalCode': 'Address', 'rowguid': 'SalesOrderHeader', 'CustomerID': 'SalesOrderHeader', 'NameStyle': 'Customer', 'Title': 'Customer', 'FirstName': 'Customer', 'MiddleName': 'Customer', 'LastName': 'Customer', 'Suffix': 'Customer', 'CompanyName': 'Customer', 'SalesPerson': 'Customer', 'EmailAddress': 'Customer', 'Phone': 'Customer', 'PasswordHash': 'Customer', 'PasswordSalt': 'Customer', 'AddressType': 'CustomerAddress', 'ProductID': 'SalesOrderDetail', 'Name': 'ProductModel', 'ProductNumber': 'Product', 'Color': 'Product', 'StandardCost': 'Product', 'ListPrice': 'Product', 'Size': 'Product', 'Weight': 'Product', 'ProductCategoryID': 'ProductCategory', 'ProductModelID': 'ProductModelProductDescription', 'SellStartDate': 'Product', 'SellEndDate': 'Product', 'DiscontinuedDate': 'Product', 'ThumbNailPhoto': 'Product', 'ThumbnailPhotoFileName': 'Product', 'ParentProductCategoryID': 'ProductCategory', 'ProductDescriptionID': 'ProductModelProductDescription', 'Description': 'ProductDescription', 'CatalogDescription': 'ProductModel', 'Culture': 'ProductModelProductDescription', 'SalesOrderID': 'SalesOrderHeader', 'SalesOrderDetailID': 'SalesOrderDetail', 'OrderQty': 'SalesOrderDetail', 'UnitPrice': 'SalesOrderDetail', 'UnitPriceDiscount': 'SalesOrderDetail', 'LineTotal': 'SalesOrderDetail', 'RevisionNumber': 'SalesOrderHeader', 'OrderDate': 'SalesOrderHeader', 'DueDate': 'SalesOrderHeader', 'ShipDate': 'SalesOrderHeader', 'Status': 'SalesOrderHeader', 'OnlineOrderFlag': 'SalesOrderHeader', 'SalesOrderNumber': 'SalesOrderHeader', 'PurchaseOrderNumber': 'SalesOrderHeader', 'AccountNumber': 'SalesOrderHeader', 'ShipToAddressID': 'SalesOrderHeader', 'BillToAddressID': 'SalesOrderHeader', 'ShipMethod': 'SalesOrderHeader', 'CreditCardApprovalCode': 'SalesOrderHeader', 'SubTotal': 'SalesOrderHeader', 'TaxAmt': 'SalesOrderHeader', 'Freight': 'SalesOrderHeader', 'TotalDue': 'SalesOrderHeader', 'Comment': 'SalesOrderHeader'}
+Step: Columns Needed
+Data: ['CustomerID', 'City']
+Step: Condition Columns
+Data: ['City', 'Seattle']
+Step: All Columns
+Data: ['CustomerID', 'Seattle', 'City']
+Step: Resolved Tables
+Data: ['Address', 'SalesOrderHeader']
+Step: Generated Joins
+Data: JOIN SalesOrderHeader ON SalesOrderHeader.BillToAddressID = Address.AddressID
+Step: Generated SQL
+Data: SELECT c.CustomerID, a.City
+FROM Customer c
+JOIN CustomerAddress ca ON ca.CustomerID = c.CustomerID
+JOIN Address a ON a.AddressID = ca.AddressID
+JOIN SalesOrderHeader soh ON soh.BillToAddressID = a.AddressID
+WHERE a.City = 'Seattle';
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: get customers from Seattle
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['CustomerID', 'City'], 'conditions': "City = 'Seattle'"}
+Step: Column to Table Map
+Data: {'ErrorLogID': 'ErrorLog', 'ErrorTime': 'ErrorLog', 'UserName': 'ErrorLog', 'ErrorNumber': 'ErrorLog', 'ErrorSeverity': 'ErrorLog', 'ErrorState': 'ErrorLog', 'ErrorProcedure': 'ErrorLog', 'ErrorLine': 'ErrorLog', 'ErrorMessage': 'ErrorLog', 'name': 'sqlite_sequence', 'seq': 'sqlite_sequence', 'SystemInformationID': 'BuildVersion', 'Database Version': 'BuildVersion', 'VersionDate': 'BuildVersion', 'ModifiedDate': 'SalesOrderHeader', 'AddressID': 'CustomerAddress', 'AddressLine1': 'Address', 'AddressLine2': 'Address', 'City': 'Address', 'StateProvince': 'Address', 'CountryRegion': 'Address', 'PostalCode': 'Address', 'rowguid': 'SalesOrderHeader', 'CustomerID': 'SalesOrderHeader', 'NameStyle': 'Customer', 'Title': 'Customer', 'FirstName': 'Customer', 'MiddleName': 'Customer', 'LastName': 'Customer', 'Suffix': 'Customer', 'CompanyName': 'Customer', 'SalesPerson': 'Customer', 'EmailAddress': 'Customer', 'Phone': 'Customer', 'PasswordHash': 'Customer', 'PasswordSalt': 'Customer', 'AddressType': 'CustomerAddress', 'ProductID': 'SalesOrderDetail', 'Name': 'ProductModel', 'ProductNumber': 'Product', 'Color': 'Product', 'StandardCost': 'Product', 'ListPrice': 'Product', 'Size': 'Product', 'Weight': 'Product', 'ProductCategoryID': 'ProductCategory', 'ProductModelID': 'ProductModelProductDescription', 'SellStartDate': 'Product', 'SellEndDate': 'Product', 'DiscontinuedDate': 'Product', 'ThumbNailPhoto': 'Product', 'ThumbnailPhotoFileName': 'Product', 'ParentProductCategoryID': 'ProductCategory', 'ProductDescriptionID': 'ProductModelProductDescription', 'Description': 'ProductDescription', 'CatalogDescription': 'ProductModel', 'Culture': 'ProductModelProductDescription', 'SalesOrderID': 'SalesOrderHeader', 'SalesOrderDetailID': 'SalesOrderDetail', 'OrderQty': 'SalesOrderDetail', 'UnitPrice': 'SalesOrderDetail', 'UnitPriceDiscount': 'SalesOrderDetail', 'LineTotal': 'SalesOrderDetail', 'RevisionNumber': 'SalesOrderHeader', 'OrderDate': 'SalesOrderHeader', 'DueDate': 'SalesOrderHeader', 'ShipDate': 'SalesOrderHeader', 'Status': 'SalesOrderHeader', 'OnlineOrderFlag': 'SalesOrderHeader', 'SalesOrderNumber': 'SalesOrderHeader', 'PurchaseOrderNumber': 'SalesOrderHeader', 'AccountNumber': 'SalesOrderHeader', 'ShipToAddressID': 'SalesOrderHeader', 'BillToAddressID': 'SalesOrderHeader', 'ShipMethod': 'SalesOrderHeader', 'CreditCardApprovalCode': 'SalesOrderHeader', 'SubTotal': 'SalesOrderHeader', 'TaxAmt': 'SalesOrderHeader', 'Freight': 'SalesOrderHeader', 'TotalDue': 'SalesOrderHeader', 'Comment': 'SalesOrderHeader'}
+Step: Columns Needed
+Data: ['CustomerID', 'City']
+Step: Condition Columns
+Data: ['City', 'Seattle']
+Step: All Columns
+Data: ['CustomerID', 'Seattle', 'City']
+Step: Resolved Tables
+Data: ['Address', 'SalesOrderHeader']
+Step: Generated Joins
+Data: JOIN SalesOrderHeader ON SalesOrderHeader.BillToAddressID = Address.AddressID
+Step: Generated SQL
+Data: SELECT c.CustomerID, a.City
+FROM Customer c
+JOIN CustomerAddress ca ON ca.CustomerID = c.CustomerID
+JOIN Address a ON a.AddressID = ca.AddressID
+JOIN SalesOrderHeader soh ON soh.BillToAddressID = a.AddressID
+WHERE a.City = 'Seattle';
+Step: Reflected SQL
+Data: SELECT c.CustomerID, a.City
+FROM Customer c
+JOIN CustomerAddress ca ON ca.CustomerID = c.CustomerID
+JOIN Address a ON a.AddressID = ca.AddressID
+WHERE a.City = 'Seattle';
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT c.CustomerID, a.City
+FROM Customer c
+JOIN CustomerAddress ca ON ca.CustomerID = c.CustomerID
+JOIN Address a ON a.AddressID = ca.AddressID
+WHERE a.City = 'Seattle';
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(29580, 'Seattle'), (29773, 'Seattle'), (29898, 'Seattle'), (29997, 'Seattle')]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Get top 10 customers by spent
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['CustomerID', 'SUM(TotalDue)'], 'conditions': 'NONE'}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['CustomerID', 'SUM(TotalDue)']
+Step: Condition Columns
+Data: []
+Step: All Columns
+Data: ['CustomerID', 'SUM(TotalDue)']
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Get top 10 customers by spent
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['CustomerID', 'SUM(TotalDue)'], 'conditions': 'NONE'}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['CustomerID', 'SUM(TotalDue)']
+Step: Condition Columns
+Data: []
+Step: All Columns
+Data: ['CustomerID', 'SUM(TotalDue)']
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Get top 10 customers by spent
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['CustomerID', 'SUM(TotalDue)'], 'conditions': 'NONE'}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['CustomerID', 'SUM(TotalDue)']
+Step: Condition Columns
+Data: []
+Step: All Columns
+Data: ['SUM(TotalDue)', 'CustomerID']
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Get top 10 customers by spent
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['CustomerID', 'SUM(TotalDue)'], 'conditions': 'NONE'}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['CustomerID', 'SUM(TotalDue)']
+Step: Condition Columns
+Data: []
+Step: All Columns
+Data: ['CustomerID', 'SUM(TotalDue)']
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Get top 10 customers by spent
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['CustomerID', 'SUM(TotalDue)'], 'conditions': 'NONE'}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['CustomerID', 'SUM(TotalDue)']
+Step: Condition Columns
+Data: []
+Step: All Columns
+Data: ['CustomerID', 'SUM(TotalDue)']
+Step: Resolved Tables
+Data: ['SalesOrderHeader', 'Customer']
+Step: Generated Joins
+Data: JOIN Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+Step: Generated SQL
+Data: SELECT Customer.CustomerID, SUM(SalesOrderHeader.TotalDue) AS TotalSpent
+FROM SalesOrderHeader
+JOIN Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+GROUP BY Customer.CustomerID
+ORDER BY TotalSpent DESC
+LIMIT 10;
+Step: Reflected SQL
+Data: FINAL SQL HERE
+
+SELECT Customer.CustomerID, SUM(SalesOrderHeader.TotalDue) AS TotalSpent
+FROM SalesOrderHeader
+JOIN Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+GROUP BY Customer.CustomerID
+ORDER BY TotalSpent DESC
+LIMIT 10;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: False
+Step: Final SQL
+Data: SELECT Customer.CustomerID, SUM(SalesOrderHeader.TotalDue) AS TotalSpent
+FROM SalesOrderHeader
+JOIN Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+GROUP BY Customer.CustomerID
+ORDER BY TotalSpent DESC
+LIMIT 10;
+Step: Selected SQL Source
+Data: generator
+Step: Execution Result
+Data: [(29736, 119960.824), (30050, 108597.9536), (29546, 98138.2131), (29957, 92663.5609), (29796, 86222.8072), (29929, 81834.9826), (29932, 70698.9922), (29660, 63686.2708), (29938, 45992.3665), (29485, 43962.7901)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List customers and their cities
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['CustomerID', 'FirstName', 'LastName', 'City'], 'conditions': 'NONE'}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['CustomerID', 'FirstName', 'LastName', 'City']
+Step: Condition Columns
+Data: []
+Step: All Columns
+Data: ['City', 'CustomerID', 'LastName', 'FirstName']
+Step: Resolved Tables
+Data: ['Address', 'Customer']
+Step: Generated Joins
+Data: JOIN CustomerAddress ON CustomerAddress.AddressID = Address.AddressID
+JOIN Customer ON CustomerAddress.CustomerID = Customer.CustomerID
+Step: Generated SQL
+Data: SELECT Customer.CustomerID, Customer.FirstName, Customer.LastName, Address.City
+FROM Customer
+JOIN CustomerAddress ON CustomerAddress.CustomerID = Customer.CustomerID
+JOIN Address ON CustomerAddress.AddressID = Address.AddressID
+LIMIT 20;
+Step: Reflected SQL
+Data: SELECT Customer.CustomerID, Customer.FirstName, Customer.LastName, Address.City
+FROM Customer
+JOIN CustomerAddress ON CustomerAddress.CustomerID = Customer.CustomerID
+JOIN Address ON CustomerAddress.AddressID = Address.AddressID
+LIMIT 20;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Customer.CustomerID, Customer.FirstName, Customer.LastName, Address.City
+FROM Customer
+JOIN CustomerAddress ON CustomerAddress.CustomerID = Customer.CustomerID
+JOIN Address ON CustomerAddress.AddressID = Address.AddressID
+LIMIT 20;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List all cities having at least one customer
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['City'], 'conditions': 'COUNT(CustomerID) > 0'}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['City']
+Step: Condition Columns
+Data: ['COUNT', 'CustomerID']
+Step: All Columns
+Data: ['COUNT', 'City', 'CustomerID']
+Step: Resolved Tables
+Data: ['Address', 'Customer']
+Step: Generated Joins
+Data: JOIN CustomerAddress ON CustomerAddress.AddressID = Address.AddressID
+JOIN Customer ON CustomerAddress.CustomerID = Customer.CustomerID
+Step: Generated SQL
+Data: SELECT DISTINCT A.City
+FROM Address A
+JOIN CustomerAddress CA ON CA.AddressID = A.AddressID
+JOIN Customer C ON CA.CustomerID = C.CustomerID
+WHERE EXISTS (SELECT 1 FROM CustomerAddress WHERE CustomerID = C.CustomerID)
+ORDER BY A.City
+LIMIT 20;
+Step: Reflected SQL
+Data: SELECT A.City
+FROM Address A
+JOIN CustomerAddress CA ON CA.AddressID = A.AddressID
+JOIN Customer C ON CA.CustomerID = C.CustomerID
+GROUP BY A.City
+HAVING COUNT(C.CustomerID) > 0
+ORDER BY A.City
+LIMIT 20;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT A.City
+FROM Address A
+JOIN CustomerAddress CA ON CA.AddressID = A.AddressID
+JOIN Customer C ON CA.CustomerID = C.CustomerID
+GROUP BY A.City
+HAVING COUNT(C.CustomerID) > 0
+ORDER BY A.City
+LIMIT 20;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Abingdon',), ('Albany',), ('Alhambra',), ('Arlington',), ('Auburn',), ('Aurora',), ('Austin',), ('Baldwin Park',), ('Barrie',), ('Barstow',), ('Basingstoke Hants',), ('Baytown',), ('Beaverton',), ('Bell Gardens',), ('Bellevue',), ('Bellingham',), ('Berks',), ('Berkshire',), ('Billings',), ('Birmingham',)]

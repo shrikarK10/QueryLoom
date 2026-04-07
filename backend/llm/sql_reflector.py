@@ -10,6 +10,7 @@ def reflect_sql(
     sql_query: str,
     column_mapping: str,
     query_plan: str,
+    joins: str,
     query_type: str = "GENERAL",
     previous_error: str | None = None
 ):
@@ -24,18 +25,18 @@ Use this error to repair the SQL.
 """
 
     prompt = f"""
-You are an expert SQL auditor and fixer.
+You are an expert SQL fixer.
 
 DATABASE: {DATABASE_LANGUAGE}
 QUERY TYPE: {query_type}
 
 ---------------------
-COLUMN MAPPING:
-{column_mapping}
-
----------------------
 QUERY PLAN:
 {query_plan}
+
+---------------------
+EXPECTED JOINS (DO NOT MODIFY):
+{joins}
 
 ---------------------
 SCHEMA:
@@ -43,64 +44,51 @@ SCHEMA:
 
 ---------------------
 
-Your job is to VALIDATE and CORRECT the SQL query.
+Your job is to FIX the SQL query if needed.
 
-STRICT PROCESS:
-
-STEP 1: Verify SQL logic against QUERY PLAN elements. Then identify columns used in SQL.
-
-STEP 2: For EACH column:
-- Verify it exists in the table used
-- If NOT → use COLUMN MAPPING to find correct table
-
-STEP 3: If column belongs to different table:
-- ADD correct JOIN
-- FIX query
-
-STEP 4: Validate logic:
-- Avoid duplicate rows from joins
-- Fix aggregation issues
-- Fix COUNT problems
-
-STEP 5: Validate SQL:
-- All aliases must be defined
-- No invalid column references
-- Query must execute successfully
-
-STEP 6: Schema Validation
-
-- Identify any tables or columns not present in SCHEMA
-- If incorrect, rewrite using the correct tables/columns from COLUMN MAPPING
 ---------------------
 
 {feedback_block}
 
-IMPORTANT RULES:
+---------------------
 
-- If SQL is correct → RETURN AS IS
-- DO NOT overcomplicate
-- DO NOT add unnecessary joins
-- Prefer simplest correct query
-- ALWAYS override indirect/bridging JOINs with direct JOINs (e.g., ON a.CustomerID = b.CustomerID) if a direct shared relationship exists.
-- Keep business logic aligned with the user question (avoid unrelated filters)
-- Ensure analytical questions (ranking, partitioning, etc.) correctly use SQL window functions where appropriate.
+STRICT RULES:
 
-- Output format MUST explicitly use <thought> and <sql> tags
-- First, write a <thought> block explaining your fixes and reasoning
-- Then, output ONLY the raw SQL inside a <sql> block
+- DO NOT change JOIN structure unless it is completely invalid
+- DO NOT add new tables
+- DO NOT invent columns
+
+- You MUST preserve the provided JOIN logic
+- Only fix:
+  • syntax errors
+  • wrong column usage
+  • aggregation mistakes
+  • missing GROUP BY
+  • incorrect filters
+
+- Ensure query aligns with QUERY PLAN
+
+- Keep query SIMPLE and correct
 
 ---------------------
-STRICT SCHEMA CONSTRAINT:
 
-- You are ONLY allowed to use tables and columns listed in SCHEMA
-- DO NOT invent tables or columns
-- If you use any table or column not in schema → the query is INVALID
+OUTPUT FORMAT:
+
+<thought>
+Brief reasoning (1-2 lines)
+</thought>
+
+<sql>
+FINAL SQL HERE
+</sql>
+
 ---------------------
+
 QUESTION:
 {question}
 
 ---------------------
-SQL TO REVIEW:
+SQL:
 {sql_query}
 
 ---------------------
