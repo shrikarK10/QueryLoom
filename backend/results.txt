@@ -1,0 +1,715 @@
+Step: 
+Data: -*100
+Step: User Query
+Data: Which customers have never placed an order?
+Step: Query Type
+Data: GENERAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["Customer", "SalesOrderHeader"],
+  "bridging_tables_needed": [],
+  "entities": ["Customer", "SalesOrderHeader"],
+  "columns": ["Customer.CustomerID", "Customer.CompanyName"],
+  "conditions": "NOT EXISTS (SELECT 1 FROM SalesOrderHeader WHERE Customer.CustomerID = SalesOrderHeader.CustomerID)",
+  "join_required": "NO"
+}
+Step: Generated SQL
+Data: SELECT Customer.CustomerID, Customer.CompanyName
+FROM Customer
+WHERE NOT EXISTS (SELECT 1 FROM SalesOrderHeader WHERE Customer.CustomerID = SalesOrderHeader.CustomerID);
+Step: Reflected SQL
+Data: SELECT Customer.CustomerID, Customer.CompanyName
+FROM Customer
+WHERE NOT EXISTS (SELECT 1 FROM SalesOrderHeader WHERE Customer.CustomerID = SalesOrderHeader.CustomerID);
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(1, 'A Bike Store'), (2, 'Progressive Sports'), (3, 'Advanced Bike Components'), (4, 'Modular Cycle Systems'), (5, 'Metropolitan Sports Supply'), (6, 'Aerobic Exercise Company'), (7, 'Associated Bikes'), (10, 'Rural Cycle Emporium'), (11, 'Sharp Bikes'), (12, 'Bikes and Motorbikes'), (16, 'Bulk Discount Store'), (18, 'Catalog Store'), (19, 'Center Cycle Shop'), (20, 'Central Discount Store'), (21, 'Chic Department Stores'), (22, 'Travel Systems'), (23, 'Bike World'), (24, 'Eastside Department Store'), (25, 'Coalition Bike Company'), (28, 'Commuter Bicycle Store'), (29, 'Cross-Country Riding Supplies'), (30, 'Cycle Merchants'), (34, 'Cycles Wholesaler & Mfg.'), (37, 'Two Bike Shops'), (38, 'Finer Mart'), (39, 'Fitness Hotel'), (40, 'Journey Sporting Goods'), (41, 'Distant Inn'), (42, 'Healthy Activity Store'), (43, 'Frugal Bike Shop'), (46, 'Gear-Shift Bikes Limited'), (47, 'Greater Bike Store'), (48, 'Grand Industries'), (52, 'Instruments and Parts Company'), (55, 'Kickstands and Accessories Company'), (56, 'Latest Accessories Sales'), (57, 'Leading Sales & Repair'), (58, 'Largest Bike Store'), (59, 'Locks Company'), (60, 'Main Bicycle Services'), (61, 'Many Bikes Store'), (64, 'Metal Clearing House'), (65, 'Metro Manufacturing'), (66, 'Neighborhood Store'), (70, 'Outdoor Aerobic Systems Company'), (73, 'Outdoor Sports Supply'), (74, 'Parcel Express Delivery Service'), (75, 'Paint Supply'), (76, 'Out-of-the-Way Hotels'), (77, 'Mechanical Products Ltd.'), (78, 'Preferred Bikes'), (79, 'Reasonable Bicycle Sales'), (82, 'Refined Department Stores'), (83, 'Requisite Part Supply'), (84, 'Rewarding Activities Company'), (88, 'Closest Bicycle Store'), (91, 'Scooters and Bikes Store'), (92, 'Sports Commodities'), (93, 'Stationary Bikes and Stands'), (94, 'Specialty Sports Store'), (95, 'Rural Department Store'), (96, 'More Bikes!'), (97, 'Mountain Bike Center'), (100, 'Up-To-Date Sports'), (101, 'Urban Sports Emporium'), (102, 'National Manufacturing'), (106, 'West Side Mart'), (109, 'Travel Sports'), (110, 'Vintage Sport Boutique'), (111, 'Westside Cycle Store'), (112, 'Town Industries'), (113, 'Trendy Department Stores'), (114, 'Two Wheels Cycle Store'), (115, 'Security Racks and Locks Wholesalers'), (118, 'Rapid Bikes'), (119, 'Red Bicycle Company'), (120, 'Machines & Cycles Store'), (124, 'Nearby Sporting Goods'), (127, 'Front Sporting Goods'), (128, 'Demand Distributors'), (129, 'Discount Bicycle Specialists'), (130, 'Elite Bikes'), (131, 'Eighth Bike Store'), (132, 'Another Sporting Goods Company'), (133, 'Commercial Sporting Goods'), (136, 'Wholesale Parts'), (137, 'Transportation Options'), (138, 'South Bike Company'), (142, 'Riding Cycles'), (145, 'Raw Materials Inc'), (146, 'Latest Sports Equipment'), (147, 'Local Hardware Factory'), (148, 'Lots of Bikes Storehouse'), (149, 'Initial Bike Company'), (150, 'Fleet Bikes'), (151, 'Futuristic Bikes'), (154, 'Camping and Sports Store'), (155, 'Corner Bicycle Supply'), (156, 'Metal Processing Company'), (160, 'Vigorous Sports Store'), (163, 'Sports Merchandise'), (164, 'Suburban Cycle Shop'), (165, 'Third Bike Store'), (166, 'Fitness Toy Store'), (167, 'Farthermost Bike Shop'), (168, 'Economy Bikes Company'), (169, 'Downtown Hotel'), (172, 'Certified Sports Supply'), (173, 'Sundry Sporting Goods'), (174, 'Toy Manufacturing Inc'), (178, 'Rampart Amusement Company'), (180, 'Full-Service Bike Store'), (181, 'Family Entertainment Center'), (182, 'Another Bicycle Company'), (183, 'This Area Sporting Goods'), (184, 'Go-cart and Bike Specialists'), (185, 'Weekend Bike Tours'), (186, 'Thrilling Bike Tours'), (187, 'Trailblazing Sports'), (190, 'Racing Partners'), (191, 'Non-Slip Pedal Company'), (192, 'Nuts and Bolts Mfg.'), (196, 'Exhibition Showroom'), (197, 'Fabrikam Inc., West'), (198, 'Field Trip Inc'), (199, 'Authorized Bike Sales and Rental'), (200, 'Basic Bike Company'), (201, 'Unsurpassed Bikes'), (202, 'Two-Seater Bikes'), (203, 'Separate Parts Corporation'), (204, 'Traction Tire Company'), (205, 'Rally Master Company Inc'), (208, 'Professional Cyclists'), (209, 'Purple Bicycle Company'), (210, 'Gasless Cycle Shop'), (214, 'Exclusive Bicycle Mart'), (217, 'City Manufacturing'), (218, 'Sure & Reliable Sporting Goods'), (219, 'Extras Sporting Goods'), (220, "Best o' Bikes"), (221, 'Bike Dealers Association'), (222, 'Sample Bike Store'), (223, 'Paints and Solvents Company'), (226, 'Leisure Activities'), (227, 'Health Spa, Limited'), (228, 'Home Town Bike Store'), (232, 'Exceptional Cycle Services'), (235, 'Certified Bicycle Supply'), (236, 'Closeout Boutique'), (237, 'Client Discount Store'), (238, 'A Great Bicycle Company'), (239, 'Bicycle Merchandise Warehouse'), (240, 'Wire Baskets and Parts'), (241, 'Vale Riding Supplies'), (244, 'Retail Discount Store'), (245, 'Leather Seat Factory'), (246, 'Large Bike Shop'), (250, 'Express Bike Services'), (253, 'Roving Sports'), (254, 'Safe Cycles Shop'), (255, 'Swift Cycles'), (256, 'Rental Bikes'), (257, 'Number 1 Supply'), (258, 'Quantity Discounts'), (259, 'Highway Bike Shop'), (262, 'General Industries'), (263, 'Farthest Bike Store'), (264, 'Fasteners & Bolts Outlet'), (268, 'Channel Outlet'), (271, 'Alternative Vehicles'), (272, 'Metro Cycle Shop'), (273, 'A Typical Bike Shop'), (274, 'Active Systems'), (275, 'Outdoor Sporting Goods'), (276, 'Thrifty Parts and Sales'), (277, 'The Bicycle Accessories Company'), (280, 'Standard Bikes'), (281, 'Petroleum Products Distributors'), (282, 'Quick Parts and Service'), (286, 'Number One Bike Co.'), (287, 'Handy Bike Services'), (288, 'Kickstand Sellers'), (289, 'Moderately-Priced Bikes Store'), (290, 'Friendly Bike Shop'), (291, 'Grand Bicycle Stores'), (292, 'Grease and Oil Products Company'), (293, 'Fashionable Bikes and Accessories'), (294, 'Flawless Bike Shop'), (295, 'Engineered Bike Systems'), (298, 'City Cycling'), (299, 'Citywide Service and Repair'), (300, 'Nice Bikes'), (304, 'Essential Bike Works'), (306, 'Work and Play Association'), (307, 'Riding Associates'), (308, 'Rugged Bikes'), (309, 'The Gear Store'), (310, 'Orange Bicycle Company'), (311, 'Principal Bike Company'), (312, 'Resale Services'), (313, 'Metropolitan Manufacturing'), (316, 'Low Price Cycles'), (317, 'Finer Riding Supplies'), (318, 'First-Rate Outlet'), (322, 'Tachometers and Accessories'), (323, 'Metro Bike Works'), (325, 'All Cycle Shop'), (326, 'Year-Round Sports'), (327, 'World of Bikes'), (328, 'Totes & Baskets Company'), (329, 'Unicycles, Bicycles, and Tricycles'), (330, 'The New Bike Store'), (331, 'Technical Parts Manufacturing'), (334, 'Retreat Inn'), (335, 'Scratch-Resistant Finishes Company'), (336, 'Primary Bike Distributors'), (340, 'Nearby Cycle Shop'), (343, 'Mail-Order Outlet'), (344, 'Fifth Bike Store'), (345, 'Genial Bike Associates'), (346, 'Great Bicycle Supply'), (347, 'Bike Universe'), (348, 'Bold Bike Accessories'), (349, 'Exercise Center'), (352, 'Twelfth Bike Store'), (353, 'Two-Wheeled Transit Company'), (354, 'Serious Cycles'), (358, 'Mail Market'), (360, 'Novelty Bikes'), (361, 'Fitness Supplies'), (362, 'Grand Cycle Store'), (363, 'Immense Manufacturing Company'), (364, 'District Mall'), (365, 'Distinctive Store'), (366, 'Extended Bike Sales'), (367, 'Brown Bicycle Company'), (370, 'Acceptable Sales & Service'), (371, 'Custom Sales and Service'), (372, 'Top Bike Market'), (376, 'Commerce Bicycle Specialists'), (377, 'Grand Sport Boutique'), (379, 'Fad Outlet'), (380, 'First Department Stores'), (381, 'Bicycle Lines Distributors'), (382, 'Beneficial Exercises and Activities'), (383, 'Vehicle Shop'), (384, 'Sparkling Paint and Finishes'), (385, 'Sturdy Toys'), (388, 'Road Way Sales and Rental'), (389, 'Sixth Bike Store'), (390, 'Plastic Parts Company'), (394, 'Little Sports Center'), (395, 'Online Bike Sellers'), (397, 'Capable Sales and Service'), (398, 'Commendable Bikes'), (399, 'Big Cycle Mall'), (400, 'Local Sales and Rental'), (401, 'Brightwork Company'), (402, 'Pro Sporting Goods'), (403, 'Affordable Sports Equipment'), (406, 'The Commissary'), (407, 'Workout Emporium'), (408, 'Odometers and Accessories Company'), (412, 'Leisure Clearing House'), (415, 'Imaginary Toys'), (416, 'Impromptu Trips'), (417, 'Genuine Bike Shop'), (418, 'Good Bike Shop'), (419, 'Exertion Activities Club'), (420, 'Extreme Riding Supplies'), (421, 'Fitness Cycling'), (424, 'Bikes for Two'), (425, 'Bikes for Kids and Adults'), (426, 'Custom Accessories Company'), (430, 'Uttermost Bike Shop'), (431, 'Small Cycle Store'), (433, 'Thorough Parts and Repair Services'), (434, 'Road-Way Mart'), (435, 'Satin Finish Company'), (436, 'Sheet Metal Manufacturing'), (437, 'Professional Cycle Store'), (438, 'Remarkable Bike Store'), (439, 'Regional Manufacturing'), (442, 'Original Bicycle Supply Company'), (443, 'Courteous Bicycle Specialists'), (444, 'Finer Cycle Shop'), (448, 'Action Bicycle Specialists'), (451, 'Roadway Bike Emporium'), (452, 'A Cycle Shop'), (453, 'Unique Bikes'), (454, 'Sleek Bikes '), (455, 'Timely Shipping Service'), (456, 'Riding Excursions'), (457, 'Retail Sporting Equipment'), (460, 'Price-Cutter Discount Bikes'), (461, 'Active Life Toys'), (462, 'General Riding Supplies'), (466, 'Central Bicycle Specialists'), (468, 'Blue Bicycle Company'), (469, 'Vast Bike Sales and Rental'), (470, 'Wingtip Toys'), (471, 'Social Activities Club'), (472, 'Summer Sports Place'), (473, 'Racing Toys'), (474, 'Retail Cycle Shop'), (475, 'Real Sporting Goods'), (478, 'Major Cycling'), (479, 'General Supplies'), (480, 'General Bike Corporation'), (484, 'Downhill Bicycle Specialists'), (487, 'Bike Experts'), (488, 'Bicycle Accessories and Kits'), (489, 'Cash & Carry Bikes'), (490, 'Extraordinary Bike Works'), (491, 'Area Bike Accessories'), (492, 'Basic Sports Equipment'), (493, 'Valley Bicycle Distributors'), (496, 'Top Sports Supply'), (497, 'Valley Toy Store'), (498, 'Quick Delivery Service'), (502, 'Metropolitan Bicycle Supply'), (504, 'Historic Bicycle Sales'), (505, 'Honest Repair Service'), (506, 'Great Bikes '), (507, 'Global Sporting Goods'), (508, 'Designer Department Stores'), (509, 'Fun Toys and Bikes'), (510, 'World Bike Discount Store'), (511, 'Wheel Gallery'), (514, 'Retail Mall'), (515, 'Rural Bicycle Supply'), (516, 'Seats and Saddles Company'), (520, 'Metro Metals Co.'), (523, 'Futuristic Sport Distributors'), (526, 'Finer Sales and Service'), (527, 'Fun Times Club'), (528, 'Alpine Ski House'), (529, 'Big-Time Bike Store'), (532, 'The Showroom'), (533, 'Tenth Bike Store'), (534, 'Recommended Bicycles'), (538, 'Prosperous Tours'), (541, 'Nonskid Tire Company'), (542, 'Finer Parts Shop'), (543, 'Friendly Neighborhood Bikes'), (544, 'Valley Bicycle Specialists'), (545, 'Finish and Sealant Products'), (546, 'Field Trip Store'), (547, 'Curbside Sporting Goods'), (550, 'Remote Bicycle Specialists'), (551, 'Vinyl and Plastic Goods Corporation'), (552, 'Consolidated Messenger'), (556, 'Variety Cycling'), (559, 'Some Discount Store'), (560, 'Major Sport Suppliers'), (561, 'Mountain Toy Store'), (562, 'Practical Bike Supply Company'), (563, 'Systematic Sales'), (564, 'Imported and Domestic Cycles'), (565, 'Metallic Paint and Overcoat Co'), (568, 'Economy Center'), (569, 'Designated Distributors'), (570, "Family's Favorite Bike Shop"), (574, 'Area Sheet Metal Supply'), (577, 'Synthetic Materials Manufacturing'), (578, 'The Bike Shop'), (579, 'Riders Company'), (580, 'Rural Sales and Service'), (581, 'Safe Toys'), (582, 'Professional Sales and Service'), (583, 'Professional Containers and Packaging Co.'), (586, 'One Bike Company'), (587, 'Our Sporting Goods Store'), (588, 'General Cycle Storehouse'), (592, 'Cycling Goods'), (595, 'Cycle Clearance'), (596, 'Coho Sports'), (597, 'All Seasons Sports Supply'), (598, 'Black Bicycle Company'), (599, 'Westside Plaza'), (600, 'Strenuous Exercise Shop'), (601, 'Transport Bikes'), (604, 'Sellers of Cycles'), (605, 'Outstanding Cycles'), (606, 'Little Bicycle Supply Shop'), (607, 'Maintenance and Repair for Bicycles'), (608, 'Golf and Cycle Store'), (609, 'Good Toys'), (610, 'Fitness Department Stores'), (613, 'Famous Bike Shop'), (617, 'Tubeless Tire Company'), (620, 'Tires and Tubes'), (621, 'Running and Cycling Gear'), (622, 'Gift and Toy Store'), (623, 'Hardware Components'), (624, 'First Cycle Store'), (625, 'Major Sporting Goods'), (626, 'Retail Sporting Goods'), (629, 'Efficient Cycling'), (630, 'Eastside Parts Shop'), (631, 'Tandem Sales and Service'), (635, 'Sports Store'), (637, 'Reliable Retail Center'), (641, 'Extended Tours'), (643, 'Friendly Bike Shop'), (644, 'Convenient Sales and Service'), (645, 'Superior Hardware Distributors'), (646, 'Yellow Bicycle Company'), (647, 'Solid Bike Parts'), (648, 'Small Bike Shop'), (649, 'Sports Products Store'), (650, 'Permanent Finish Products'), (653, 'Mercantile Outlet'), (654, 'Online Bike Warehouse'), (655, 'Operational Manufacturing'), (659, 'Shipping Specialists'), (660, 'Exhilarating Cycles'), (661, 'General Department Stores'), (665, 'Authentic Sales and Service'), (668, 'Official Parts Shop'), (669, 'Racing Bike Outlet'), (670, 'First Bike Store'), (671, 'Contoso, Ltd.'), (672, 'Utilitarian Sporting Goods'), (673, 'Countryside Company'), (674, 'Discount Tours'), (677, 'Tire Exchange'), (678, 'Vigorous Exercise Company'), (679, 'Superb Sales and Repair'), (683, 'Oils and Fluids Warehouse'), (685, 'Family Cycle Store'), (689, 'Consumer Equipment'), (692, 'Successful Sales Company'), (693, 'Stock Parts and Supplies'), (694, 'The Accessories Store'), (695, 'Responsible Bike Dealers'), (696, 'Roadway Supplies'), (697, 'Brakes and Gears'), (698, 'Western Bike Supplies'), (701, 'Future Bikes'), (29486, 'Riders Company'), (29489, 'Area Bike Accessories'), (29490, 'Bicycle Accessories and Kits'), (29492, 'Valley Bicycle Specialists'), (29494, 'Vinyl and Plastic Goods Corporation'), (29496, 'Fun Toys and Bikes'), (29497, 'Great Bikes '), (29499, 'Valley Toy Store'), (29502, 'Major Sport Suppliers'), (29503, "Family's Favorite Bike Shop"), (29505, 'Imported and Domestic Cycles'), (29506, 'Systematic Sales'), (29508, 'Mountain Toy Store'), (29510, 'Designated Distributors'), (29511, 'Bold Bike Accessories'), (29515, 'Serious Cycles'), (29517, 'Novelty Bikes'), (29521, 'Brightwork Company'), (29522, 'Resale Services'), (29523, 'The Gear Store'), (29524, 'Immense Manufacturing Company'), (29525, 'Extended Bike Sales'), (29527, 'Workout Emporium'), (29528, 'Work and Play Association'), (29530, 'Nice Bikes'), (29532, 'Road-Way Mart'), (29533, 'Small Cycle Store'), (29535, 'Grand Bicycle Stores'), (29536, 'Kickstand Sellers'), (29539, 'Gasless Cycle Shop'), (29541, 'Transportation Options'), (29544, 'Finer Cycle Shop'), (29545, 'Center Cycle Shop'), (29548, 'First-Rate Outlet'), (29550, 'Another Bicycle Company'), (29553, 'Unsurpassed Bikes'), (29554, 'Field Trip Inc'), (29557, 'Odometers and Accessories Company'), (29558, 'Scratch-Resistant Finishes Company'), (29559, 'Safe Cycles Shop'), (29560, 'Number 1 Supply'), (29562, 'Golf and Cycle Store'), (29565, 'World Bike Discount Store'), (29566, 'Historic Bicycle Sales'), (29567, 'Commuter Bicycle Store'), (29569, 'Travel Systems'), (29570, 'Grease and Oil Products Company'), (29571, 'Moderately-Priced Bikes Store'), (29573, 'Economy Bikes Company'), (29574, 'Third Bike Store'), (29576, 'Bikes for Two'), (29577, 'Metal Processing Company'), (29579, 'Initial Bike Company'), (29580, 'Latest Sports Equipment'), (29582, 'Raw Materials Inc'), (29583, 'Lots of Bikes Storehouse'), (29585, 'Parcel Express Delivery Service'), (29587, 'Prosperous Tours'), (29588, 'Nonskid Tire Company'), (29590, 'Metro Bike Works'), (29591, "Best o' Bikes"), (29593, 'Client Discount Store'), (29596, 'Requisite Part Supply'), (29598, 'Mechanical Products Ltd.'), (29599, 'Commendable Bikes'), (29600, 'Online Bike Sellers'), (29601, 'Custom Accessories Company'), (29603, 'Courteous Bicycle Specialists'), (29605, 'Professional Cycle Store'), (29606, 'Fifth Bike Store'), (29608, 'Farthest Bike Store'), (29611, 'Alternative Vehicles'), (29614, 'Retail Mall'), (29615, 'Metro Metals Co.'), (29616, 'Sheet Metal Manufacturing'), (29617, 'Thorough Parts and Repair Services'), (29618, 'Uttermost Bike Shop'), (29620, 'Two-Wheeled Transit Company'), (29622, 'Metro Cycle Shop'), (29623, 'Outdoor Sporting Goods'), (29625, 'Petroleum Products Distributors'), (29627, 'Bikes and Motorbikes'), (29629, 'Camping and Sports Store'), (29631, 'Rural Department Store'), (29632, 'Sports Commodities'), (29635, 'Responsible Bike Dealers'), (29636, 'Western Bike Supplies'), (29637, 'Advanced Bike Components'), (29639, 'Corner Bicycle Supply'), (29641, 'Westside Plaza'), (29643, 'Outstanding Cycles'), (29645, 'Sports Merchandise'), (29646, 'Fitness Toy Store'), (29649, 'General Cycle Storehouse'), (29650, 'Fitness Cycling'), (29651, 'Good Bike Shop'), (29654, 'This Area Sporting Goods'), (29655, 'Full-Service Bike Store'), (29659, 'Genuine Bike Shop'), (29662, 'Fleet Bikes'), (29663, 'Local Hardware Factory'), (29666, 'South Bike Company'), (29668, 'Discount Bicycle Specialists'), (29671, 'Machines & Cycles Store'), (29673, 'Two Wheels Cycle Store'), (29674, 'Westside Cycle Store'), (29677, 'Urban Sports Emporium'), (29680, 'Sixth Bike Store'), (29682, 'Vehicle Shop'), (29683, 'First Department Stores'), (29684, 'Grand Sport Boutique'), (29686, 'Distinctive Store'), (29688, 'Handy Bike Services'), (29689, 'Friendly Bike Shop'), (29690, 'Fashionable Bikes and Accessories'), (29692, 'Citywide Service and Repair'), (29695, 'Rugged Bikes'), (29696, 'Principal Bike Company'), (29698, 'Finer Riding Supplies'), (29699, 'Neighborhood Store'), (29702, 'Paint Supply'), (29703, 'Preferred Bikes'), (29705, 'Rewarding Activities Company'), (29708, 'Stationary Bikes and Stands'), (29709, 'Successful Sales Company'), (29710, 'Downtown Hotel'), (29711, 'Certified Sports Supply'), (29713, 'Rampart Amusement Company'), (29714, 'Sundry Sporting Goods'), (29716, 'Farthermost Bike Shop'), (29717, 'Suburban Cycle Shop'), (29719, 'Racing Bike Outlet'), (29720, 'Utilitarian Sporting Goods'), (29722, 'Vigorous Exercise Company'), (29727, 'Stock Parts and Supplies'), (29728, 'Roadway Supplies'), (29730, 'Future Bikes'), (29732, 'Satin Finish Company'), (29733, 'Regional Manufacturing'), (29734, 'Original Bicycle Supply Company'), (29737, 'Roadway Bike Emporium'), (29738, 'Sleek Bikes '), (29739, 'Retail Sporting Equipment'), (29740, 'Price-Cutter Discount Bikes'), (29742, 'Vast Bike Sales and Rental'), (29743, 'Summer Sports Place'), (29744, 'Real Sporting Goods'), (29747, 'The Bike Shop'), (29748, 'Safe Toys'), (29750, 'Our Sporting Goods Store'), (29753, 'Coho Sports'), (29755, 'Quick Delivery Service'), (29757, 'Basic Sports Equipment'), (29758, 'Cash & Carry Bikes'), (29761, 'General Bike Corporation'), (29763, 'Retail Cycle Shop'), (29764, 'Social Activities Club'), (29765, 'Blue Bicycle Company'), (29766, 'General Riding Supplies'), (29768, 'Riding Excursions'), (29769, 'Unique Bikes'), (29770, 'Rural Cycle Emporium'), (29771, 'Associated Bikes'), (29772, 'Modular Cycle Systems'), (29773, 'A Bike Store'), (29774, 'Journey Sporting Goods'), (29775, 'Two Bike Shops'), (29776, 'Cycles Wholesaler & Mfg.'), (29778, 'Number One Bike Co.'), (29780, 'Standard Bikes'), (29782, 'Active Systems'), (29783, 'Futuristic Sport Distributors'), (29784, 'Big-Time Bike Store'), (29785, 'The Showroom'), (29787, 'Year-Round Sports'), (29788, 'The New Bike Store'), (29789, 'Primary Bike Distributors'), (29792, 'Genial Bike Associates'), (29793, 'Commercial Sporting Goods'), (29794, 'Wholesale Parts'), (29797, 'Metro Manufacturing'), (29799, 'Locks Company'), (29800, 'Latest Accessories Sales'), (29803, 'Greater Bike Store'), (29805, 'Distant Inn'), (29806, 'Finer Mart'), (29807, 'Cross-Country Riding Supplies'), (29809, 'Bike World'), (29810, 'Central Discount Store'), (29813, 'Sharp Bikes'), (29815, 'Metropolitan Sports Supply'), (29816, 'Progressive Sports'), (29818, 'Brakes and Gears'), (29819, 'The Accessories Store'), (29822, 'Family Cycle Store'), (29824, 'Superb Sales and Repair'), (29826, 'Countryside Company'), (29827, 'First Bike Store'), (29830, 'General Department Stores'), (29831, 'Operational Manufacturing'), (29832, 'Online Bike Warehouse'), (29834, 'Small Bike Shop'), (29835, 'Superior Hardware Distributors'), (29840, 'Eastside Parts Shop'), (29842, 'First Cycle Store'), (29843, 'Running and Cycling Gear'), (29848, 'Little Bicycle Supply Shop'), (29850, 'All Seasons Sports Supply'), (29851, 'Leisure Clearing House'), (29852, 'The Commissary'), (29853, 'Affordable Sports Equipment'), (29854, 'Local Sales and Rental'), (29855, 'Economy Center'), (29857, 'Area Sheet Metal Supply'), (29858, 'Synthetic Materials Manufacturing'), (29859, 'Rural Sales and Service'), (29860, 'Tubeless Tire Company'), (29861, 'Hardware Components'), (29862, 'Retail Sporting Goods'), (29863, 'Efficient Cycling'), (29864, 'General Industries'), (29865, 'Highway Bike Shop'), (29866, 'Rental Bikes'), (29867, 'Roving Sports'), (29868, 'Express Bike Services'), (29870, 'Retail Discount Store'), (29871, 'Vale Riding Supplies'), (29872, 'A Great Bicycle Company'), (29873, 'Certified Bicycle Supply'), (29874, 'Exceptional Cycle Services'), (29876, 'Leisure Activities'), (29879, 'Bikes for Kids and Adults'), (29881, 'Home Town Bike Store'), (29883, 'Sample Bike Store'), (29884, 'Extras Sporting Goods'), (29885, 'Sure & Reliable Sporting Goods'), (29889, 'Separate Parts Corporation'), (29890, 'Basic Bike Company'), (29891, 'Fabrikam Inc., West'), (29892, 'Non-Slip Pedal Company'), (29893, 'Weekend Bike Tours'), (29895, 'General Supplies'), (29897, 'Racing Toys'), (29898, 'Capable Sales and Service'), (29900, 'Road Way Sales and Rental'), (29901, 'Sturdy Toys'), (29902, 'Beneficial Exercises and Activities'), (29903, 'Fad Outlet'), (29904, 'Commerce Bicycle Specialists'), (29905, 'Acceptable Sales & Service'), (29906, 'District Mall'), (29907, 'Fitness Supplies'), (29908, 'Mail Market'), (29910, 'Twelfth Bike Store'), (29911, 'Consolidated Messenger'), (29913, 'Field Trip Store'), (29914, 'Finish and Sealant Products'), (29915, 'Finer Parts Shop'), (29918, 'Up-To-Date Sports'), (29919, 'Mountain Bike Center'), (29920, 'Specialty Sports Store'), (29921, 'Scooters and Bikes Store'), (29924, 'Reasonable Bicycle Sales'), (29925, 'Outdoor Sports Supply'), (29926, 'Outdoor Aerobic Systems Company'), (29928, 'Metal Clearing House'), (29930, 'Largest Bike Store'), (29931, 'Kickstands and Accessories Company'), (29934, 'Gear-Shift Bikes Limited'), (29935, 'Frugal Bike Shop'), (29936, 'Family Entertainment Center'), (29937, 'Go-cart and Bike Specialists'), (29939, 'Racing Partners'), (29941, 'Exhibition Showroom'), (29942, 'Authorized Bike Sales and Rental'), (29943, 'Two-Seater Bikes'), (29944, 'More Bikes!'), (29946, 'National Manufacturing'), (29948, 'Town Industries'), (29949, 'Security Racks and Locks Wholesalers'), (29950, 'Rapid Bikes'), (29952, 'Nearby Sporting Goods'), (29953, 'Front Sporting Goods'), (29954, 'Elite Bikes'), (29955, 'Catalog Store'), (29956, 'Chic Department Stores'), (29959, 'Cycle Merchants'), (29962, 'Fitness Hotel'), (29964, 'Grand Industries'), (29967, 'Leading Sales & Repair'), (29969, 'Tandem Sales and Service'), (29971, 'Reliable Retail Center'), (29973, 'Friendly Bike Shop'), (29974, 'Yellow Bicycle Company'), (29978, 'Shipping Specialists'), (29980, 'Authentic Sales and Service'), (29981, 'Official Parts Shop'), (29983, 'Tire Exchange'), (29985, 'Oils and Fluids Warehouse'), (29987, 'Rally Master Company Inc'), (29988, 'Professional Cyclists'), (29990, 'Exclusive Bicycle Mart'), (29991, 'City Manufacturing'), (29992, 'Bike Dealers Association'), (29994, 'Health Spa, Limited'), (29997, 'Closeout Boutique'), (29998, 'Bicycle Merchandise Warehouse'), (30000, 'Leather Seat Factory'), (30003, 'Practical Bike Supply Company'), (30004, 'Some Discount Store'), (30005, 'Variety Cycling'), (30007, 'Remote Bicycle Specialists'), (30008, 'Friendly Neighborhood Bikes'), (30010, 'Recommended Bicycles'), (30012, 'Alpine Ski House'), (30016, 'Seats and Saddles Company'), (30018, 'All Cycle Shop'), (30021, 'Low Price Cycles'), (30022, 'Metropolitan Manufacturing'), (30023, 'Orange Bicycle Company'), (30024, 'Riding Associates'), (30028, 'Professional Containers and Packaging Co.'), (30029, 'One Bike Company'), (30030, 'Cycling Goods'), (30031, 'Cycle Clearance'), (30032, 'Black Bicycle Company'), (30034, 'Sellers of Cycles'), (30035, 'Maintenance and Repair for Bicycles'), (30036, 'Fitness Department Stores'), (30037, 'Famous Bike Shop'), (30039, 'Gift and Toy Store'), (30040, 'Major Sporting Goods'), (30042, 'Major Cycling'), (30044, 'Downhill Bicycle Specialists'), (30045, 'Bike Experts'), (30046, 'Extraordinary Bike Works'), (30047, 'Valley Bicycle Distributors'), (30048, 'Top Sports Supply'), (30051, 'Honest Repair Service'), (30052, 'Wheel Gallery'), (30053, 'Top Bike Market'), (30055, 'Bicycle Lines Distributors'), (30056, 'Sparkling Paint and Finishes'), (30058, 'Plastic Parts Company'), (30061, 'Big Cycle Mall'), (30063, 'Eighth Bike Store'), (30064, 'Demand Distributors'), (30067, 'Red Bicycle Company'), (30069, 'Trendy Department Stores'), (30070, 'Vintage Sport Boutique'), (30071, 'Travel Sports'), (30074, 'Tenth Bike Store'), (30076, 'Fun Times Club'), (30080, 'Wingtip Toys'), (30083, 'Active Life Toys'), (30087, 'Quick Parts and Service'), (30090, 'A Typical Bike Shop'), (30093, 'Fasteners & Bolts Outlet'), (30094, 'Quantity Discounts'), (30095, 'Swift Cycles'), (30098, 'Large Bike Shop'), (30100, 'Wire Baskets and Parts'), (30104, 'Extended Tours'), (30105, 'Convenient Sales and Service'), (30106, 'Solid Bike Parts'), (30107, 'Permanent Finish Products'), (30108, 'Mercantile Outlet'), (30109, 'Exhilarating Cycles'), (30110, 'Exercise Center'), (30111, 'Great Bicycle Supply'), (30112, 'Mail-Order Outlet'), (30115, 'Retreat Inn'), (30116, 'Technical Parts Manufacturing'), (30117, 'Totes & Baskets Company'), (30118, 'World of Bikes')]
+Step: Start
+Data: 
+Step: User Query
+Data: Rank customers by lifetime value
+Step: Query Type
+Data: GENERAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["Customer", "SalesOrderHeader"],
+  "bridging_tables_needed": ["CustomerAddress", "SalesOrderDetail"],
+  "entities": ["Customer", "SalesOrderHeader", "CustomerAddress", "SalesOrderDetail"],
+  "columns": ["Customer.CustomerID", "SUM(SalesOrderDetail.LineTotal) AS LifetimeValue"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT c.CustomerID, SUM sod.LineTotal AS LifetimeValue
+FROM Customer c
+JOIN SalesOrderHeader soh ON c.CustomerID = soh.CustomerID
+JOIN SalesOrderDetail sod ON soh.SalesOrderID = sod.SalesOrderID
+GROUP BY c.CustomerID;
+Step: Reflected SQL
+Data: SELECT c.CustomerID, SUM(sod.LineTotal) AS LifetimeValue
+FROM Customer c
+JOIN SalesOrderHeader soh ON c.CustomerID = soh.CustomerID
+JOIN SalesOrderDetail sod ON soh.SalesOrderID = sod.SalesOrderID
+GROUP BY c.CustomerID;
+Step: Generated SQL Valid?
+Data: False
+Step: Reflected SQL Valid?
+Data: True
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(29485, 33319.98600000001), (29531, 5533.8689079999995), (29546, 74160.228), (29568, 1856.2068), (29584, 221.256), (29612, 524.664), (29638, 1732.8899999999999), (29644, 858.9), (29653, 11528.844000000001), (29660, 47848.02600000001), (29736, 89869.27631400003), (29741, 31.584), (29781, 96.108824), (29796, 65123.463418), (29847, 713.796), (29877, 10585.05), (29922, 28950.678108), (29929, 59894.209199999976), (29932, 53248.69200000002), (29938, 34118.5356), (29957, 65683.367986), (29975, 2777.143076), (29982, 2527.128), (30019, 1712.946), (30025, 37.758), (30027, 2847.4079999999994), (30033, 500.30400000000003), (30050, 79589.61602399996), (30072, 63.9), (30089, 926.916), (30102, 1884.3948), (30113, 29923.008)]
+Step: Start
+Data: 
+Step: User Query
+Data: Rank customers by lifetime value
+Step: Query Type
+Data: GENERAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["SalesOrderHeader", "Customer"],
+  "bridging_tables_needed": ["CustomerAddress"],
+  "entities": ["SalesOrderHeader", "Customer", "CustomerAddress"],
+  "columns": ["Customer.CustomerID", "SUM(SalesOrderHeader.TotalDue) as LifetimeValue"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT Customer.CustomerID, SUM(SalesOrderHeader.TotalDue) AS LifetimeValue
+FROM SalesOrderHeader
+JOIN CustomerAddress ON SalesOrderHeader.CustomerID = CustomerAddress.CustomerID
+JOIN Customer ON CustomerAddress.CustomerID = Customer.CustomerID
+GROUP BY Customer.CustomerID;
+Step: Reflected SQL
+Data: SELECT Customer.CustomerID, SUM(SalesOrderHeader.TotalDue) AS LifetimeValue
+FROM SalesOrderHeader
+JOIN Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+GROUP BY Customer.CustomerID;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(29485, 43962.7901), (29531, 7330.8972), (29546, 98138.2131), (29568, 2669.3183), (29584, 272.6468), (29612, 608.1766), (29638, 2361.6403), (29644, 1170.5376), (29653, 15275.1977), (29660, 63686.2708), (29736, 119960.824), (29741, 43.0437), (29781, 117.7276), (29796, 86222.8072), (29847, 972.785), (29877, 14017.9083), (29922, 39531.6085), (29929, 81834.9826), (29932, 70698.9922), (29938, 45992.3665), (29957, 92663.5609), (29975, 3673.3249), (29982, 3293.7761), (30019, 2228.0566), (30025, 45.1995), (30027, 3754.9733), (30033, 665.4251), (30050, 108597.9536), (30072, 87.0851), (30089, 1261.444), (30102, 2711.4098), (30113, 42452.6519)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Rank customers by lifetime value
+Step: Query Type
+Data: ANALYTICAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["Customer", "SalesOrderHeader"],
+  "bridging_tables_needed": ["CustomerAddress", "SalesOrderDetail"],
+  "entities": ["Customer", "SalesOrderHeader", "CustomerAddress", "SalesOrderDetail"],
+  "columns": ["Customer.CustomerID", "SUM(SalesOrderDetail.LineTotal) OVER (PARTITION BY Customer.CustomerID) AS LifetimeValue"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT 
+    c.CustomerID,
+    SUM(sd.LineTotal) OVER (PARTITION BY c.CustomerID) AS LifetimeValue,
+    RANK() OVER (ORDER BY SUM(sd.LineTotal) DESC) AS Rank
+FROM 
+    Customer c
+JOIN 
+    CustomerAddress ca ON c.CustomerID = ca.CustomerID
+LEFT JOIN 
+    SalesOrderDetail sd ON ca.AddressID = sd.AddressID
+GROUP BY 
+    c.CustomerID;
+Step: Reflected SQL
+Data: SELECT 
+    c.CustomerID,
+    SUM(sd.LineTotal) OVER (PARTITION BY c.CustomerID) AS LifetimeValue,
+    RANK() OVER (ORDER BY SUM(sd.LineTotal) DESC) AS Rank
+FROM 
+    Customer c
+JOIN 
+    SalesOrderDetail sd ON c.CustomerID = sd.CustomerID;
+Step: Generated SQL Valid?
+Data: False
+Step: Reflected SQL Valid?
+Data: False
+Step: Retrying with feedback
+Data: Generated SQL error: no such column: sd.AddressID
+Reflected SQL error: no such column: sd.CustomerID
+Step: Retry Generated SQL Valid?
+Data: True
+Step: Retry Reflected SQL Valid?
+Data: True
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(29847, 356.898, 1)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Rank customers by lifetime value
+Step: Query Type
+Data: ANALYTICAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["SalesOrderHeader", "Customer"],
+  "bridging_tables_needed": ["CustomerAddress"],
+  "entities": ["SalesOrderHeader", "Customer", "CustomerAddress"],
+  "columns": ["Customer.CustomerID", "SUM(SalesOrderHeader.TotalDue) AS LifetimeValue"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT Customer.CustomerID, SUM(SalesOrderHeader.TotalDue) AS LifetimeValue
+FROM SalesOrderHeader
+INNER JOIN CustomerAddress ON SalesOrderHeader.CustomerID = CustomerAddress.CustomerID
+INNER JOIN Customer ON CustomerAddress.CustomerID = Customer.CustomerID
+GROUP BY Customer.CustomerID
+ORDER BY LifetimeValue DESC;
+Step: Reflected SQL
+Data: SELECT Customer.CustomerID, SUM(SalesOrderHeader.TotalDue) AS LifetimeValue
+FROM SalesOrderHeader
+INNER JOIN Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+GROUP BY Customer.CustomerID
+ORDER BY LifetimeValue DESC;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Customer.CustomerID, SUM(SalesOrderHeader.TotalDue) AS LifetimeValue
+FROM SalesOrderHeader
+INNER JOIN Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+GROUP BY Customer.CustomerID
+ORDER BY LifetimeValue DESC;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(29736, 119960.824), (30050, 108597.9536), (29546, 98138.2131), (29957, 92663.5609), (29796, 86222.8072), (29929, 81834.9826), (29932, 70698.9922), (29660, 63686.2708), (29938, 45992.3665), (29485, 43962.7901), (30113, 42452.6519), (29922, 39531.6085), (29653, 15275.1977), (29877, 14017.9083), (29531, 7330.8972), (30027, 3754.9733), (29975, 3673.3249), (29982, 3293.7761), (30102, 2711.4098), (29568, 2669.3183), (29638, 2361.6403), (30019, 2228.0566), (30089, 1261.444), (29644, 1170.5376), (29847, 972.785), (30033, 665.4251), (29612, 608.1766), (29584, 272.6468), (29781, 117.7276), (30072, 87.0851), (30025, 45.1995), (29741, 43.0437)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Rank customers by lifetime value
+Step: Query Type
+Data: ANALYTICAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["SalesOrderHeader", "Customer"],
+  "bridging_tables_needed": ["CustomerAddress"],
+  "entities": ["SalesOrderHeader", "Customer", "CustomerAddress"],
+  "columns": ["Customer.CustomerID", "SUM(SalesOrderHeader.TotalDue) OVER (PARTITION BY Customer.CustomerID ORDER BY SalesOrderHeader.OrderDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS LifetimeValue"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT 
+    c.CustomerID, 
+    SUM(sh.TotalDue) OVER (PARTITION BY c.CustomerID ORDER BY sh.OrderDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS LifetimeValue
+FROM 
+    Customer c
+JOIN 
+    SalesOrderHeader sh ON c.CustomerID = sh.CustomerID;
+Step: Reflected SQL
+Data: SELECT 
+    c.CustomerID, 
+    SUM(sh.TotalDue) OVER (PARTITION BY c.CustomerID ORDER BY sh.OrderDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS LifetimeValue
+FROM 
+    Customer c
+JOIN 
+    CustomerAddress ca ON c.CustomerID = ca.CustomerID
+JOIN 
+    SalesOrderHeader sh ON ca.AddressID = sh.ShipToAddressID;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT 
+    c.CustomerID, 
+    SUM(sh.TotalDue) OVER (PARTITION BY c.CustomerID ORDER BY sh.OrderDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS LifetimeValue
+FROM 
+    Customer c
+JOIN 
+    CustomerAddress ca ON c.CustomerID = ca.CustomerID
+JOIN 
+    SalesOrderHeader sh ON ca.AddressID = sh.ShipToAddressID;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(29485, 43962.7901), (29531, 7330.8972), (29546, 98138.2131), (29568, 2669.3183), (29584, 272.6468), (29612, 608.1766), (29638, 2361.6403), (29644, 1170.5376), (29653, 15275.1977), (29660, 63686.2708), (29736, 119960.824), (29741, 43.0437), (29781, 117.7276), (29796, 86222.8072), (29847, 972.785), (29877, 14017.9083), (29922, 39531.6085), (29929, 81834.9826), (29932, 70698.9922), (29938, 45992.3665), (29957, 92663.5609), (29975, 3673.3249), (29982, 3293.7761), (30019, 2228.0566), (30025, 45.1995), (30027, 3754.9733), (30033, 665.4251), (30050, 108597.9536), (30072, 87.0851), (30089, 1261.444), (30102, 2711.4098), (30113, 42452.6519)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Rank customers by lifetime value
+Step: Query Type
+Data: ANALYTICAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["Customer", "SalesOrderHeader"],
+  "bridging_tables_needed": [],
+  "entities": ["Customer", "SalesOrderHeader"],
+  "columns": ["Customer.CustomerID", "SUM(SalesOrderHeader.TotalDue) OVER (PARTITION BY Customer.CustomerID) AS LifetimeValue"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT 
+    c.CustomerID, 
+    SUM(sh.TotalDue) OVER (PARTITION BY c.CustomerID) AS LifetimeValue
+FROM 
+    Customer c
+JOIN 
+    SalesOrderHeader sh ON c.CustomerID = sh.CustomerID;
+Step: Reflected SQL
+Data: SELECT 
+    c.CustomerID, 
+    SUM(sh.TotalDue) OVER (PARTITION BY c.CustomerID) AS LifetimeValue
+FROM 
+    Customer c
+JOIN 
+    SalesOrderHeader sh ON c.CustomerID = sh.CustomerID;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT 
+    c.CustomerID, 
+    SUM(sh.TotalDue) OVER (PARTITION BY c.CustomerID) AS LifetimeValue
+FROM 
+    Customer c
+JOIN 
+    SalesOrderHeader sh ON c.CustomerID = sh.CustomerID;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(29485, 43962.7901), (29531, 7330.8972), (29546, 98138.2131), (29568, 2669.3183), (29584, 272.6468), (29612, 608.1766), (29638, 2361.6403), (29644, 1170.5376), (29653, 15275.1977), (29660, 63686.2708), (29736, 119960.824), (29741, 43.0437), (29781, 117.7276), (29796, 86222.8072), (29847, 972.785), (29877, 14017.9083), (29922, 39531.6085), (29929, 81834.9826), (29932, 70698.9922), (29938, 45992.3665), (29957, 92663.5609), (29975, 3673.3249), (29982, 3293.7761), (30019, 2228.0566), (30025, 45.1995), (30027, 3754.9733), (30033, 665.4251), (30050, 108597.9536), (30072, 87.0851), (30089, 1261.444), (30102, 2711.4098), (30113, 42452.6519)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What percentage of total sales comes from the top 10 customers?
+Step: Query Type
+Data: ANALYTICAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["SalesOrderHeader", "Customer"],
+  "bridging_tables_needed": [],
+  "entities": ["SalesOrderHeader", "Customer"],
+  "columns": ["SUM(TotalDue) OVER()", "COUNT(CustomerID) OVER()", "Customer.CustomerID"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT 
+    SUM(TotalDue) OVER (ORDER BY TotalDue DESC ROWS BETWEEN UNBOUNDED PRECEDING AND 9 FOLLOWING) AS Top10Sales,
+    SUM(TotalDue) OVER () AS TotalSales
+FROM SalesOrderHeader;
+
+-- To get the percentage, we can use a subquery or window function to calculate it.
+SELECT 
+    (SUM(TotalDue) OVER (ORDER BY TotalDue DESC ROWS BETWEEN UNBOUNDED PRECEDING AND 9 FOLLOWING) * 100.0 / SUM(TotalDue) OVER ()) AS Top10SalesPercentage
+FROM SalesOrderHeader;
+Step: Reflected SQL
+Data: SELECT 
+    (SUM(soh.TotalDue) OVER (ORDER BY soh.TotalDue DESC ROWS BETWEEN UNBOUNDED PRECEDING AND 9 FOLLOWING) * 100.0 / SUM(sod.TotalDue) OVER ()) AS Top10SalesPercentage
+FROM SalesOrderHeader soh
+JOIN Customer c ON soh.CustomerID = c.CustomerID;
+Step: Generated SQL Valid?
+Data: False
+Step: Reflected SQL Valid?
+Data: False
+Step: Retrying with feedback
+Data: Generated SQL error: You can only execute one statement at a time.
+Reflected SQL error: no such column: sod.TotalDue
+Step: Retry Generated SQL
+Data: SELECT 
+    SUM(CASE WHEN rn = 1 THEN sod.TotalDue ELSE 0 END) * 100.0 / SUM(sod.TotalDue) AS Top10SalesPercentage
+FROM (
+    SELECT 
+        soh.CustomerID, 
+        sod.TotalDue,
+        RANK() OVER (ORDER BY SUM(sod.TotalDue) DESC) as rn
+    FROM 
+        SalesOrderHeader soh
+    JOIN 
+        Customer c ON soh.CustomerID = c.CustomerID
+    LEFT JOIN 
+        SalesOrderDetail sod ON soh.SalesOrderID = sod.SalesOrderID
+    GROUP BY 
+        soh.CustomerID, sod.TotalDue
+) subquery;
+Step: Retry Reflected SQL
+Data: SELECT 
+    SUM(CASE WHEN rn = 1 THEN sod.TotalDue ELSE 0 END) * 100.0 / SUM(sod.TotalDue) AS Top10SalesPercentage
+FROM (
+    SELECT 
+        soh.CustomerID, 
+        sod.TotalDue,
+        RANK() OVER (ORDER BY SUM(sod.TotalDue) DESC) as rn
+    FROM 
+        SalesOrderHeader soh
+    JOIN 
+        SalesOrderDetail sod ON soh.SalesOrderID = sod.SalesOrderID
+    GROUP BY 
+        soh.CustomerID
+) subquery;
+Step: Retry Generated SQL Valid?
+Data: False
+Step: Retry Reflected SQL Valid?
+Data: False
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What percentage of total sales comes from the top 10 customers?
+Step: Query Type
+Data: ANALYTICAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["SalesOrderHeader", "Customer"],
+  "bridging_tables_needed": [],
+  "entities": ["SalesOrderHeader", "Customer"],
+  "columns": ["SUM(TotalDue) OVER()", "COUNT(CustomerID) OVER()", "Customer.CustomerID"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT 
+    SUM(CASE WHEN rn = 1 THEN TotalDue ELSE 0 END) * 100 / (SELECT SUM(TotalDue) FROM SalesOrderHeader) AS TopCustomerSalesPercentage
+FROM (
+    SELECT 
+        CustomerID, 
+        SUM(TotalDue) OVER (PARTITION BY CustomerID ORDER BY SUM(TotalDue) DESC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS TotalDue,
+        DENSE_RANK() OVER (ORDER BY SUM(TotalDue) DESC) AS rn
+    FROM SalesOrderHeader
+    JOIN Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+) subquery
+WHERE rn <= 10;
+Step: Reflected SQL
+Data: SELECT 
+    SUM(CASE WHEN rn = 1 THEN TotalDue ELSE 0 END) * 100 / (SELECT SUM(TotalDue) FROM SalesOrderHeader) AS TopCustomerSalesPercentage
+FROM (
+    SELECT 
+        CustomerID, 
+        SUM(TotalDue) OVER (PARTITION BY CustomerID ORDER BY TotalDue DESC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS CumulativeTotalDue,
+        DENSE_RANK() OVER (ORDER BY SUM(TotalDue) DESC) AS rn
+    FROM SalesOrderHeader
+    JOIN Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+) subquery
+WHERE rn <= 10;
+Step: Generated SQL Valid?
+Data: False
+Step: Reflected SQL Valid?
+Data: False
+Step: Retrying with feedback
+Data: Generated SQL error: ambiguous column name: CustomerID
+Reflected SQL error: ambiguous column name: CustomerID
+Step: Retry Generated SQL
+Data: SELECT 
+    SUM(CASE WHEN rn = 1 THEN TotalDue ELSE 0 END) * 100.0 / SUM(TotalDue) AS Top10SalesPercentage
+FROM (
+    SELECT 
+        soh.TotalDue,
+        c.CustomerID,
+        ROW_NUMBER() OVER (PARTITION BY c.CustomerID ORDER BY SUM(soh.TotalDue) DESC) rn
+    FROM 
+        SalesOrderHeader soh
+    JOIN 
+        Customer c ON soh.CustomerID = c.CustomerID
+    GROUP BY 
+        soh.CustomerID
+) subquery;
+Step: Retry Reflected SQL
+Data: SELECT 
+    SUM(CASE WHEN rn = 1 THEN TotalDue ELSE 0 END) * 100.0 / SUM(TotalDue) AS Top10SalesPercentage
+FROM (
+    SELECT 
+        soh.TotalDue,
+        c.CustomerID,
+        ROW_NUMBER() OVER (PARTITION BY c.CustomerID ORDER BY SUM(soh.TotalDue) DESC) rn
+    FROM 
+        SalesOrderHeader soh
+    JOIN 
+        Customer c ON soh.CustomerID = c.CustomerID
+    GROUP BY 
+        soh.CustomerID
+) subquery;
+Step: Retry Generated SQL Valid?
+Data: True
+Step: Retry Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT 
+    SUM(CASE WHEN rn = 1 THEN TotalDue ELSE 0 END) * 100.0 / SUM(TotalDue) AS Top10SalesPercentage
+FROM (
+    SELECT 
+        soh.TotalDue,
+        c.CustomerID,
+        ROW_NUMBER() OVER (PARTITION BY c.CustomerID ORDER BY SUM(soh.TotalDue) DESC) rn
+    FROM 
+        SalesOrderHeader soh
+    JOIN 
+        Customer c ON soh.CustomerID = c.CustomerID
+    GROUP BY 
+        soh.CustomerID
+) subquery;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(100.0,)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What percentage of total sales comes from the top 10 customers?
+Step: Query Type
+Data: ANALYTICAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["SalesOrderHeader", "Customer"],
+  "bridging_tables_needed": [],
+  "entities": ["SalesOrderHeader", "Customer"],
+  "columns": ["SUM(TotalDue) OVER()", "COUNT(CustomerID) OVER()", "Customer.CustomerID"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT 
+    SUM(CASE WHEN rn = 1 THEN TotalDue ELSE 0 END) * 100.0 / (SELECT SUM(TotalDue) FROM SalesOrderHeader) AS Top10SalesPercentage
+FROM (
+    SELECT 
+        Customer.CustomerID,
+        SalesOrderHeader.TotalDue,
+        ROW_NUMBER() OVER (PARTITION BY Customer.CustomerID ORDER BY SUM(SalesOrderHeader.TotalDue) DESC) rn
+    FROM 
+        SalesOrderHeader
+    JOIN 
+        Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+    GROUP BY 
+        Customer.CustomerID, SalesOrderHeader.TotalDue
+) subquery
+WHERE rn <= 10;
+Step: Reflected SQL
+Data: SELECT 
+    SUM(CASE WHEN rn = 1 THEN TotalDue ELSE 0 END) * 100.0 / (SELECT SUM(TotalDue) FROM SalesOrderHeader) AS Top10SalesPercentage
+FROM (
+    SELECT 
+        Customer.CustomerID,
+        SUM(SalesOrderHeader.TotalDue) AS TotalDue,
+        ROW_NUMBER() OVER (ORDER BY SUM(SalesOrderHeader.TotalDue) DESC) rn
+    FROM 
+        SalesOrderHeader
+    JOIN 
+        Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+    GROUP BY 
+        Customer.CustomerID
+) subquery
+WHERE rn <= 10;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT 
+    SUM(CASE WHEN rn = 1 THEN TotalDue ELSE 0 END) * 100.0 / (SELECT SUM(TotalDue) FROM SalesOrderHeader) AS Top10SalesPercentage
+FROM (
+    SELECT 
+        Customer.CustomerID,
+        SUM(SalesOrderHeader.TotalDue) AS TotalDue,
+        ROW_NUMBER() OVER (ORDER BY SUM(SalesOrderHeader.TotalDue) DESC) rn
+    FROM 
+        SalesOrderHeader
+    JOIN 
+        Customer ON SalesOrderHeader.CustomerID = Customer.CustomerID
+    GROUP BY 
+        Customer.CustomerID
+) subquery
+WHERE rn <= 10;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(12.544219705933887,)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Which products should be discontinued due to low sales?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["SalesOrderDetail", "Product"],
+  "bridging_tables_needed": [],
+  "entities": ["SalesOrderDetail", "Product"],
+  "columns": ["ProductID", "ProductID", "SUM(LineTotal) OVER(PARTITION BY ProductID ORDER BY LineTotal ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS CumulativeSales"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT 
+    p.ProductID,
+    SUM(sod.LineTotal) OVER (PARTITION BY sod.ProductID ORDER BY sod.LineTotal ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS CumulativeSales
+FROM 
+    SalesOrderDetail sod
+JOIN 
+    Product p ON sod.ProductID = p.ProductID;
+Step: Reflected SQL
+Data: SELECT 
+    p.ProductID,
+    p.Name,
+    SUM(sod.LineTotal) AS TotalSales
+FROM 
+    SalesOrderDetail sod
+JOIN 
+    Product p ON sod.ProductID = p.ProductID
+WHERE 
+    -- Assuming we want to consider products with total sales less than a certain threshold, e.g., 1000
+    SUM(sod.LineTotal) < 1000
+GROUP BY 
+    p.ProductID, p.Name
+ORDER BY 
+    TotalSales ASC;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: False
+Step: Final SQL
+Data: SELECT 
+    p.ProductID,
+    SUM(sod.LineTotal) OVER (PARTITION BY sod.ProductID ORDER BY sod.LineTotal ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS CumulativeSales
+FROM 
+    SalesOrderDetail sod
+JOIN 
+    Product p ON sod.ProductID = p.ProductID;
+Step: Selected SQL Source
+Data: generator
+Step: Execution Result
+Data: [(707, 20.994), (707, 62.982), (707, 125.964), (707, 188.946), (707, 314.90999999999997), (707, 524.8499999999999), (707, 734.79), (708, 83.976), (708, 188.946), (708, 335.904), (708, 554.675476), (708, 793.335268), (708, 1031.99506), (711, 20.994), (711, 62.982), (711, 125.964), (711, 209.94), (711, 335.904), (711, 482.86199999999997), (711, 757.096125), (712, 5.394), (712, 21.576), (712, 37.757999999999996), (712, 59.333999999999996), (712, 80.91), (712, 113.274), (712, 167.214), (712, 221.154), (712, 277.363076), (714, 29.994), (714, 89.982), (714, 149.97), (714, 239.952), (714, 329.93399999999997), (714, 509.89799999999997), (714, 779.844), (715, 59.988), (715, 119.976), (715, 179.964), (715, 239.952), (715, 329.93399999999997), (715, 419.91599999999994), (715, 539.8919999999999), (715, 779.8439999999999), (715, 1019.7959999999999), (715, 1463.832175), (716, 119.976), (716, 269.946), (716, 419.91600000000005), (717, 858.9), (717, 2576.7), (718, 858.9), (718, 2576.7), (722, 606.996), (722, 1820.9879999999998), (738, 202.332), (738, 404.664), (738, 809.328), (738, 1416.324), (738, 2225.652), (739, 818.7), (739, 4912.2), (742, 2456.1), (742, 8187.0), (743, 809.76), (743, 1619.52), (743, 3239.04), (743, 6478.08), (743, 9717.119999999999), (747, 2429.28), (747, 5668.32), (748, 818.7), (748, 1637.4), (748, 3274.8), (748, 7368.3), (748, 13099.2), (779, 1391.994), (779, 5567.976), (779, 9743.957999999999), (779, 15311.933999999997), (780, 1391.994), (780, 4175.982), (780, 8351.964), (780, 13919.939999999999), (780, 20879.91), (781, 2783.988), (781, 5567.976), (781, 11135.952), (781, 18095.922), (782, 1376.994), (782, 4130.982), (782, 8261.964), (782, 13769.939999999999), (782, 24785.892), (782, 35801.844), (783, 6884.97), (783, 13769.94), (783, 23408.898), (783, 37178.838), (784, 2753.988), (784, 5507.976), (784, 12392.946), (784, 19277.916), (792, 4398.03), (793, 4398.03), (793, 8796.06), (793, 17592.12), (794, 7330.05), (794, 17592.12), (795, 2932.02), (795, 11728.08), (796, 4398.03), (797, 2689.176), (797, 6050.646), (797, 12773.586), (798, 672.294), (798, 2016.882), (798, 5378.352), (799, 672.294), (799, 3361.47), (800, 2016.882), (801, 672.294), (801, 2016.882), (801, 5378.352), (808, 26.724), (808, 53.448), (808, 80.172), (808, 187.06799999999998), (809, 37.152), (809, 74.304), (809, 148.608), (809, 260.064), (809, 445.824), (810, 72.162), (810, 144.324), (810, 216.48600000000002), (813, 72.162), (813, 144.324), (813, 288.648), (822, 356.898), (822, 713.796), (822, 1427.592), (835, 713.796), (835, 1427.592), (835, 2498.286), (835, 4282.776), (836, 356.898), (836, 1427.592), (836, 2855.184), (836, 4282.776), (838, 1717.8), (838, 5153.4), (858, 29.388), (858, 88.164), (858, 176.328), (859, 14.694), (859, 44.082), (859, 73.47), (859, 146.94), (859, 249.798), (859, 382.044), (860, 58.776), (860, 146.94), (860, 279.18600000000004), (864, 38.1), (864, 152.4), (864, 266.7), (864, 381.0), (864, 533.4), (864, 762.0), (864, 990.6), (864, 1488.28125), (864, 2251.3925), (864, 3014.50375), (865, 38.1), (865, 190.5), (865, 381.0), (865, 609.6), (865, 914.4000000000001), (865, 1295.4), (867, 83.988), (867, 335.952), (867, 587.9159999999999), (867, 881.874), (867, 1399.044108), (867, 1955.9965320000001), (868, 41.994), (868, 209.97), (869, 83.988), (869, 209.97), (869, 503.928), (869, 797.886), (869, 1133.838), (870, 2.994), (870, 20.958), (870, 41.916), (870, 65.868), (870, 95.80799999999999), (870, 127.007476), (870, 158.206952), (873, 8.244), (873, 16.488), (873, 27.48), (874, 10.788), (874, 21.576), (874, 37.757999999999996), (874, 59.333999999999996), (874, 80.91), (875, 5.394), (875, 16.182000000000002), (875, 32.364000000000004), (875, 70.12200000000001), (875, 126.33107600000002), (875, 192.75998400000003), (875, 264.298808), (876, 72), (876, 216), (876, 432), (876, 648), (876, 864), (876, 1152), (876, 1584), (876, 2304), (877, 4.77), (877, 28.62), (877, 57.24), (877, 95.4), (877, 133.56), (877, 181.26), (877, 251.875875), (880, 32.994), (880, 197.964), (880, 428.922), (880, 725.868), (880, 1022.8140000000001), (880, 1319.7600000000002), (880, 1649.7000000000003), (881, 32.394), (881, 97.18199999999999), (881, 161.96999999999997), (881, 356.33399999999995), (881, 550.698), (881, 745.062), (881, 1004.2139999999999), (883, 64.788), (883, 161.97), (883, 259.152), (883, 388.72799999999995), (883, 550.698), (883, 777.456), (883, 1115.023076), (883, 1566.379476), (884, 97.182), (884, 194.364), (884, 323.94), (884, 485.90999999999997), (884, 647.88), (884, 842.244), (884, 1069.002), (884, 1360.548), (884, 1783.694625), (885, 1204.692), (885, 2409.384), (885, 7228.152), (886, 200.052), (889, 602.346), (889, 3011.73), (891, 602.346), (892, 602.346), (892, 4216.4220000000005), (893, 602.346), (893, 1204.692), (893, 1807.038), (894, 218.628), (894, 583.008), (895, 400.104), (896, 600.156), (899, 200.052), (899, 600.156), (900, 200.052), (900, 400.104), (904, 218.454), (904, 655.3620000000001), (904, 1529.178), (904, 2621.4480000000003), (905, 436.908), (905, 873.816), (905, 1529.1779999999999), (905, 2402.9939999999997), (907, 63.9), (908, 16.272), (908, 48.815999999999995), (908, 97.632), (909, 46.968), (909, 187.872), (909, 375.744), (910, 31.584), (910, 63.168), (910, 126.336), (910, 221.088), (913, 63.168), (916, 31.584), (916, 63.168), (916, 94.752), (916, 157.92), (916, 252.67199999999997), (917, 316.86), (917, 1267.44), (918, 158.43), (918, 475.29), (918, 792.1500000000001), (918, 1425.8700000000001), (920, 158.43), (920, 475.29), (924, 599.496), (924, 1348.866), (925, 149.874), (925, 299.748), (925, 599.496), (925, 899.2439999999999), (925, 1798.4879999999998), (926, 149.874), (926, 299.748), (926, 449.62199999999996), (926, 599.496), (935, 48.588), (935, 121.47), (935, 194.352), (935, 291.528), (936, 37.254), (936, 74.508), (936, 149.016), (936, 223.524), (937, 48.594), (937, 97.188), (937, 145.782), (937, 242.97000000000003), (937, 340.158), (937, 583.128), (938, 24.294), (938, 72.882), (938, 145.764), (938, 218.64600000000002), (938, 291.528), (938, 388.704), (938, 510.174), (939, 111.762), (939, 260.778), (939, 484.302), (939, 707.826), (940, 48.594), (940, 242.97), (940, 437.346), (940, 680.316), (944, 316.86), (944, 633.72), (944, 950.58), (944, 1425.8700000000001), (945, 54.894), (945, 109.788), (945, 164.682), (945, 274.46999999999997), (945, 439.15199999999993), (945, 713.622), (947, 54.942), (948, 63.9), (948, 127.8), (948, 191.7), (948, 255.6), (948, 383.4), (948, 511.2), (948, 766.8), (949, 315.882), (949, 631.764), (949, 1052.94), (951, 242.994), (951, 728.982), (951, 1457.964), (951, 2915.928), (952, 12.144), (952, 24.288), (952, 60.72), (952, 97.152), (953, 728.91), (953, 1457.82), (953, 2186.73), (953, 3644.55), (953, 5102.37), (953, 7289.1), (954, 1430.442), (954, 2860.884), (954, 5721.768), (954, 8582.652), (954, 12873.978), (954, 17165.304), (955, 1430.442), (955, 2860.884), (955, 4291.326), (955, 7152.21), (956, 1430.442), (956, 5721.768), (957, 1430.442), (957, 2860.884), (957, 7152.21), (957, 23413.474656), (958, 445.41), (958, 890.82), (958, 1781.64), (958, 4008.6900000000005), (958, 6681.150000000001), (959, 445.41), (959, 890.82), (959, 2672.46), (960, 1336.23), (961, 445.41), (961, 1336.23), (961, 2227.05), (961, 3563.28), (961, 4899.51), (961, 8017.38), (962, 445.41), (962, 890.82), (962, 4008.69), (963, 445.41), (963, 2672.46), (964, 1336.23), (965, 890.82), (965, 1781.64), (965, 4008.6900000000005), (965, 8650.15914), (966, 1430.442), (966, 4291.326), (966, 7152.21), (966, 11443.536), (966, 17165.304), (967, 2860.884), (967, 5721.768), (967, 14304.42), (967, 22887.072), (968, 2860.884), (968, 8582.652), (969, 1430.442), (969, 5721.768), (969, 10013.094000000001), (969, 22887.072), (969, 37191.492), (970, 728.91), (970, 1457.82), (970, 3644.55), (970, 6560.1900000000005), (971, 2915.64), (971, 6560.1900000000005), (972, 728.91), (972, 3644.5499999999997), (972, 7289.1), (972, 13120.380000000001), (973, 1020.594), (973, 2041.188), (973, 5102.97), (973, 10205.94), (973, 15308.91), (973, 20411.88), (974, 3061.782), (974, 6123.564), (974, 18692.519308000003), (975, 5102.97), (976, 1020.594), (976, 3061.782), (976, 8164.752), (976, 17350.097999999998), (976, 36486.235499999995), (977, 1295.976), (977, 2591.952), (977, 4859.91), (978, 445.41), (978, 2227.05), (979, 890.82), (979, 2227.05), (979, 3563.28), (979, 4899.51), (979, 6681.150000000001), (979, 10244.43), (980, 461.694), (980, 1846.776), (981, 461.694), (981, 1385.082), (981, 2308.4700000000003), (981, 3231.858), (981, 4155.246), (982, 923.388), (982, 2308.4700000000003), (983, 923.388), (983, 2308.4700000000003), (983, 4155.246), (984, 67.7988), (984, 135.5976), (984, 271.1952), (984, 474.59159999999997), (984, 745.7868), (985, 67.7988), (985, 203.3964), (985, 474.59159999999997), (985, 813.5856), (986, 67.7988), (986, 271.1952), (987, 67.7988), (987, 203.3964), (987, 406.7928), (988, 67.7988), (988, 203.3964), (988, 406.7928), (988, 745.7868000000001), (988, 1152.5796), (989, 323.994), (989, 971.9820000000001), (990, 323.994), (990, 971.9820000000001), (991, 647.988), (991, 1619.97), (992, 323.994), (992, 1295.976), (992, 2267.958), (992, 3887.928), (993, 323.994), (993, 971.9820000000001), (994, 32.394), (994, 129.576), (994, 226.75799999999998), (996, 218.682), (996, 510.25800000000004), (996, 801.8340000000001), (996, 1093.41), (997, 971.982), (998, 323.994), (998, 971.9820000000001), (998, 2591.952), (998, 4535.916), (998, 6803.874), (999, 971.982), (999, 2267.958), (999, 3563.934), (999, 5183.904)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Which products should be discontinued due to low sales?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["SalesOrderDetail", "Product"],
+  "bridging_tables_needed": [],
+  "entities": ["SalesOrderDetail", "Product"],
+  "columns": ["ProductID", "ProductID", "SUM(LineTotal) OVER(PARTITION BY ProductID ORDER BY LineTotal ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS CumulativeSales"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT 
+    ProductID, 
+    SUM(LineTotal) OVER(PARTITION BY ProductID ORDER BY LineTotal ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS CumulativeSales
+FROM 
+    SalesOrderDetail sd
+JOIN 
+    Product p ON sd.ProductID = p.ProductID;
+Step: Reflected SQL
+Data: SELECT 
+    p.ProductID,
+    p.Name,
+    SUM(sd.LineTotal) AS TotalSales
+FROM 
+    SalesOrderDetail sd
+JOIN 
+    Product p ON sd.ProductID = p.ProductID
+GROUP BY 
+    p.ProductID, p.Name
+HAVING 
+    SUM(sd.LineTotal) < 1000; -- Example threshold for low sales
+Step: Generated SQL Valid?
+Data: False
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT 
+    p.ProductID,
+    p.Name,
+    SUM(sd.LineTotal) AS TotalSales
+FROM 
+    SalesOrderDetail sd
+JOIN 
+    Product p ON sd.ProductID = p.ProductID
+GROUP BY 
+    p.ProductID, p.Name
+HAVING 
+    SUM(sd.LineTotal) < 1000; -- Example threshold for low sales
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(712, 'AWC Logo Cap', 277.363076), (877, 'Bike Wash - Dissolver', 251.875875), (952, 'Chain', 97.152), (948, 'Front Brakes', 766.8), (945, 'Front Derailleur', 713.622), (810, 'HL Mountain Handlebars', 216.48600000000002), (937, 'HL Mountain Pedal', 583.128), (910, 'HL Mountain Seat/Saddle', 221.088), (813, 'HL Road Handlebars', 288.648), (940, 'HL Road Pedal', 680.316), (913, 'HL Road Seat/Saddle', 63.168), (891, 'HL Touring Frame - Blue, 50', 602.346), (947, 'HL Touring Handlebars', 54.942), (916, 'HL Touring Seat/Saddle', 252.672), (860, 'Half-Finger Gloves, L', 279.18600000000004), (859, 'Half-Finger Gloves, M', 382.044), (858, 'Half-Finger Gloves, S', 176.328), (994, 'LL Bottom Bracket', 226.75799999999998), (926, 'LL Mountain Frame - Black, 48', 599.496), (920, 'LL Mountain Frame - Silver, 52', 475.29), (808, 'LL Mountain Handlebars', 187.06799999999998), (935, 'LL Mountain Pedal', 291.528), (908, 'LL Mountain Seat/Saddle', 97.632), (938, 'LL Road Pedal', 510.174), (895, 'LL Touring Frame - Blue, 50', 400.104), (896, 'LL Touring Frame - Blue, 54', 600.156), (899, 'LL Touring Frame - Yellow, 44', 600.156), (900, 'LL Touring Frame - Yellow, 50', 400.104), (886, 'LL Touring Frame - Yellow, 62', 200.052), (714, 'Long-Sleeve Logo Jersey, M', 779.844), (716, 'Long-Sleeve Logo Jersey, XL', 419.91600000000005), (809, 'ML Mountain Handlebars', 445.82399999999996), (936, 'ML Mountain Pedal', 223.524), (909, 'ML Mountain Seat/Saddle', 375.744), (939, 'ML Road Pedal', 707.826), (989, 'Mountain-500 Black, 40', 971.9820000000001), (990, 'Mountain-500 Black, 42', 971.9820000000001), (993, 'Mountain-500 Black, 52', 971.9820000000001), (984, 'Mountain-500 Silver, 40', 745.7868000000001), (985, 'Mountain-500 Silver, 42', 813.5856), (986, 'Mountain-500 Silver, 44', 271.1952), (987, 'Mountain-500 Silver, 48', 406.7928), (873, 'Patch Kit/8 Patches', 27.48), (875, 'Racing Socks, L', 264.298808), (874, 'Racing Socks, M', 80.91), (907, 'Rear Brakes', 63.9), (894, 'Rear Derailleur', 583.008), (997, 'Road-750 Black, 44', 971.982), (711, 'Sport-100 Helmet, Blue', 757.096125), (707, 'Sport-100 Helmet, Red', 734.7900000000001), (870, 'Water Bottle - 30 oz.', 158.206952), (868, "Women's Mountain Shorts, M", 209.97)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What is the contribution of each product category to total revenue?
+Step: Query Type
+Data: ANALYTICAL
+Step: Query Plan
+Data: {
+  "tables_owning_columns": ["Product", "SalesOrderDetail", "ProductCategory"],
+  "bridging_tables_needed": [],
+  "entities": ["Product", "SalesOrderDetail", "ProductCategory"],
+  "columns": ["p.ProductCategoryID", "SUM sod.LineTotal AS TotalRevenue"],
+  "conditions": "NONE",
+  "join_required": "YES"
+}
+Step: Generated SQL
+Data: SELECT p.ProductCategoryID, SUM(sod.LineTotal) AS TotalRevenue
+FROM Product p
+JOIN SalesOrderDetail sod ON p.ProductID = sod.ProductID
+GROUP BY p.ProductCategoryID;
+Step: Reflected SQL
+Data: SELECT p.ProductCategoryID, SUM(sod.LineTotal) AS TotalRevenue
+FROM Product p
+JOIN SalesOrderDetail sod ON p.ProductID = sod.ProductID
+GROUP BY p.ProductCategoryID;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT p.ProductCategoryID, SUM(sod.LineTotal) AS TotalRevenue
+FROM Product p
+JOIN SalesOrderDetail sod ON p.ProductID = sod.ProductID
+GROUP BY p.ProductCategoryID;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(5, 170825.88600000003), (6, 183130.29680800004), (7, 220655.3757960002), (8, 1192.968), (9, 1320.1680000000001), (10, 830.7), (11, 97.152), (12, 3968.868), (13, 1296.63), (16, 54949.60200000001), (17, 2996.495999999999), (18, 24346.583999999995), (19, 1010.3039999999997), (20, 19066.26), (23, 277.363076), (24, 837.5580000000001), (25, 7017.880276000001), (26, 3299.8045320000006), (27, 345.20880800000003), (29, 4309.90375), (30, 2304), (32, 158.206952), (33, 251.875875), (35, 2523.8811849999997), (36, 1649.7000000000003), (41, 27.48)]

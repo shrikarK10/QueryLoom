@@ -81,7 +81,9 @@ IMPORTANT RULES:
 - DO NOT overcomplicate
 - DO NOT add unnecessary joins
 - Prefer simplest correct query
+- ALWAYS override indirect/bridging JOINs with direct JOINs (e.g., ON a.CustomerID = b.CustomerID) if a direct shared relationship exists.
 - Keep business logic aligned with the user question (avoid unrelated filters)
+- Ensure analytical questions (ranking, partitioning, etc.) correctly use SQL window functions where appropriate.
 
 - Output format MUST explicitly use <thought> and <sql> tags
 - First, write a <thought> block explaining your fixes and reasoning

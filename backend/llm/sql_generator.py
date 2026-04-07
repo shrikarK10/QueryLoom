@@ -65,6 +65,8 @@ STRICT RULES:
 - Prefer simplest correct query
 - DO NOT overuse JOINs
 - DO NOT add unnecessary tables
+- ALWAYS prefer direct JOINs (e.g., ON a.CustomerID = b.CustomerID) over using intermediate bridging tables (like Address) if a direct relationship exists.
+- Properly map analytical intents (like ranking, running totals, partitioning) to the correct SQL window functions (e.g., RANK(), DENSE_RANK(), OVER()) rather than basic analytical workarounds.
 
 - First, write a <thought> block explaining your reasoning.
 - Then, output ONLY the raw SQL inside a <sql> block.

@@ -30,13 +30,16 @@ STRICT RULES:
 2. ONLY include tables directly relevant to the question
 3. DO NOT include generic or unrelated tables (like ErrorLog, BuildVersion)
 4. DO NOT guess extra conditions
-5. If query can be solved using ONE table → Join Required = NO
+5. join_required logic:
+- If the "entities" array contains EXACTLY 1 table → "join_required": "NO"
+- If the "entities" array contains 2 OR MORE tables → "join_required": "YES"
+
 6. ONLY include columns explicitly needed
 
-7. Detect query intent:
-- "How many", "count" → use COUNT()
-- "Total", "sum" → use SUM()
-- "Average", "avg" → use AVG()
+7. Detect query intent and map semantic meaning to corresponding SQL functions:
+- Aggregation: "Total", "sum" → SUM() | "Average", "avg", "mean" → AVG() | "Count", "how many" → COUNT() | "Min", "lowest" → MIN() | "Max", "highest" → MAX()
+- Window/Analytical: "Rank", "ranking" → RANK() OVER() | "Running total", "cumulative" → SUM() OVER() | "Difference", "previous" → LAG() or LEAD()
+- Date Extraction: "Year of", "monthly", "daily" → extraction functions (e.g. YEAR(), MONTH()) or STRFTIME
 
 8. For COUNT queries:
 - ONLY include one identifier column (like ID)
@@ -53,13 +56,14 @@ STRICT RULES:
 - Include grouping column (e.g., OrderDate for year)
 - Include aggregation column (e.g., SUM(TotalDue))
 
-13. NEVER invent column names 
-- Use only columns that realistically exist in tables
-- If unsure, choose the closest valid column
+13. NEVER invent base column names 
+- Base columns MUST realistically exist in tables.
+- However, you are ALLOWED AND ENCOURAGED to wrap valid columns in SQL functions in the "columns" list (e.g., "RANK() OVER(ORDER BY SUM(TotalDue) DESC)", "SUM(TotalDue)").
 
 14. Entity Verification:
 - You MUST list EVERY table that contains the columns you selected.
-- If the columns exist in different tables, you MUST also list the bridging/mapping tables required to join them (e.g., CustomerAddress to join Customer and Address).
+- If the columns exist in different tables, you MUST list the bridging tables required to join them IF AND ONLY IF they cannot be joined directly.
+- STRICT RULE: If two tables share a direct key (e.g., CustomerID exists in both Customer and SalesOrderHeader), DO NOT add a bridging table.
 - DO NOT list a column if the table it belongs to is not in Entities.
 EXAMPLES:
 
