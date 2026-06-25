@@ -1,0 +1,302 @@
+[
+  {
+    "id": 1,
+    "question": "Show the Name of all product categories",
+    "expected_sql": "SELECT Name FROM ProductCategory;",
+    "difficulty": "simple"
+  },
+  {
+    "id": 2,
+    "question": "Show the Name of all products that are red",
+    "expected_sql": "SELECT Name FROM Product WHERE Color = 'Red';",
+    "difficulty": "simple"
+  },
+  {
+    "id": 3,
+    "question": "List the Name and ListPrice of all products with list price greater than 1000",
+    "expected_sql": "SELECT Name, ListPrice FROM Product WHERE ListPrice > 1000;",
+    "difficulty": "simple"
+  },
+  {
+    "id": 4,
+    "question": "List the Name and ListPrice of the top 5 most expensive products",
+    "expected_sql": "SELECT Name, ListPrice FROM Product ORDER BY ListPrice DESC LIMIT 5;",
+    "difficulty": "simple"
+  },
+  {
+    "id": 5,
+    "question": "Show the FirstName, LastName, CompanyName, EmailAddress, and Phone of the customer named Orlando Gee",
+    "expected_sql": "SELECT FirstName, LastName, CompanyName, EmailAddress, Phone FROM Customer WHERE FirstName = 'Orlando' AND LastName = 'Gee';",
+    "difficulty": "simple"
+  },
+  {
+    "id": 6,
+    "question": "List the AddressLine1 and PostalCode of all addresses in Seattle",
+    "expected_sql": "SELECT AddressLine1, PostalCode FROM Address WHERE City = 'Seattle';",
+    "difficulty": "simple"
+  },
+  {
+    "id": 7,
+    "question": "Get the Name and Size of all products that have size 'M'",
+    "expected_sql": "SELECT Name, Size FROM Product WHERE Size = 'M';",
+    "difficulty": "simple"
+  },
+  {
+    "id": 8,
+    "question": "Show the Name and StandardCost of all products with standard cost less than 50",
+    "expected_sql": "SELECT Name, StandardCost FROM Product WHERE StandardCost < 50;",
+    "difficulty": "simple"
+  },
+  {
+    "id": 9,
+    "question": "List the FirstName, LastName, and CompanyName of the first 10 customers",
+    "expected_sql": "SELECT FirstName, LastName, CompanyName FROM Customer LIMIT 10;",
+    "difficulty": "simple"
+  },
+  {
+    "id": 10,
+    "question": "Show the FirstName, LastName, and CompanyName of all customers whose sales person is 'adventure-works\\pamela0'",
+    "expected_sql": "SELECT FirstName, LastName, CompanyName FROM Customer WHERE SalesPerson = 'adventure-works\\pamela0';",
+    "difficulty": "simple"
+  },
+  {
+    "id": 11,
+    "question": "Show the AddressLine1, City, and StateProvince of all addresses in Canada",
+    "expected_sql": "SELECT AddressLine1, City, StateProvince FROM Address WHERE CountryRegion = 'Canada';",
+    "difficulty": "simple"
+  },
+  {
+    "id": 12,
+    "question": "List the Name of all products ordered by their name alphabetically",
+    "expected_sql": "SELECT Name FROM Product ORDER BY Name ASC;",
+    "difficulty": "simple"
+  },
+  {
+    "id": 13,
+    "question": "Find the Name and Weight of all products that have a weight greater than 10000",
+    "expected_sql": "SELECT Name, Weight FROM Product WHERE Weight > 10000;",
+    "difficulty": "simple"
+  },
+  {
+    "id": 14,
+    "question": "List the Name of all products that are discontinued",
+    "expected_sql": "SELECT Name FROM Product WHERE DiscontinuedDate IS NOT NULL;",
+    "difficulty": "simple"
+  },
+  {
+    "id": 15,
+    "question": "Find the AddressLine1, City, StateProvince, CountryRegion, and PostalCode of the address with AddressID 10",
+    "expected_sql": "SELECT AddressLine1, City, StateProvince, CountryRegion, PostalCode FROM Address WHERE AddressID = 10;",
+    "difficulty": "simple"
+  },
+  {
+    "id": 16,
+    "question": "How many customers are in the database?",
+    "expected_sql": "SELECT COUNT(*) FROM Customer;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 17,
+    "question": "What is the average list price of all products?",
+    "expected_sql": "SELECT AVG(ListPrice) FROM Product;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 18,
+    "question": "Count the total number of products in each color",
+    "expected_sql": "SELECT Color, COUNT(*) FROM Product GROUP BY Color;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 19,
+    "question": "What is the total sales amount (TotalDue) from all orders?",
+    "expected_sql": "SELECT SUM(TotalDue) FROM SalesOrderHeader;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 20,
+    "question": "Find the maximum standard cost among all products",
+    "expected_sql": "SELECT MAX(StandardCost) FROM Product;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 21,
+    "question": "List the Name of all products with their ProductCategory Name",
+    "expected_sql": "SELECT p.Name, c.Name AS CategoryName FROM Product p JOIN ProductCategory c ON p.ProductCategoryID = c.ProductCategoryID;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 22,
+    "question": "Find the AddressLine1, City, and StateProvince of all customer addresses for the customer named Orlando Gee",
+    "expected_sql": "SELECT a.AddressLine1, a.City, a.StateProvince FROM Customer c JOIN CustomerAddress ca ON c.CustomerID = ca.CustomerID JOIN Address a ON ca.AddressID = a.AddressID WHERE c.FirstName = 'Orlando' AND c.LastName = 'Gee';",
+    "difficulty": "medium"
+  },
+  {
+    "id": 23,
+    "question": "Show all Product Names and their corresponding ProductModel Names",
+    "expected_sql": "SELECT p.Name, pm.Name AS ModelName FROM Product p JOIN ProductModel pm ON p.ProductModelID = pm.ProductModelID;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 24,
+    "question": "List the FirstName, LastName, and CompanyName of all customers who have placed an order",
+    "expected_sql": "SELECT DISTINCT c.FirstName, c.LastName, c.CompanyName FROM Customer c JOIN SalesOrderHeader soh ON c.CustomerID = soh.CustomerID;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 25,
+    "question": "Get the SalesOrderID, Product Name, OrderQty, and UnitPrice of all sales order details",
+    "expected_sql": "SELECT sod.SalesOrderID, p.Name, sod.OrderQty, sod.UnitPrice FROM SalesOrderDetail sod JOIN Product p ON sod.ProductID = p.ProductID;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 26,
+    "question": "List all distinct cities and the count of addresses in each city ordered by address count descending",
+    "expected_sql": "SELECT City, COUNT(*) AS AddressCount FROM Address GROUP BY City ORDER BY AddressCount DESC;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 27,
+    "question": "Calculate the total subtotal for each customer ID",
+    "expected_sql": "SELECT CustomerID, SUM(SubTotal) FROM SalesOrderHeader GROUP BY CustomerID;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 28,
+    "question": "Find the total quantity of products sold for product ID 710",
+    "expected_sql": "SELECT SUM(OrderQty) FROM SalesOrderDetail WHERE ProductID = 710;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 29,
+    "question": "List the Name and ParentProductCategoryID of all product categories",
+    "expected_sql": "SELECT Name, ParentProductCategoryID FROM ProductCategory;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 30,
+    "question": "Show the Name of all product models that have a description in the CatalogDescription",
+    "expected_sql": "SELECT Name FROM ProductModel WHERE CatalogDescription IS NOT NULL;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 31,
+    "question": "Show all customer CompanyNames and the SalesOrderIDs they placed",
+    "expected_sql": "SELECT c.CompanyName, soh.SalesOrderID FROM Customer c JOIN SalesOrderHeader soh ON c.CustomerID = soh.CustomerID;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 32,
+    "question": "Count how many products belong to each product model ID",
+    "expected_sql": "SELECT ProductModelID, COUNT(*) FROM Product GROUP BY ProductModelID;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 33,
+    "question": "What is the highest unit price paid for a product in any order?",
+    "expected_sql": "SELECT MAX(UnitPrice) FROM SalesOrderDetail;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 34,
+    "question": "List the City of all distinct customer addresses",
+    "expected_sql": "SELECT DISTINCT a.City FROM Address a JOIN CustomerAddress ca ON a.AddressID = ca.AddressID;",
+    "difficulty": "medium"
+  },
+  {
+    "id": 35,
+    "question": "Show the Name and ListPrice of all products in category 'Road Bikes'",
+    "expected_sql": "SELECT p.Name, p.ListPrice FROM Product p JOIN ProductCategory c ON p.ProductCategoryID = c.ProductCategoryID WHERE c.Name = 'Road Bikes';",
+    "difficulty": "medium"
+  },
+  {
+    "id": 36,
+    "question": "List the CustomerID, FirstName, LastName, and sum of TotalDue of the top 5 customers who spent the most",
+    "expected_sql": "SELECT c.CustomerID, c.FirstName, c.LastName, SUM(soh.TotalDue) AS TotalSpent FROM Customer c JOIN SalesOrderHeader soh ON c.CustomerID = soh.CustomerID GROUP BY c.CustomerID, c.FirstName, c.LastName ORDER BY TotalSpent DESC LIMIT 5;",
+    "difficulty": "hard"
+  },
+  {
+    "id": 37,
+    "question": "Show product descriptions for the product 'Classic Vest, S' in English",
+    "expected_sql": "SELECT pd.Description FROM Product p JOIN ProductModel pm ON p.ProductModelID = pm.ProductModelID JOIN ProductModelProductDescription pmpd ON pm.ProductModelID = pmpd.ProductModelID JOIN ProductDescription pd ON pmpd.ProductDescriptionID = pd.ProductDescriptionID WHERE p.Name = 'Classic Vest, S' AND pmpd.Culture = 'en';",
+    "difficulty": "hard"
+  },
+  {
+    "id": 38,
+    "question": "Find the Name and sum of LineTotal as category revenue for each product category ordered by category revenue descending",
+    "expected_sql": "SELECT c.Name, SUM(sod.LineTotal) AS CategoryRevenue FROM SalesOrderDetail sod JOIN Product p ON sod.ProductID = p.ProductID JOIN ProductCategory c ON p.ProductCategoryID = c.ProductCategoryID GROUP BY c.Name ORDER BY CategoryRevenue DESC;",
+    "difficulty": "hard"
+  },
+  {
+    "id": 39,
+    "question": "Get the FirstName, LastName, and CompanyName of all customers who ordered the product 'Half-Finger Gloves, L'",
+    "expected_sql": "SELECT DISTINCT c.FirstName, c.LastName, c.CompanyName FROM Customer c JOIN SalesOrderHeader soh ON c.CustomerID = soh.CustomerID JOIN SalesOrderDetail sod ON soh.SalesOrderID = sod.SalesOrderID JOIN Product p ON sod.ProductID = p.ProductID WHERE p.Name = 'Half-Finger Gloves, L';",
+    "difficulty": "hard"
+  },
+  {
+    "id": 40,
+    "question": "Find the month and year of orders with the highest total sales",
+    "expected_sql": "SELECT strftime('%Y-%m', OrderDate) AS OrderMonth, SUM(TotalDue) AS MonthlySales FROM SalesOrderHeader GROUP BY OrderMonth ORDER BY MonthlySales DESC LIMIT 1;",
+    "difficulty": "hard"
+  },
+  {
+    "id": 41,
+    "question": "For each product, list its Name, ProductCategory Name as category name, and ProductModel Name as model name",
+    "expected_sql": "SELECT p.Name AS ProductName, c.Name AS CategoryName, pm.Name AS ModelName FROM Product p JOIN ProductCategory c ON p.ProductCategoryID = c.ProductCategoryID LEFT JOIN ProductModel pm ON p.ProductModelID = pm.ProductModelID;",
+    "difficulty": "hard"
+  },
+  {
+    "id": 42,
+    "question": "List the CustomerID, FirstName, LastName, and count of shipping addresses for the customer with the most shipping addresses",
+    "expected_sql": "SELECT c.CustomerID, c.FirstName, c.LastName, COUNT(ca.AddressID) AS AddressCount FROM Customer c JOIN CustomerAddress ca ON c.CustomerID = ca.CustomerID WHERE ca.AddressType = 'Shipping' GROUP BY c.CustomerID, c.FirstName, c.LastName ORDER BY AddressCount DESC LIMIT 1;",
+    "difficulty": "hard"
+  },
+  {
+    "id": 43,
+    "question": "List the Name of all products that have never been ordered",
+    "expected_sql": "SELECT p.Name FROM Product p LEFT JOIN SalesOrderDetail sod ON p.ProductID = sod.ProductID WHERE sod.ProductID IS NULL;",
+    "difficulty": "hard"
+  },
+  {
+    "id": 44,
+    "question": "What is the average order value for orders placed in 2008?",
+    "expected_sql": "SELECT AVG(TotalDue) FROM SalesOrderHeader WHERE strftime('%Y', OrderDate) = '2008';",
+    "difficulty": "hard"
+  },
+  {
+    "id": 45,
+    "question": "Show the FirstName and LastName of all customers who have ordered products from a ProductCategory with name containing 'Bikes'",
+    "expected_sql": "SELECT DISTINCT c.FirstName, c.LastName FROM Customer c JOIN SalesOrderHeader soh ON c.CustomerID = soh.CustomerID JOIN SalesOrderDetail sod ON soh.SalesOrderID = sod.SalesOrderID JOIN Product p ON sod.ProductID = p.ProductID JOIN ProductCategory pc ON p.ProductCategoryID = pc.ProductCategoryID WHERE pc.Name LIKE '%Bikes%';",
+    "difficulty": "hard"
+  },
+  {
+    "id": 46,
+    "question": "List the Name of all product categories along with the count of products in that category, including categories with no products",
+    "expected_sql": "SELECT pc.Name, COUNT(p.ProductID) AS ProductCount FROM ProductCategory pc LEFT JOIN Product p ON pc.ProductCategoryID = p.ProductCategoryID GROUP BY pc.Name ORDER BY ProductCount DESC;",
+    "difficulty": "hard"
+  },
+  {
+    "id": 47,
+    "question": "Find the AddressLine1, City, StateProvince, and CountryRegion of the shipping address for order ID 71780",
+    "expected_sql": "SELECT a.AddressLine1, a.City, a.StateProvince, a.CountryRegion FROM SalesOrderHeader soh JOIN Address a ON soh.ShipToAddressID = a.AddressID WHERE soh.SalesOrderID = 71780;",
+    "difficulty": "hard"
+  },
+  {
+    "id": 48,
+    "question": "Find the total quantity of products sold in each year",
+    "expected_sql": "SELECT strftime('%Y', soh.OrderDate) AS SalesYear, SUM(sod.OrderQty) AS TotalQty FROM SalesOrderHeader soh JOIN SalesOrderDetail sod ON soh.SalesOrderID = sod.SalesOrderID GROUP BY SalesYear;",
+    "difficulty": "hard"
+  },
+  {
+    "id": 49,
+    "question": "Show the Name of products that have been sold more than 5 times total",
+    "expected_sql": "SELECT p.Name, SUM(sod.OrderQty) AS TotalSold FROM Product p JOIN SalesOrderDetail sod ON p.ProductID = sod.ProductID GROUP BY p.Name HAVING TotalSold > 5;",
+    "difficulty": "hard"
+  },
+  {
+    "id": 50,
+    "question": "List the FirstName and LastName of all customers who have placed orders with a TotalDue greater than 50000",
+    "expected_sql": "SELECT DISTINCT c.FirstName, c.LastName FROM Customer c JOIN SalesOrderHeader soh ON c.CustomerID = soh.CustomerID WHERE soh.TotalDue > 50000;",
+    "difficulty": "hard"
+  }
+]

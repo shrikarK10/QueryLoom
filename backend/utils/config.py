@@ -1,6 +1,6 @@
 from pathlib import Path
 
-MODEL_NAME = "qwen2.5:7b-instruct-q4_K_M"
+MODEL_NAME = "qwen2.5"
 DATABASE_LANGUAGE = "SQLite"
 
 _backend_root = Path(__file__).resolve().parents[1]

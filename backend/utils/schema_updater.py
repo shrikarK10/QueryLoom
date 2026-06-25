@@ -3,7 +3,7 @@ def build_column_mapping(schema: dict) -> str:
 
     for table, cols in schema.items():
         for col in cols:
-            mapping.append(f"{col} → {table}")
+            mapping.append(f"{col} -> {table}")
 
     return "\n".join(mapping)
 
