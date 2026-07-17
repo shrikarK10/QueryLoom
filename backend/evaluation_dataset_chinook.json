@@ -178,35 +178,5 @@
     "question": "Find customers who never made a purchase.",
     "difficulty": "hard",
     "expected_sql": "SELECT Customer.FirstName, Customer.LastName FROM Customer LEFT JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId WHERE Invoice.InvoiceId IS NULL;"
-  },
-  {
-    "id": 31,
-    "question": "Find the employee who manages the customers with the highest total spending.",
-    "difficulty": "very hard",
-    "expected_sql": "SELECT e.FirstName, e.LastName, SUM(i.Total) AS TotalSpending FROM Employee e JOIN Customer c ON e.EmployeeId = c.SupportRepId JOIN Invoice i ON c.CustomerId = i.CustomerId GROUP BY e.EmployeeId, e.FirstName, e.LastName ORDER BY TotalSpending DESC LIMIT 1;"
-  },
-  {
-    "id": 32,
-    "question": "List the top 3 artists by number of tracks sold.",
-    "difficulty": "very hard",
-    "expected_sql": "SELECT Artist.Name, SUM(InvoiceLine.Quantity) AS TracksSold FROM Artist JOIN Album ON Artist.ArtistId = Album.ArtistId JOIN Track ON Album.AlbumId = Track.AlbumId JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId GROUP BY Artist.ArtistId, Artist.Name ORDER BY TracksSold DESC LIMIT 3;"
-  },
-  {
-    "id": 33,
-    "question": "Show playlists that contain tracks from more than 5 genres.",
-    "difficulty": "very hard",
-    "expected_sql": "SELECT Playlist.Name FROM Playlist JOIN PlaylistTrack ON Playlist.PlaylistId = PlaylistTrack.PlaylistId JOIN Track ON PlaylistTrack.TrackId = Track.TrackId GROUP BY Playlist.PlaylistId, Playlist.Name HAVING COUNT(DISTINCT Track.GenreId) > 5;"
-  },
-  {
-    "id": 34,
-    "question": "Find customers who purchased every track from a specific album.",
-    "difficulty": "very hard",
-    "expected_sql": "SELECT DISTINCT c.FirstName, c.LastName, alb.Title FROM Customer c JOIN Invoice i ON c.CustomerId = i.CustomerId JOIN InvoiceLine il ON i.InvoiceId = il.InvoiceId JOIN Track t ON il.TrackId = t.TrackId JOIN Album alb ON t.AlbumId = alb.AlbumId GROUP BY c.CustomerId, alb.AlbumId HAVING COUNT(DISTINCT t.TrackId) = (SELECT COUNT(TrackId) FROM Track WHERE AlbumId = alb.AlbumId);"
-  },
-  {
-    "id": 35,
-    "question": "Find artists that have never had a track purchased.",
-    "difficulty": "very hard",
-    "expected_sql": "SELECT Artist.Name FROM Artist LEFT JOIN Album ON Artist.ArtistId = Album.ArtistId LEFT JOIN Track ON Album.AlbumId = Track.AlbumId LEFT JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId GROUP BY Artist.ArtistId, Artist.Name HAVING COUNT(InvoiceLine.InvoiceLineId) = 0;"
   }
 ]

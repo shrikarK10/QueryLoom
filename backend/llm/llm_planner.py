@@ -71,9 +71,9 @@ INTENT HANDLING:
   - "max", "highest" -> function is MAX (ONLY when asking for a single maximum value). Note: "highest total" means SUM aggregation ordered DESC with LIMIT 1.
   - "min", "lowest" -> function is MIN (ONLY when asking for a single minimum value)
 
-- For "purchased", "sold", "number of purchases", "tracks sold", "most purchased": use SUM(InvoiceLine.Quantity) NOT COUNT(InvoiceLine.InvoiceLineId) or COUNT(TrackId). The Quantity column represents the number of units sold per line.
+- When the question refers to "sold", "purchased", "units", "quantity", or "copies", and the schema contains a quantity-type column (e.g. Quantity, OrderQty, Qty): prefer SUM(quantity_column) over COUNT(row_id). COUNT counts the number of invoice lines; SUM(Quantity) reflects the actual number of units moved.
 
-- When grouping results, always prefer human-readable name columns (e.g., Genre.Name, Artist.Name) over ID columns (e.g., GenreId, ArtistId) in "columns_needed" unless the question explicitly requests IDs.
+- When grouping results, prefer descriptive attributes (e.g. Name, Title, Description, CategoryName) over identifier columns (e.g. GenreId, ArtistId) in "columns_needed", when the question does not explicitly request IDs.
 
 - "per year", "per month", "by category" → include grouping column in columns_needed
 

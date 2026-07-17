@@ -72,8 +72,8 @@ STRICT RULES:
 - In SQLite, backslash (\) is treated as a literal character in string literals. Do NOT double-escape it (use 'adventure-works\pamela0', NOT 'adventure-works\\pamela0').
 - If all required columns and conditions come from a single table, simplify the query by removing any unnecessary JOIN clauses.
 - Remove uncorrelated EXISTS clauses. Simplify subqueries/EXISTS clauses into direct flat WHERE clauses on the joined tables where possible.
-- If the query intent is "purchased", "sold", "most purchased", or "tracks sold" and the generated SQL uses COUNT(InvoiceLine.InvoiceLineId) or COUNT(TrackId), correct it to SUM(InvoiceLine.Quantity) instead.
-- If a GROUP BY key is an ID column (e.g. GenreId, ArtistId) but the SELECT outputs the same ID instead of its Name, correct the SELECT to output the human-readable Name column.
+- If the query intent is "sold", "purchased", "units", "quantity", or "copies" and the generated SQL aggregates with COUNT(row_id) instead of SUM(quantity_column), correct it to SUM(quantity_column). Example: COUNT(InvoiceLineId) → SUM(Quantity).
+- If a GROUP BY uses an identifier column (e.g. GenreId, ArtistId) but the SELECT outputs that same identifier instead of its descriptive attribute, correct the SELECT to output the descriptive attribute (e.g. Name, Title, Description, CategoryName) — when the question does not explicitly request IDs.
 
 - Keep query SIMPLE and correct
 

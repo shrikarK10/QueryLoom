@@ -74,8 +74,8 @@ YOUR TASK:
 - DO NOT add unnecessary logic
 - In SQLite, backslash (\) is treated as a literal character in string literals. Do NOT double-escape it (use 'adventure-works\pamela0', NOT 'adventure-works\\pamela0').
 - Simple planner conditions must become direct WHERE predicates (e.g. WHERE ProductCategory.Name LIKE '%Bikes%'). Do NOT generate EXISTS, IN, or subqueries unless the query plan explicitly requires a subquery.
-- When the intent is "purchased", "sold", "most purchased", or "tracks sold", always aggregate with SUM(InvoiceLine.Quantity), NOT COUNT(InvoiceLine.InvoiceLineId) or COUNT(TrackId).
-- When selecting a group key for aggregation results, prefer human-readable name columns (e.g. Genre.Name, Artist.Name) over ID columns (e.g. GenreId, ArtistId), unless the query explicitly asks for IDs.
+- When the intent is "sold", "purchased", "units", "quantity", or "copies" and the schema contains a quantity-type column (e.g. Quantity, OrderQty, Qty), aggregate with SUM(quantity_column) rather than COUNT(row_id). COUNT counts rows; SUM(Quantity) reflects actual units moved.
+- When selecting a group key for aggregation results, prefer descriptive attributes (e.g. Name, Title, Description, CategoryName) over identifier columns (e.g. GenreId, ArtistId), when the question does not explicitly request IDs.
 
 - SQL must be compatible with {DATABASE_LANGUAGE}
 
