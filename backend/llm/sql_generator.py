@@ -52,19 +52,19 @@ SCHEMA:
 YOUR TASK:
 
 - Generate SQL strictly based on:
-  1. QUERY PLAN (columns + conditions)
+  1. QUERY PLAN (columns_needed, conditions, requires_distinct, limit, aggregations, and ordering)
   2. PROVIDED JOINS
 
 ---------------------
-
-STRICT RULES:
 
 - You MUST use the provided JOIN clauses EXACTLY as given
 - DO NOT modify joins
 - DO NOT invent joins
 - DO NOT add new tables
 
-- Use ONLY columns from QUERY PLAN
+- If requires_distinct is true, you MUST prepend DISTINCT to the SELECT clause (e.g. SELECT DISTINCT column1, column2...). This is critical to avoid duplicate rows.
+- Use the limit specified in the QUERY PLAN if it is present
+- Apply the sorting/ordering specified in the QUERY PLAN "ordering" array (using ORDER BY ... ASC/DESC)
 - DO NOT assume columns
 - DO NOT use COLUMN MAPPING
 - You MUST use ONLY the provided JOIN clauses
@@ -72,8 +72,13 @@ STRICT RULES:
 - If JOIN is empty, use only single table
 - Prefer simplest correct query
 - DO NOT add unnecessary logic
+- In SQLite, backslash (\) is treated as a literal character in string literals. Do NOT double-escape it (use 'adventure-works\pamela0', NOT 'adventure-works\\pamela0').
+- Simple planner conditions must become direct WHERE predicates (e.g. WHERE ProductCategory.Name LIKE '%Bikes%'). Do NOT generate EXISTS, IN, or subqueries unless the query plan explicitly requires a subquery.
+- When the intent is "purchased", "sold", "most purchased", or "tracks sold", always aggregate with SUM(InvoiceLine.Quantity), NOT COUNT(InvoiceLine.InvoiceLineId) or COUNT(TrackId).
+- When selecting a group key for aggregation results, prefer human-readable name columns (e.g. Genre.Name, Artist.Name) over ID columns (e.g. GenreId, ArtistId), unless the query explicitly asks for IDs.
 
 - SQL must be compatible with {DATABASE_LANGUAGE}
+
 
 ---------------------
 
@@ -84,7 +89,8 @@ Brief reasoning (1-2 lines max)
 </thought>
 
 <sql>
-FINAL SQL HERE
+-- Do NOT output the text "FINAL SQL HERE". Output your actual SQL query directly.
+SELECT ...
 </sql>
 
 ---------------------

@@ -42,25 +42,37 @@ def build_relationship_graph(relationships):
     return graph
 
 
+import heapq
+
 def find_join_path(graph, start, end):
     """
-    Finds the shortest join path between two tables (BFS).
+    Finds the join path of least weight between two tables using Dijkstra's algorithm.
     """
-    queue = deque([[start]])
-    visited = set()
+    queue = [(0, [start])]
+    visited = {}
+
+    def get_edge_weight(t1, t2):
+        bridge_tables = {"customeraddress", "productmodelproductdescription"}
+        if t1.lower() in bridge_tables or t2.lower() in bridge_tables:
+            return 5
+        return 1
 
     while queue:
-        path = queue.popleft()
+        weight, path = heapq.heappop(queue)
         node = path[-1]
 
         if node == end:
             return path
 
-        if node not in visited:
-            visited.add(node)
-            for neighbor in graph[node]:
-                new_path = path + [neighbor]
-                queue.append(new_path)
+        if node in visited and visited[node] <= weight:
+            continue
+        visited[node] = weight
+
+        for neighbor in graph[node]:
+            edge_wt = get_edge_weight(node, neighbor)
+            new_weight = weight + edge_wt
+            if neighbor not in visited or new_weight < visited.get(neighbor, float('inf')):
+                heapq.heappush(queue, (new_weight, path + [neighbor]))
 
     return None
 

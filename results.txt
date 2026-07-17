@@ -1,0 +1,1361 @@
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What are the top 5 most expensive products?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['Product.Name', 'Product.ListPrice'], 'conditions': [], 'requires_distinct': False, 'limit': 5, 'aggregations': [{'function': 'MAX', 'column': 'Product.ListPrice', 'distinct': False}]}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Product.ListPrice']
+Step: All Columns
+Data: ['Product.ListPrice', 'Product.Name']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice = (SELECT MAX(ListPrice) FROM Product)
+LIMIT 5;
+Step: Reflected SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice = (SELECT MAX(ListPrice) FROM Product)
+LIMIT 5;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice = (SELECT MAX(ListPrice) FROM Product)
+LIMIT 5;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Road-150 Red, 62', 3578.27), ('Road-150 Red, 44', 3578.27), ('Road-150 Red, 48', 3578.27), ('Road-150 Red, 52', 3578.27), ('Road-150 Red, 56', 3578.27)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: How many employees do we have?
+Step: Query Type
+Data: AGGREGATION
+Step: Query Plan
+Data: {'columns_needed': ['Customer.SalesPerson'], 'conditions': [], 'requires_distinct': True, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Customer.SalesPerson', 'distinct': True}]}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Customer.SalesPerson']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Customer.SalesPerson']
+Step: All Columns
+Data: ['Customer.SalesPerson']
+Step: Resolved Tables
+Data: ['Customer']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT COUNT(DISTINCT Customer.SalesPerson)
+FROM Customer;
+Step: Reflected SQL
+Data: FINAL SQL HERE
+
+SELECT COUNT(DISTINCT Customer.SalesPerson)
+FROM Customer;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: False
+Step: Final SQL
+Data: SELECT COUNT(DISTINCT Customer.SalesPerson)
+FROM Customer;
+Step: Selected SQL Source
+Data: generator
+Step: Execution Result
+Data: [(9,)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List all products that cost more than 1000
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['Product.ProductID', 'Product.Name', 'Product.ListPrice'], 'conditions': ['Product.ListPrice > 1000'], 'requires_distinct': False, 'limit': None, 'aggregations': []}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Product.ProductID', 'Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: ['Product.ListPrice']
+Step: Aggregation Columns
+Data: []
+Step: All Columns
+Data: ['Product.ListPrice', 'Product.ProductID', 'Product.Name']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT ProductID, Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Reflected SQL
+Data: SELECT ProductID, Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT ProductID, Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(680, 'HL Road Frame - Black, 58', 1431.5), (706, 'HL Road Frame - Red, 58', 1431.5), (717, 'HL Road Frame - Red, 62', 1431.5), (718, 'HL Road Frame - Red, 44', 1431.5), (719, 'HL Road Frame - Red, 48', 1431.5), (720, 'HL Road Frame - Red, 52', 1431.5), (721, 'HL Road Frame - Red, 56', 1431.5), (739, 'HL Mountain Frame - Silver, 42', 1364.5), (740, 'HL Mountain Frame - Silver, 44', 1364.5), (741, 'HL Mountain Frame - Silver, 48', 1364.5), (742, 'HL Mountain Frame - Silver, 46', 1364.5), (743, 'HL Mountain Frame - Black, 42', 1349.6), (744, 'HL Mountain Frame - Black, 44', 1349.6), (745, 'HL Mountain Frame - Black, 48', 1349.6), (746, 'HL Mountain Frame - Black, 46', 1349.6), (747, 'HL Mountain Frame - Black, 38', 1349.6), (748, 'HL Mountain Frame - Silver, 38', 1364.5), (749, 'Road-150 Red, 62', 3578.27), (750, 'Road-150 Red, 44', 3578.27), (751, 'Road-150 Red, 48', 3578.27), (752, 'Road-150 Red, 52', 3578.27), (753, 'Road-150 Red, 56', 3578.27), (754, 'Road-450 Red, 58', 1457.99), (755, 'Road-450 Red, 60', 1457.99), (756, 'Road-450 Red, 44', 1457.99), (757, 'Road-450 Red, 48', 1457.99), (758, 'Road-450 Red, 52', 1457.99), (771, 'Mountain-100 Silver, 38', 3399.99), (772, 'Mountain-100 Silver, 42', 3399.99), (773, 'Mountain-100 Silver, 44', 3399.99), (774, 'Mountain-100 Silver, 48', 3399.99), (775, 'Mountain-100 Black, 38', 3374.99), (776, 'Mountain-100 Black, 42', 3374.99), (777, 'Mountain-100 Black, 44', 3374.99), (778, 'Mountain-100 Black, 48', 3374.99), (779, 'Mountain-200 Silver, 38', 2319.99), (780, 'Mountain-200 Silver, 42', 2319.99), (781, 'Mountain-200 Silver, 46', 2319.99), (782, 'Mountain-200 Black, 38', 2294.99), (783, 'Mountain-200 Black, 42', 2294.99), (784, 'Mountain-200 Black, 46', 2294.99), (785, 'Mountain-300 Black, 38', 1079.99), (786, 'Mountain-300 Black, 40', 1079.99), (787, 'Mountain-300 Black, 44', 1079.99), (788, 'Mountain-300 Black, 48', 1079.99), (789, 'Road-250 Red, 44', 2443.35), (790, 'Road-250 Red, 48', 2443.35), (791, 'Road-250 Red, 52', 2443.35), (792, 'Road-250 Red, 58', 2443.35), (793, 'Road-250 Black, 44', 2443.35), (794, 'Road-250 Black, 48', 2443.35), (795, 'Road-250 Black, 52', 2443.35), (796, 'Road-250 Black, 58', 2443.35), (797, 'Road-550-W Yellow, 38', 1120.49), (798, 'Road-550-W Yellow, 40', 1120.49), (799, 'Road-550-W Yellow, 42', 1120.49), (800, 'Road-550-W Yellow, 44', 1120.49), (801, 'Road-550-W Yellow, 48', 1120.49), (837, 'HL Road Frame - Black, 62', 1431.5), (838, 'HL Road Frame - Black, 44', 1431.5), (839, 'HL Road Frame - Black, 48', 1431.5), (840, 'HL Road Frame - Black, 52', 1431.5), (885, 'HL Touring Frame - Yellow, 60', 1003.91), (887, 'HL Touring Frame - Yellow, 46', 1003.91), (888, 'HL Touring Frame - Yellow, 50', 1003.91), (889, 'HL Touring Frame - Yellow, 54', 1003.91), (890, 'HL Touring Frame - Blue, 46', 1003.91), (891, 'HL Touring Frame - Blue, 50', 1003.91), (892, 'HL Touring Frame - Blue, 54', 1003.91), (893, 'HL Touring Frame - Blue, 60', 1003.91), (953, 'Touring-2000 Blue, 60', 1214.85), (954, 'Touring-1000 Yellow, 46', 2384.07), (955, 'Touring-1000 Yellow, 50', 2384.07), (956, 'Touring-1000 Yellow, 54', 2384.07), (957, 'Touring-1000 Yellow, 60', 2384.07), (966, 'Touring-1000 Blue, 46', 2384.07), (967, 'Touring-1000 Blue, 50', 2384.07), (968, 'Touring-1000 Blue, 54', 2384.07), (969, 'Touring-1000 Blue, 60', 2384.07), (970, 'Touring-2000 Blue, 46', 1214.85), (971, 'Touring-2000 Blue, 50', 1214.85), (972, 'Touring-2000 Blue, 54', 1214.85), (973, 'Road-350-W Yellow, 40', 1700.99), (974, 'Road-350-W Yellow, 42', 1700.99), (975, 'Road-350-W Yellow, 44', 1700.99), (976, 'Road-350-W Yellow, 48', 1700.99)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Which city has the most addresses?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['Address.City'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Address.City', 'distinct': True}]}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Address.City']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Address.City']
+Step: All Columns
+Data: ['Address.City']
+Step: Resolved Tables
+Data: ['Address']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT City
+FROM Address
+GROUP BY City
+ORDER BY COUNT(City) DESC
+LIMIT 1;
+Step: Reflected SQL
+Data: FINAL SQL HERE
+
+SELECT City
+FROM Address
+GROUP BY City
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: False
+Step: Final SQL
+Data: SELECT City
+FROM Address
+GROUP BY City
+ORDER BY COUNT(City) DESC
+LIMIT 1;
+Step: Selected SQL Source
+Data: generator
+Step: Execution Result
+Data: [('Toronto',)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What are the top 5 most expensive products?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['Product.Name', 'Product.ListPrice'], 'conditions': [], 'requires_distinct': False, 'limit': 5, 'aggregations': [{'function': 'MAX', 'column': 'Product.ListPrice', 'distinct': False}]}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Product.ListPrice']
+Step: All Columns
+Data: ['Product.ListPrice', 'Product.Name']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+Step: Reflected SQL
+Data: SELECT Name, MAX(ListPrice)
+FROM Product
+GROUP BY Name
+ORDER BY MAX(ListPrice) DESC
+LIMIT 5;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Name, MAX(ListPrice)
+FROM Product
+GROUP BY Name
+ORDER BY MAX(ListPrice) DESC
+LIMIT 5;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Road-150 Red, 44', 3578.27), ('Road-150 Red, 48', 3578.27), ('Road-150 Red, 52', 3578.27), ('Road-150 Red, 56', 3578.27), ('Road-150 Red, 62', 3578.27)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: How many employees do we have?
+Step: Query Type
+Data: AGGREGATION
+Step: Query Plan
+Data: {'columns_needed': ['Customer.SalesPerson'], 'conditions': [], 'requires_distinct': True, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Customer.SalesPerson', 'distinct': True}]}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Customer.SalesPerson']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Customer.SalesPerson']
+Step: All Columns
+Data: ['Customer.SalesPerson']
+Step: Resolved Tables
+Data: ['Customer']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT COUNT(DISTINCT Customer.SalesPerson)
+FROM Customer;
+Step: Reflected SQL
+Data: SELECT COUNT(DISTINCT Customer.SalesPerson)
+FROM Customer;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT COUNT(DISTINCT Customer.SalesPerson)
+FROM Customer;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(9,)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List all products that cost more than 1000
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['Product.ProductID', 'Product.Name', 'Product.ListPrice'], 'conditions': ['Product.ListPrice > 1000'], 'requires_distinct': False, 'limit': None, 'aggregations': []}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Product.ProductID', 'Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: ['Product.ListPrice']
+Step: Aggregation Columns
+Data: []
+Step: All Columns
+Data: ['Product.ProductID', 'Product.ListPrice', 'Product.Name']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT ProductID, Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Reflected SQL
+Data: SELECT ProductID, Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT ProductID, Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(680, 'HL Road Frame - Black, 58', 1431.5), (706, 'HL Road Frame - Red, 58', 1431.5), (717, 'HL Road Frame - Red, 62', 1431.5), (718, 'HL Road Frame - Red, 44', 1431.5), (719, 'HL Road Frame - Red, 48', 1431.5), (720, 'HL Road Frame - Red, 52', 1431.5), (721, 'HL Road Frame - Red, 56', 1431.5), (739, 'HL Mountain Frame - Silver, 42', 1364.5), (740, 'HL Mountain Frame - Silver, 44', 1364.5), (741, 'HL Mountain Frame - Silver, 48', 1364.5), (742, 'HL Mountain Frame - Silver, 46', 1364.5), (743, 'HL Mountain Frame - Black, 42', 1349.6), (744, 'HL Mountain Frame - Black, 44', 1349.6), (745, 'HL Mountain Frame - Black, 48', 1349.6), (746, 'HL Mountain Frame - Black, 46', 1349.6), (747, 'HL Mountain Frame - Black, 38', 1349.6), (748, 'HL Mountain Frame - Silver, 38', 1364.5), (749, 'Road-150 Red, 62', 3578.27), (750, 'Road-150 Red, 44', 3578.27), (751, 'Road-150 Red, 48', 3578.27), (752, 'Road-150 Red, 52', 3578.27), (753, 'Road-150 Red, 56', 3578.27), (754, 'Road-450 Red, 58', 1457.99), (755, 'Road-450 Red, 60', 1457.99), (756, 'Road-450 Red, 44', 1457.99), (757, 'Road-450 Red, 48', 1457.99), (758, 'Road-450 Red, 52', 1457.99), (771, 'Mountain-100 Silver, 38', 3399.99), (772, 'Mountain-100 Silver, 42', 3399.99), (773, 'Mountain-100 Silver, 44', 3399.99), (774, 'Mountain-100 Silver, 48', 3399.99), (775, 'Mountain-100 Black, 38', 3374.99), (776, 'Mountain-100 Black, 42', 3374.99), (777, 'Mountain-100 Black, 44', 3374.99), (778, 'Mountain-100 Black, 48', 3374.99), (779, 'Mountain-200 Silver, 38', 2319.99), (780, 'Mountain-200 Silver, 42', 2319.99), (781, 'Mountain-200 Silver, 46', 2319.99), (782, 'Mountain-200 Black, 38', 2294.99), (783, 'Mountain-200 Black, 42', 2294.99), (784, 'Mountain-200 Black, 46', 2294.99), (785, 'Mountain-300 Black, 38', 1079.99), (786, 'Mountain-300 Black, 40', 1079.99), (787, 'Mountain-300 Black, 44', 1079.99), (788, 'Mountain-300 Black, 48', 1079.99), (789, 'Road-250 Red, 44', 2443.35), (790, 'Road-250 Red, 48', 2443.35), (791, 'Road-250 Red, 52', 2443.35), (792, 'Road-250 Red, 58', 2443.35), (793, 'Road-250 Black, 44', 2443.35), (794, 'Road-250 Black, 48', 2443.35), (795, 'Road-250 Black, 52', 2443.35), (796, 'Road-250 Black, 58', 2443.35), (797, 'Road-550-W Yellow, 38', 1120.49), (798, 'Road-550-W Yellow, 40', 1120.49), (799, 'Road-550-W Yellow, 42', 1120.49), (800, 'Road-550-W Yellow, 44', 1120.49), (801, 'Road-550-W Yellow, 48', 1120.49), (837, 'HL Road Frame - Black, 62', 1431.5), (838, 'HL Road Frame - Black, 44', 1431.5), (839, 'HL Road Frame - Black, 48', 1431.5), (840, 'HL Road Frame - Black, 52', 1431.5), (885, 'HL Touring Frame - Yellow, 60', 1003.91), (887, 'HL Touring Frame - Yellow, 46', 1003.91), (888, 'HL Touring Frame - Yellow, 50', 1003.91), (889, 'HL Touring Frame - Yellow, 54', 1003.91), (890, 'HL Touring Frame - Blue, 46', 1003.91), (891, 'HL Touring Frame - Blue, 50', 1003.91), (892, 'HL Touring Frame - Blue, 54', 1003.91), (893, 'HL Touring Frame - Blue, 60', 1003.91), (953, 'Touring-2000 Blue, 60', 1214.85), (954, 'Touring-1000 Yellow, 46', 2384.07), (955, 'Touring-1000 Yellow, 50', 2384.07), (956, 'Touring-1000 Yellow, 54', 2384.07), (957, 'Touring-1000 Yellow, 60', 2384.07), (966, 'Touring-1000 Blue, 46', 2384.07), (967, 'Touring-1000 Blue, 50', 2384.07), (968, 'Touring-1000 Blue, 54', 2384.07), (969, 'Touring-1000 Blue, 60', 2384.07), (970, 'Touring-2000 Blue, 46', 1214.85), (971, 'Touring-2000 Blue, 50', 1214.85), (972, 'Touring-2000 Blue, 54', 1214.85), (973, 'Road-350-W Yellow, 40', 1700.99), (974, 'Road-350-W Yellow, 42', 1700.99), (975, 'Road-350-W Yellow, 44', 1700.99), (976, 'Road-350-W Yellow, 48', 1700.99)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Which city has the most addresses?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['Address.City'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Address.City', 'distinct': True}]}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Address.City']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Address.City']
+Step: All Columns
+Data: ['Address.City']
+Step: Resolved Tables
+Data: ['Address']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT City
+FROM Address
+GROUP BY City
+ORDER BY COUNT(City) DESC
+LIMIT 1;
+Step: Reflected SQL
+Data: SELECT City
+FROM Address
+GROUP BY City
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT City
+FROM Address
+GROUP BY City
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Toronto',)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What are the top 5 most expensive products?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['Product.Name', 'Product.ListPrice'], 'conditions': [], 'requires_distinct': False, 'limit': 5, 'aggregations': [{'function': 'MAX', 'column': 'Product.ListPrice', 'distinct': False}], 'ordering': [{'column': 'Product.ListPrice', 'direction': 'DESC'}]}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Product.ListPrice']
+Step: Ordering Columns
+Data: ['Product.ListPrice']
+Step: All Columns
+Data: ['Product.ListPrice', 'Product.Name']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Product.Name, Product.ListPrice
+FROM Product
+ORDER BY Product.ListPrice DESC
+LIMIT 5;
+Step: Reflected SQL
+Data: SELECT Product.Name, MAX(Product.ListPrice) AS MaxListPrice
+FROM Product
+ORDER BY MaxListPrice DESC
+LIMIT 5;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Product.Name, MAX(Product.ListPrice) AS MaxListPrice
+FROM Product
+ORDER BY MaxListPrice DESC
+LIMIT 5;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Road-150 Red, 62', 3578.27)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: How many employees do we have?
+Step: Query Type
+Data: AGGREGATION
+Step: Query Plan
+Data: {'columns_needed': ['Customer.Title', 'Customer.FirstName', 'Customer.LastName'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Customer.CustomerID', 'distinct': True}], 'ordering': []}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Customer.Title', 'Customer.FirstName', 'Customer.LastName']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Customer.CustomerID']
+Step: Ordering Columns
+Data: []
+Step: All Columns
+Data: ['Customer.Title', 'Customer.CustomerID', 'Customer.LastName', 'Customer.FirstName']
+Step: Resolved Tables
+Data: ['Customer']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT COUNT(CustomerID) AS EmployeeCount
+FROM Customer;
+Step: Reflected SQL
+Data: SELECT COUNT(CustomerID) AS EmployeeCount
+FROM Customer;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT COUNT(CustomerID) AS EmployeeCount
+FROM Customer;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(847,)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List all products that cost more than 1000
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['Product.Name', 'Product.ListPrice'], 'conditions': ['Product.ListPrice > 1000'], 'requires_distinct': False, 'limit': None, 'aggregations': [], 'ordering': []}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: ['Product.ListPrice']
+Step: Aggregation Columns
+Data: []
+Step: Ordering Columns
+Data: []
+Step: All Columns
+Data: ['Product.ListPrice', 'Product.Name']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Reflected SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('HL Road Frame - Black, 58', 1431.5), ('HL Road Frame - Red, 58', 1431.5), ('HL Road Frame - Red, 62', 1431.5), ('HL Road Frame - Red, 44', 1431.5), ('HL Road Frame - Red, 48', 1431.5), ('HL Road Frame - Red, 52', 1431.5), ('HL Road Frame - Red, 56', 1431.5), ('HL Mountain Frame - Silver, 42', 1364.5), ('HL Mountain Frame - Silver, 44', 1364.5), ('HL Mountain Frame - Silver, 48', 1364.5), ('HL Mountain Frame - Silver, 46', 1364.5), ('HL Mountain Frame - Black, 42', 1349.6), ('HL Mountain Frame - Black, 44', 1349.6), ('HL Mountain Frame - Black, 48', 1349.6), ('HL Mountain Frame - Black, 46', 1349.6), ('HL Mountain Frame - Black, 38', 1349.6), ('HL Mountain Frame - Silver, 38', 1364.5), ('Road-150 Red, 62', 3578.27), ('Road-150 Red, 44', 3578.27), ('Road-150 Red, 48', 3578.27), ('Road-150 Red, 52', 3578.27), ('Road-150 Red, 56', 3578.27), ('Road-450 Red, 58', 1457.99), ('Road-450 Red, 60', 1457.99), ('Road-450 Red, 44', 1457.99), ('Road-450 Red, 48', 1457.99), ('Road-450 Red, 52', 1457.99), ('Mountain-100 Silver, 38', 3399.99), ('Mountain-100 Silver, 42', 3399.99), ('Mountain-100 Silver, 44', 3399.99), ('Mountain-100 Silver, 48', 3399.99), ('Mountain-100 Black, 38', 3374.99), ('Mountain-100 Black, 42', 3374.99), ('Mountain-100 Black, 44', 3374.99), ('Mountain-100 Black, 48', 3374.99), ('Mountain-200 Silver, 38', 2319.99), ('Mountain-200 Silver, 42', 2319.99), ('Mountain-200 Silver, 46', 2319.99), ('Mountain-200 Black, 38', 2294.99), ('Mountain-200 Black, 42', 2294.99), ('Mountain-200 Black, 46', 2294.99), ('Mountain-300 Black, 38', 1079.99), ('Mountain-300 Black, 40', 1079.99), ('Mountain-300 Black, 44', 1079.99), ('Mountain-300 Black, 48', 1079.99), ('Road-250 Red, 44', 2443.35), ('Road-250 Red, 48', 2443.35), ('Road-250 Red, 52', 2443.35), ('Road-250 Red, 58', 2443.35), ('Road-250 Black, 44', 2443.35), ('Road-250 Black, 48', 2443.35), ('Road-250 Black, 52', 2443.35), ('Road-250 Black, 58', 2443.35), ('Road-550-W Yellow, 38', 1120.49), ('Road-550-W Yellow, 40', 1120.49), ('Road-550-W Yellow, 42', 1120.49), ('Road-550-W Yellow, 44', 1120.49), ('Road-550-W Yellow, 48', 1120.49), ('HL Road Frame - Black, 62', 1431.5), ('HL Road Frame - Black, 44', 1431.5), ('HL Road Frame - Black, 48', 1431.5), ('HL Road Frame - Black, 52', 1431.5), ('HL Touring Frame - Yellow, 60', 1003.91), ('HL Touring Frame - Yellow, 46', 1003.91), ('HL Touring Frame - Yellow, 50', 1003.91), ('HL Touring Frame - Yellow, 54', 1003.91), ('HL Touring Frame - Blue, 46', 1003.91), ('HL Touring Frame - Blue, 50', 1003.91), ('HL Touring Frame - Blue, 54', 1003.91), ('HL Touring Frame - Blue, 60', 1003.91), ('Touring-2000 Blue, 60', 1214.85), ('Touring-1000 Yellow, 46', 2384.07), ('Touring-1000 Yellow, 50', 2384.07), ('Touring-1000 Yellow, 54', 2384.07), ('Touring-1000 Yellow, 60', 2384.07), ('Touring-1000 Blue, 46', 2384.07), ('Touring-1000 Blue, 50', 2384.07), ('Touring-1000 Blue, 54', 2384.07), ('Touring-1000 Blue, 60', 2384.07), ('Touring-2000 Blue, 46', 1214.85), ('Touring-2000 Blue, 50', 1214.85), ('Touring-2000 Blue, 54', 1214.85), ('Road-350-W Yellow, 40', 1700.99), ('Road-350-W Yellow, 42', 1700.99), ('Road-350-W Yellow, 44', 1700.99), ('Road-350-W Yellow, 48', 1700.99)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Which city has the most addresses?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Query Plan
+Data: {'columns_needed': ['Address.City'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Address.AddressID', 'distinct': False}], 'ordering': [{'column': 'COUNT(Address.AddressID)', 'direction': 'DESC'}]}
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Columns Needed
+Data: ['Address.City']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Address.AddressID']
+Step: Ordering Columns
+Data: ['COUNT(Address.AddressID)']
+Step: All Columns
+Data: ['Address.City', 'COUNT(Address.AddressID)', 'Address.AddressID']
+Step: Resolved Tables
+Data: ['Address']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Reflected SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Toronto',)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What are the top 5 most expensive products?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Produc(Product.Name)', 'Produc(Product.ListPrice)'], 'conditions': [], 'requires_distinct': False, 'limit': 5, 'aggregations': [{'function': 'MAX', 'column': 'Produc(Product.ListPrice)', 'distinct': False}], 'ordering': [{'column': 'Produc(Product.ListPrice)', 'direction': 'DESC'}]}
+Step: Columns Needed
+Data: ['Produc(Product.Name)', 'Produc(Product.ListPrice)']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Produc(Product.ListPrice)']
+Step: Ordering Columns
+Data: ['Produc(Product.ListPrice)']
+Step: All Columns
+Data: ['Produc(Product.ListPrice)', 'Produc(Product.Name)']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+Step: Reflected SQL
+Data: SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Road-150 Red, 62', 3578.27), ('Road-150 Red, 44', 3578.27), ('Road-150 Red, 48', 3578.27), ('Road-150 Red, 52', 3578.27), ('Road-150 Red, 56', 3578.27)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: How many employees do we have?
+Step: Query Type
+Data: AGGREGATION
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Custome(Customer.Suffix)', 'Custome(Customer.Title)', 'Custome(Customer.FirstName)', 'Custome(Customer.LastName)'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Custome(Customer.CustomerID)', 'distinct': True}], 'ordering': []}
+Step: Columns Needed
+Data: ['Custome(Customer.Suffix)', 'Custome(Customer.Title)', 'Custome(Customer.FirstName)', 'Custome(Customer.LastName)']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Custome(Customer.CustomerID)']
+Step: Ordering Columns
+Data: []
+Step: All Columns
+Data: ['Custome(Customer.LastName)', 'Custome(Customer.FirstName)', 'Custome(Customer.CustomerID)', 'Custome(Customer.Title)', 'Custome(Customer.Suffix)']
+Step: Resolved Tables
+Data: ['Customer']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT COUNT(CustomerID) AS EmployeeCount
+FROM Customer
+WHERE Title IS NOT NULL;
+Step: Reflected SQL
+Data: SELECT COUNT(DISTINCT CustomerID) AS EmployeeCount
+FROM Customer
+WHERE Title IS NOT NULL;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT COUNT(DISTINCT CustomerID) AS EmployeeCount
+FROM Customer
+WHERE Title IS NOT NULL;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(847,)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List all products that cost more than 1000
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Produc(Product.Name)', 'Produc(Product.ListPrice)'], 'conditions': ['Product.ListPrice > 1000'], 'requires_distinct': False, 'limit': None, 'aggregations': [], 'ordering': []}
+Step: Columns Needed
+Data: ['Produc(Product.Name)', 'Produc(Product.ListPrice)']
+Step: Condition Columns
+Data: ['Product.ListPrice']
+Step: Aggregation Columns
+Data: []
+Step: Ordering Columns
+Data: []
+Step: All Columns
+Data: ['Product.ListPrice', 'Produc(Product.ListPrice)', 'Produc(Product.Name)']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Reflected SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('HL Road Frame - Black, 58', 1431.5), ('HL Road Frame - Red, 58', 1431.5), ('HL Road Frame - Red, 62', 1431.5), ('HL Road Frame - Red, 44', 1431.5), ('HL Road Frame - Red, 48', 1431.5), ('HL Road Frame - Red, 52', 1431.5), ('HL Road Frame - Red, 56', 1431.5), ('HL Mountain Frame - Silver, 42', 1364.5), ('HL Mountain Frame - Silver, 44', 1364.5), ('HL Mountain Frame - Silver, 48', 1364.5), ('HL Mountain Frame - Silver, 46', 1364.5), ('HL Mountain Frame - Black, 42', 1349.6), ('HL Mountain Frame - Black, 44', 1349.6), ('HL Mountain Frame - Black, 48', 1349.6), ('HL Mountain Frame - Black, 46', 1349.6), ('HL Mountain Frame - Black, 38', 1349.6), ('HL Mountain Frame - Silver, 38', 1364.5), ('Road-150 Red, 62', 3578.27), ('Road-150 Red, 44', 3578.27), ('Road-150 Red, 48', 3578.27), ('Road-150 Red, 52', 3578.27), ('Road-150 Red, 56', 3578.27), ('Road-450 Red, 58', 1457.99), ('Road-450 Red, 60', 1457.99), ('Road-450 Red, 44', 1457.99), ('Road-450 Red, 48', 1457.99), ('Road-450 Red, 52', 1457.99), ('Mountain-100 Silver, 38', 3399.99), ('Mountain-100 Silver, 42', 3399.99), ('Mountain-100 Silver, 44', 3399.99), ('Mountain-100 Silver, 48', 3399.99), ('Mountain-100 Black, 38', 3374.99), ('Mountain-100 Black, 42', 3374.99), ('Mountain-100 Black, 44', 3374.99), ('Mountain-100 Black, 48', 3374.99), ('Mountain-200 Silver, 38', 2319.99), ('Mountain-200 Silver, 42', 2319.99), ('Mountain-200 Silver, 46', 2319.99), ('Mountain-200 Black, 38', 2294.99), ('Mountain-200 Black, 42', 2294.99), ('Mountain-200 Black, 46', 2294.99), ('Mountain-300 Black, 38', 1079.99), ('Mountain-300 Black, 40', 1079.99), ('Mountain-300 Black, 44', 1079.99), ('Mountain-300 Black, 48', 1079.99), ('Road-250 Red, 44', 2443.35), ('Road-250 Red, 48', 2443.35), ('Road-250 Red, 52', 2443.35), ('Road-250 Red, 58', 2443.35), ('Road-250 Black, 44', 2443.35), ('Road-250 Black, 48', 2443.35), ('Road-250 Black, 52', 2443.35), ('Road-250 Black, 58', 2443.35), ('Road-550-W Yellow, 38', 1120.49), ('Road-550-W Yellow, 40', 1120.49), ('Road-550-W Yellow, 42', 1120.49), ('Road-550-W Yellow, 44', 1120.49), ('Road-550-W Yellow, 48', 1120.49), ('HL Road Frame - Black, 62', 1431.5), ('HL Road Frame - Black, 44', 1431.5), ('HL Road Frame - Black, 48', 1431.5), ('HL Road Frame - Black, 52', 1431.5), ('HL Touring Frame - Yellow, 60', 1003.91), ('HL Touring Frame - Yellow, 46', 1003.91), ('HL Touring Frame - Yellow, 50', 1003.91), ('HL Touring Frame - Yellow, 54', 1003.91), ('HL Touring Frame - Blue, 46', 1003.91), ('HL Touring Frame - Blue, 50', 1003.91), ('HL Touring Frame - Blue, 54', 1003.91), ('HL Touring Frame - Blue, 60', 1003.91), ('Touring-2000 Blue, 60', 1214.85), ('Touring-1000 Yellow, 46', 2384.07), ('Touring-1000 Yellow, 50', 2384.07), ('Touring-1000 Yellow, 54', 2384.07), ('Touring-1000 Yellow, 60', 2384.07), ('Touring-1000 Blue, 46', 2384.07), ('Touring-1000 Blue, 50', 2384.07), ('Touring-1000 Blue, 54', 2384.07), ('Touring-1000 Blue, 60', 2384.07), ('Touring-2000 Blue, 46', 1214.85), ('Touring-2000 Blue, 50', 1214.85), ('Touring-2000 Blue, 54', 1214.85), ('Road-350-W Yellow, 40', 1700.99), ('Road-350-W Yellow, 42', 1700.99), ('Road-350-W Yellow, 44', 1700.99), ('Road-350-W Yellow, 48', 1700.99)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Which city has the most addresses?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Addres(Address.City)'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Addres(Address.AddressID)', 'distinct': False}], 'ordering': [{'column': 'COUNT(Address.AddressID)', 'direction': 'DESC'}]}
+Step: Columns Needed
+Data: ['Addres(Address.City)']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Addres(Address.AddressID)']
+Step: Ordering Columns
+Data: ['COUNT(Address.AddressID)']
+Step: All Columns
+Data: ['COUNT(Address.AddressID)', 'Addres(Address.AddressID)', 'Addres(Address.City)']
+Step: Resolved Tables
+Data: ['Address']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Reflected SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Toronto',)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What are the top 5 most expensive products?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Product.Name', 'Product.ListPrice'], 'conditions': [], 'requires_distinct': False, 'limit': 5, 'aggregations': [{'function': 'MAX', 'column': 'Product.ListPrice', 'distinct': False}], 'ordering': [{'column': 'Product.ListPrice', 'direction': 'DESC'}]}
+Step: Columns Needed
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Product.ListPrice']
+Step: Ordering Columns
+Data: ['Product.ListPrice']
+Step: All Columns
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Product.Name, Product.ListPrice
+FROM Product
+ORDER BY Product.ListPrice DESC
+LIMIT 5;
+Step: Reflected SQL
+Data: SELECT Product.Name, MAX(Product.ListPrice) AS MaxListPrice
+FROM Product
+ORDER BY MaxListPrice DESC
+LIMIT 5;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Product.Name, MAX(Product.ListPrice) AS MaxListPrice
+FROM Product
+ORDER BY MaxListPrice DESC
+LIMIT 5;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Road-150 Red, 62', 3578.27)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: How many employees do we have?
+Step: Query Type
+Data: AGGREGATION
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Customer.Suffix', 'Customer.Title', 'Customer.FirstName', 'Customer.LastName'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Customer.CustomerID', 'distinct': True}], 'ordering': []}
+Step: Columns Needed
+Data: ['Customer.Suffix', 'Customer.Title', 'Customer.FirstName', 'Customer.LastName']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Customer.CustomerID']
+Step: Ordering Columns
+Data: []
+Step: All Columns
+Data: ['Customer.LastName', 'Customer.FirstName', 'Customer.CustomerID', 'Customer.Suffix', 'Customer.Title']
+Step: Resolved Tables
+Data: ['Customer']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT COUNT(CustomerID)
+FROM Customer;
+Step: Reflected SQL
+Data: SELECT COUNT(CustomerID) AS EmployeeCount
+FROM Customer;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT COUNT(CustomerID) AS EmployeeCount
+FROM Customer;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(847,)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List all products that cost more than 1000
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Product.Name', 'Product.ListPrice'], 'conditions': ['Product.ListPrice > 1000'], 'requires_distinct': False, 'limit': None, 'aggregations': [], 'ordering': []}
+Step: Columns Needed
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: ['Product.ListPrice']
+Step: Aggregation Columns
+Data: []
+Step: Ordering Columns
+Data: []
+Step: All Columns
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Reflected SQL
+Data: -- Do NOT output the text "FINAL SQL HERE". Output your actual SQL query directly.
+SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: False
+Step: Final SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Selected SQL Source
+Data: generator
+Step: Execution Result
+Data: [('HL Road Frame - Black, 58', 1431.5), ('HL Road Frame - Red, 58', 1431.5), ('HL Road Frame - Red, 62', 1431.5), ('HL Road Frame - Red, 44', 1431.5), ('HL Road Frame - Red, 48', 1431.5), ('HL Road Frame - Red, 52', 1431.5), ('HL Road Frame - Red, 56', 1431.5), ('HL Mountain Frame - Silver, 42', 1364.5), ('HL Mountain Frame - Silver, 44', 1364.5), ('HL Mountain Frame - Silver, 48', 1364.5), ('HL Mountain Frame - Silver, 46', 1364.5), ('HL Mountain Frame - Black, 42', 1349.6), ('HL Mountain Frame - Black, 44', 1349.6), ('HL Mountain Frame - Black, 48', 1349.6), ('HL Mountain Frame - Black, 46', 1349.6), ('HL Mountain Frame - Black, 38', 1349.6), ('HL Mountain Frame - Silver, 38', 1364.5), ('Road-150 Red, 62', 3578.27), ('Road-150 Red, 44', 3578.27), ('Road-150 Red, 48', 3578.27), ('Road-150 Red, 52', 3578.27), ('Road-150 Red, 56', 3578.27), ('Road-450 Red, 58', 1457.99), ('Road-450 Red, 60', 1457.99), ('Road-450 Red, 44', 1457.99), ('Road-450 Red, 48', 1457.99), ('Road-450 Red, 52', 1457.99), ('Mountain-100 Silver, 38', 3399.99), ('Mountain-100 Silver, 42', 3399.99), ('Mountain-100 Silver, 44', 3399.99), ('Mountain-100 Silver, 48', 3399.99), ('Mountain-100 Black, 38', 3374.99), ('Mountain-100 Black, 42', 3374.99), ('Mountain-100 Black, 44', 3374.99), ('Mountain-100 Black, 48', 3374.99), ('Mountain-200 Silver, 38', 2319.99), ('Mountain-200 Silver, 42', 2319.99), ('Mountain-200 Silver, 46', 2319.99), ('Mountain-200 Black, 38', 2294.99), ('Mountain-200 Black, 42', 2294.99), ('Mountain-200 Black, 46', 2294.99), ('Mountain-300 Black, 38', 1079.99), ('Mountain-300 Black, 40', 1079.99), ('Mountain-300 Black, 44', 1079.99), ('Mountain-300 Black, 48', 1079.99), ('Road-250 Red, 44', 2443.35), ('Road-250 Red, 48', 2443.35), ('Road-250 Red, 52', 2443.35), ('Road-250 Red, 58', 2443.35), ('Road-250 Black, 44', 2443.35), ('Road-250 Black, 48', 2443.35), ('Road-250 Black, 52', 2443.35), ('Road-250 Black, 58', 2443.35), ('Road-550-W Yellow, 38', 1120.49), ('Road-550-W Yellow, 40', 1120.49), ('Road-550-W Yellow, 42', 1120.49), ('Road-550-W Yellow, 44', 1120.49), ('Road-550-W Yellow, 48', 1120.49), ('HL Road Frame - Black, 62', 1431.5), ('HL Road Frame - Black, 44', 1431.5), ('HL Road Frame - Black, 48', 1431.5), ('HL Road Frame - Black, 52', 1431.5), ('HL Touring Frame - Yellow, 60', 1003.91), ('HL Touring Frame - Yellow, 46', 1003.91), ('HL Touring Frame - Yellow, 50', 1003.91), ('HL Touring Frame - Yellow, 54', 1003.91), ('HL Touring Frame - Blue, 46', 1003.91), ('HL Touring Frame - Blue, 50', 1003.91), ('HL Touring Frame - Blue, 54', 1003.91), ('HL Touring Frame - Blue, 60', 1003.91), ('Touring-2000 Blue, 60', 1214.85), ('Touring-1000 Yellow, 46', 2384.07), ('Touring-1000 Yellow, 50', 2384.07), ('Touring-1000 Yellow, 54', 2384.07), ('Touring-1000 Yellow, 60', 2384.07), ('Touring-1000 Blue, 46', 2384.07), ('Touring-1000 Blue, 50', 2384.07), ('Touring-1000 Blue, 54', 2384.07), ('Touring-1000 Blue, 60', 2384.07), ('Touring-2000 Blue, 46', 1214.85), ('Touring-2000 Blue, 50', 1214.85), ('Touring-2000 Blue, 54', 1214.85), ('Road-350-W Yellow, 40', 1700.99), ('Road-350-W Yellow, 42', 1700.99), ('Road-350-W Yellow, 44', 1700.99), ('Road-350-W Yellow, 48', 1700.99)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Which city has the most addresses?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Address.City'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Address.AddressID', 'distinct': False}], 'ordering': [{'column': 'COUNT(Address.AddressID)', 'direction': 'DESC'}]}
+Step: Columns Needed
+Data: ['Address.City']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Address.AddressID']
+Step: Ordering Columns
+Data: ['COUNT(Address.AddressID)']
+Step: All Columns
+Data: ['Address.City', 'COUNT(Address.AddressID)', 'Address.AddressID']
+Step: Resolved Tables
+Data: ['Address']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Reflected SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Toronto',)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What are the top 5 most expensive products?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Product.Name', 'Product.ListPrice'], 'conditions': [], 'requires_distinct': False, 'limit': 5, 'aggregations': [{'function': 'MAX', 'column': 'Product.ListPrice', 'distinct': False}], 'ordering': [{'column': 'Product.ListPrice', 'direction': 'DESC'}]}
+Step: Columns Needed
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Product.ListPrice']
+Step: Ordering Columns
+Data: ['Product.ListPrice']
+Step: All Columns
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Product.Name, Product.ListPrice
+FROM Product
+ORDER BY Product.ListPrice DESC
+LIMIT 5;
+Step: Reflected SQL
+Data: SELECT Product.Name, Product.ListPrice
+FROM Product
+ORDER BY Product.ListPrice DESC
+LIMIT 5;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Product.Name, Product.ListPrice
+FROM Product
+ORDER BY Product.ListPrice DESC
+LIMIT 5;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Road-150 Red, 62', 3578.27), ('Road-150 Red, 44', 3578.27), ('Road-150 Red, 48', 3578.27), ('Road-150 Red, 52', 3578.27), ('Road-150 Red, 56', 3578.27)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: How many employees do we have?
+Step: Query Type
+Data: AGGREGATION
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Customer.Suffix', 'Customer.Title', 'Customer.FirstName', 'Customer.LastName'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Customer.CustomerID', 'distinct': True}], 'ordering': []}
+Step: Columns Needed
+Data: ['Customer.Suffix', 'Customer.Title', 'Customer.FirstName', 'Customer.LastName']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Customer.CustomerID']
+Step: Ordering Columns
+Data: []
+Step: All Columns
+Data: ['Customer.CustomerID', 'Customer.LastName', 'Customer.Title', 'Customer.FirstName', 'Customer.Suffix']
+Step: Resolved Tables
+Data: ['Customer']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT COUNT(Customer.CustomerID)
+FROM Customer;
+Step: Reflected SQL
+Data: SELECT COUNT(DISTINCT Customer.CustomerID) AS EmployeeCount,
+       Customer.Suffix, Customer.Title, Customer.FirstName, Customer.LastName
+FROM Customer
+GROUP BY Customer.Suffix, Customer.Title, Customer.FirstName, Customer.LastName;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT COUNT(DISTINCT Customer.CustomerID) AS EmployeeCount,
+       Customer.Suffix, Customer.Title, Customer.FirstName, Customer.LastName
+FROM Customer
+GROUP BY Customer.Suffix, Customer.Title, Customer.FirstName, Customer.LastName;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [(2, '', '', 'A.', 'Leonetti'), (1, '', '', 'Andreas', 'Berglund'), (2, '', '', 'Gytis', 'Barzdukas'), (2, '', '', 'Jinghao', 'Liu'), (2, '', 'Mr.', 'Abraham', 'Swearengin'), (2, '', 'Mr.', 'Ajay', 'Manchepalli'), (2, '', 'Mr.', 'Alan', 'Brewer'), (2, '', 'Mr.', 'Alan', 'Steiner'), (1, '', 'Mr.', 'Alberto', 'Baltazar'), (2, '', 'Mr.', 'Alexander', 'Deborde'), (2, '', 'Mr.', 'Andrew', 'Cencini'), (2, '', 'Mr.', 'Andrew', 'Hill'), (2, '', 'Mr.', 'Andrew', 'Kobylinski'), (2, '', 'Mr.', 'Andy', 'Carothers'), (2, '', 'Mr.', 'Anthony', 'Chor'), (2, '', 'Mr.', 'Anton', 'Kirilov'), (2, '', 'Mr.', 'Barry', 'Johnson'), (2, '', 'Mr.', 'Bart', 'Duncan'), (2, '', 'Mr.', 'Ben', 'Miller'), (2, '', 'Mr.', 'Billy', 'Trent'), (2, '', 'Mr.', 'Blaine', 'Dockter'), (2, '', 'Mr.', 'Bob', 'Gage'), (2, '', 'Mr.', 'Bob', 'Hodges'), (2, '', 'Mr.', 'Brad', 'Sutton'), (2, '', 'Mr.', 'Brian', 'Goldstein'), (2, '', 'Mr.', 'Brian', 'Groth'), (2, '', 'Mr.', 'Brian', 'Johnson'), (2, '', 'Mr.', 'Bronson', 'Jacobs'), (1, '', 'Mr.', 'Bruno', 'Costa Da Silva'), (2, '', 'Mr.', 'Bryan', 'Hamilton'), (2, '', 'Mr.', 'Carlton', 'Carlisle'), (2, '', 'Mr.', 'Cecil', 'Allison'), (2, '', 'Mr.', 'Chad', 'Tedford'), (2, '', 'Mr.', 'Chris', 'Ashton'), (2, '', 'Mr.', 'Chris', 'Cannon'), (2, '', 'Mr.', 'Chris', 'Maxwell'), (2, '', 'Mr.', 'Christian', 'Kleinerman'), (2, '', 'Mr.', 'Christopher', 'Bright'), (2, '', 'Mr.', 'Clarence', 'Tatman'), (2, '', 'Mr.', 'Conor', 'Cunningham'), (2, '', 'Mr.', 'Cornelius', 'Brandon'), (2, '', 'Mr.', 'Cory', 'Booth'), (2, '', 'Mr.', 'Curtis', 'Howard'), (2, '', 'Mr.', 'Daniel', 'Blanco'), (2, '', 'Mr.', 'Daniel', 'Thompson'), (1, '', 'Mr.', 'Darrell', 'Banks'), (2, '', 'Mr.', 'Darren', 'Gehring'), (1, '', 'Mr.', 'David', 'Givens'), (2, '', 'Mr.', 'David', 'Hodgson'), (2, '', 'Mr.', 'David', 'Jaffe'), (2, '', 'Mr.', 'David', 'Johnson'), (2, '', 'Mr.', 'David', 'Lawrence'), (2, '', 'Mr.', 'David', 'Liu'), (2, '', 'Mr.', 'Deepak', 'Kumar'), (2, '', 'Mr.', 'Derek', 'Graham'), (2, '', 'Mr.', 'Derik', 'Stenerson'), (2, '', 'Mr.', 'Dick', 'Dievendorff'), (2, '', 'Mr.', 'Dirk', 'Bruno'), (2, '', 'Mr.', 'Dominic', 'Gash'), (2, '', 'Mr.', 'Donald', 'Blanton'), (2, '', 'Mr.', 'Donald', 'Thompson'), (2, '', 'Mr.', 'Douglas', 'Groncki'), (1, '', 'Mr.', 'Dragan', 'Tomic'), (2, '', 'Mr.', 'Dylan', 'Miller'), (2, '', 'Mr.', 'Eddie', 'Holmes'), (2, '', 'Mr.', 'Eli', 'Bowen'), (2, '', 'Mr.', 'Eric', 'Brumfield'), (2, '', 'Mr.', 'Eric', 'Jacobsen'), (2, '', 'Mr.', 'Eric', 'Lang'), (2, '', 'Mr.', 'Erik', 'Ismert'), (2, '', 'Mr.', 'Eugene', 'Kogan'), (2, '', 'Mr.', 'Forrest', 'Chandler'), (2, '', 'Mr.', 'Frances', 'Giglio'), (2, '', 'Mr.', 'Frank', 'Campbell'), (2, '', 'Mr.', 'Frank', 'Mart�nez'), (2, '', 'Mr.', 'Frank', 'Miller'), (2, '', 'Mr.', 'Fran�ois', 'Ferrier'), (2, '', 'Mr.', 'Garth', 'Fort'), (2, '', 'Mr.', 'Gary', 'Suess'), (2, '', 'Mr.', 'Gary', 'Vargas'), (2, '', 'Mr.', 'George', 'Huckaby'), (2, '', 'Mr.', 'George', 'Li'), (2, '', 'Mr.', 'Gerald', 'Drury'), (2, '', 'Mr.', 'Grant', 'Culbertson'), (1, '', 'Mr.', 'Greg', 'Chapman'), (2, '', 'Mr.', 'Gregory', 'Alderson'), (2, '', 'Mr.', 'Guy', 'Gilbert'), (1, '', 'Mr.', 'Hao', 'Chen'), (2, '', 'Mr.', 'Henry', 'Campen'), (1, '', 'Mr.', 'Ido', 'Ben-Sachar'), (2, '', 'Mr.', 'Imtiaz', 'Khan'), (2, '', 'Mr.', 'Jack', 'Creasey'), (2, '', 'Mr.', 'Jacob', 'Dean'), (1, '', 'Mr.', 'James', 'Kramer'), (1, '', 'Mr.', 'James', 'Krow'), (1, '', 'Mr.', 'James', 'Tran'), (2, '', 'Mr.', 'Jared', 'Bustamante'), (2, '', 'Mr.', 'Jay', 'Adams'), (2, '', 'Mr.', 'Jeffrey', 'Kurtz'), (1, '', 'Mr.', 'Jeremy', 'Los'), (2, '', 'Mr.', 'Jessie', 'Valerio'), (2, '', 'Mr.', 'Jim', 'Geist'), (2, '', 'Mr.', 'Jim', 'Stewart'), (2, '', 'Mr.', 'Jimmy', 'Bischoff'), (2, '', 'Mr.', 'Jo', 'Brown'), (2, '', 'Mr.', 'Joe', 'Kim'), (2, '', 'Mr.', 'John', 'Arthur'), (2, '', 'Mr.', 'John', 'Beaver'), (2, '', 'Mr.', 'John', 'Brooks'), (2, '', 'Mr.', 'John', 'Colon'), (2, '', 'Mr.', 'John', 'Emory'), (2, '', 'Mr.', 'John', 'Evans'), (2, '', 'Mr.', 'John', 'Ford'), (2, '', 'Mr.', 'John', 'Hanson'), (2, '', 'Mr.', 'John', 'Kelly'), (2, '', 'Mr.', 'Jon', 'Ganio'), (2, '', 'Mr.', 'Jon', 'Grande'), (2, '', 'Mr.', 'Joseph', 'Castellucio'), (2, '', 'Mr.', 'Joseph', 'Lique'), (2, '', 'Mr.', 'Josh', 'Barnhill'), (2, '', 'Mr.', 'Joshua', 'Huff'), (2, '', 'Mr.', 'J�sus', 'Hernandez'), (2, '', 'Mr.', 'Kari', 'Hensien'), (2, '', 'Mr.', 'Keith', 'Harris'), (2, '', 'Mr.', 'Kerim', 'Hanif'), (2, '', 'Mr.', 'Kevin', 'Kennedy'), (2, '', 'Mr.', 'Kevin', 'Liu'), (2, '', 'Mr.', 'Kirk', 'King'), (2, '', 'Mr.', 'Krishna', 'Sunkammurali'), (2, '', 'Mr.', 'Lawrence', 'Hurkett'), (2, '', 'Mr.', 'Lee', 'Chapla'), (2, '', 'Mr.', 'Leo', 'Giakoumakis'), (2, '', 'Mr.', 'Lucio', 'Iallo'), (2, '', 'Mr.', 'Lucy', 'Harrington'), (2, '', 'Mr.', 'Maciej', 'Dusza'), (2, '', 'Mr.', 'Mark', 'Erickson'), (2, '', 'Mr.', 'Mark', 'Lee'), (2, '', 'Mr.', 'Marlin', 'Coriell'), (2, '', 'Mr.', 'Marvin', 'Allen'), (1, '', 'Mr.', 'Mary', 'Bishop'), (2, '', 'Mr.', 'Matthew', 'Cavallari'), (2, '', 'Mr.', 'Matthew', 'Hink'), (1, '', 'Mr.', 'Matthew', 'Hunter'), (2, '', 'Mr.', 'Matthew', 'Miller'), (2, '', 'Mr.', 'Matthias', 'Berndt'), (2, '', 'Mr.', 'Maxwell', 'Amland'), (2, '', 'Mr.', 'Mete', 'Goktepe'), (2, '', 'Mr.', 'Michael', 'Blythe'), (1, '', 'Mr.', 'Michael', 'Bohling'), (2, '', 'Mr.', 'Michael', 'Brundage'), (2, '', 'Mr.', 'Michael', 'Galos'), (2, '', 'Mr.', 'Michael', 'Graff'), (2, '', 'Mr.', 'Michael', 'Lee'), (2, '', 'Mr.', 'Michael', 'Sullivan'), (2, '', 'Mr.', 'Michael', 'Vanderhyde'), (2, '', 'Mr.', 'Michael John', 'Troyer'), (2, '', 'Mr.', 'Mihail', 'Frintu'), (2, '', 'Mr.', 'Mike', 'Hines'), (2, '', 'Mr.', 'Mike', 'Taylor'), (2, '', 'Mr.', 'Mitch', 'Kennedy'), (2, '', 'Mr.', 'Orlando', 'Gee'), (2, '', 'Mr.', 'Oscar', 'Alpuerto'), (2, '', 'Mr.', 'Pat', 'Chambers'), (2, '', 'Mr.', 'Pat', 'Coleman'), (2, '', 'Mr.', 'Paul', 'Alcorn'), (2, '', 'Mr.', 'Paul', 'Fulton'), (2, '', 'Mr.', 'Paulo', 'Lisboa'), (2, '', 'Mr.', 'Payton', 'Benson'), (2, '', 'Mr.', 'Pei', 'Chow'), (2, '', 'Mr.', 'Peter', 'Houston'), (2, '', 'Mr.', 'Peter', 'Kurniawan'), (2, '', 'Mr.', 'Prashanth', 'Desai'), (2, '', 'Mr.', 'R. Morgan', 'Mendoza'), (2, '', 'Mr.', 'Raja', 'Venugopal'), (2, '', 'Mr.', 'Randall', 'Boseman'), (2, '', 'Mr.', 'Ranjit', 'Varkey Chudukatil'), (2, '', 'Mr.', 'Raul', 'Casts'), (2, '', 'Mr.', 'Reuben', "D'sa"), (2, '', 'Mr.', 'Richard', 'Bready'), (2, '', 'Mr.', 'Richard', 'Byham'), (2, '', 'Mr.', 'Richard', 'Irwin'), (2, '', 'Mr.', 'Rob', 'Caron'), (2, '', 'Mr.', 'Robert', 'Ahlering'), (2, '', 'Mr.', 'Robert', 'Avalos'), (2, '', 'Mr.', 'Robert', 'Barker'), (2, '', 'Mr.', 'Robert', 'Bernacchi'), (2, '', 'Mr.', 'Robert', 'Brown'), (1, '', 'Mr.', 'Robert', 'Jones'), (2, '', 'Mr.', 'Robert', 'Kelly'), (2, '', 'Mr.', 'Robert', 'Lyeba'), (2, '', 'Mr.', 'Robert', 'Lyon'), (1, '', 'Mr.', 'Robert', 'Mitosinka'), (2, '', 'Mr.', 'Robert', 'Stotka'), (2, '', 'Mr.', 'Robert', 'Vessa'), (2, '', 'Mr.', 'Roger', 'Harui'), (2, '', 'Mr.', 'Roger', 'Lengel'), (2, '', 'Mr.', 'Roger', 'Van Houten'), (2, '', 'Mr.', 'Ronald', 'Heymsfield'), (2, '', 'Mr.', 'Ryan', 'Calafato'), (2, '', 'Mr.', 'Ryan', 'Ihrig'), (2, '', 'Mr.', 'Sairaj', 'Uddin'), (2, '', 'Mr.', 'Samuel', 'Agcaoili'), (2, '', 'Mr.', 'Sandeep', 'Kaliyath'), (2, '', 'Mr.', 'Sandeep', 'Katyal'), (2, '', 'Mr.', 'Scott', 'Colvin'), (2, '', 'Mr.', 'Scott', 'Cooper'), (2, '', 'Mr.', 'Scott', 'Culp'), (2, '', 'Mr.', 'Scott', 'Gode'), (2, '', 'Mr.', 'Scott', 'Konersmann'), (2, '', 'Mr.', 'Scott', 'MacDonald'), (2, '', 'Mr.', 'Sean', 'Jacobson'), (1, '', 'Mr.', 'Sean', 'Lunt'), (2, '', 'Mr.', 'Shane', 'Kim'), (2, '', 'Mr.', 'Shaun', 'Beasley'), (2, '', 'Mr.', 'Stefan', 'Delmarco'), (2, '', 'Mr.', 'Stefano', 'Stefani'), (2, '', 'Mr.', 'Stephen', 'Ayers'), (2, '', 'Mr.', 'Stephen', 'Jiang'), (2, '', 'Mr.', 'Stephen', 'Mew'), (2, '', 'Mr.', 'Steve', 'Masters'), (2, '', 'Mr.', 'Sunil', 'Uppal'), (2, '', 'Mr.', 'Ted', 'Bremer'), (2, '', 'Mr.', 'Terry', 'Eminhizer'), (2, '', 'Mr.', 'Thierry', "D'Hers"), (2, '', 'Mr.', 'Thomas', 'Michaels'), (2, '', 'Mr.', 'Tim', 'Kim'), (2, '', 'Mr.', 'Todd', 'Logan'), (2, '', 'Mr.', 'Tom', 'Johnston'), (2, '', 'Mr.', 'Vamsi', 'Kuppa'), (2, '', 'Mr.', 'Vassar', 'Stern'), (2, '', 'Mr.', 'Victor', 'Kelley'), (2, '', 'Mr.', 'Wayne', 'Banack'), (2, '', 'Mr.', 'William', 'Conner'), (2, '', 'Mr.', 'Yale', 'Li'), (2, '', 'Mr.', 'Yao-Qiang', 'Cheng'), (2, '', 'Ms.', 'Abigail', 'Gonzalez'), (2, '', 'Ms.', 'Aidan', 'Delaney'), (2, '', 'Ms.', 'Alice', 'Clark'), (2, '', 'Ms.', 'Alice', 'Steiner'), (2, '', 'Ms.', 'Amy', 'Alberts'), (2, '', 'Ms.', 'Andrea', 'Thomsen'), (1, '', 'Ms.', 'Angela', 'Barbariol'), (2, '', 'Ms.', 'Anita', 'Lucerne'), (2, '', 'Ms.', 'Ann', 'Beebe'), (2, '', 'Ms.', 'Ann', 'Evans'), (2, '', 'Ms.', 'Ann', 'Hass'), (2, '', 'Ms.', 'Arlene', 'Huff'), (2, '', 'Ms.', 'Barbara', 'Calone'), (2, '', 'Ms.', 'Barbara', 'German'), (2, '', 'Ms.', 'Beth', 'Inghram'), (2, '', 'Ms.', 'Betty', 'Haines'), (2, '', 'Ms.', 'Bev', 'Desalvo'), (1, '', 'Ms.', 'Bonnie', 'Kearney'), (2, '', 'Ms.', 'Bonnie', 'Lepro'), (2, '', 'Ms.', 'Brenda', 'Diaz'), (2, '', 'Ms.', 'Brenda', 'Heaney'), (2, '', 'Ms.', 'Brigid', 'Cavendish'), (2, '', 'Ms.', 'Carol', 'Elliott'), (2, '', 'Ms.', 'Caroline', 'Vicknair'), (2, '', 'Ms.', 'Carolyn', 'Farino'), (2, '', 'Ms.', 'Catherine', 'Abel'), (2, '', 'Ms.', 'Cecelia', 'Marshall'), (2, '', 'Ms.', 'Cheryl', 'Herring'), (2, '', 'Ms.', 'Christie', 'Trujillo'), (2, '', 'Ms.', 'Cindy', 'Dodd'), (2, '', 'Ms.', 'Connie', 'Coffman'), (2, '', 'Ms.', 'Danielle', 'Johnson'), (2, '', 'Ms.', 'Delia', 'Toone'), (2, '', 'Ms.', 'Della', 'Demott Jr'), (2, '', 'Ms.', 'Denean', 'Ison'), (2, '', 'Ms.', 'Denise', 'Maccietto'), (2, '', 'Ms.', 'Diane', 'Glimp'), (2, '', 'Ms.', 'Diane', 'Krane'), (2, '', 'Ms.', 'Diane', 'Tibbott'), (2, '', 'Ms.', 'Donna', 'Carreras'), (2, '', 'Ms.', 'Dora', 'Verdad'), (2, '', 'Ms.', 'Dorothy', 'Contreras'), (2, '', 'Ms.', 'Dorothy', 'Fox'), (2, '', 'Ms.', 'Edna', 'Benson'), (2, '', 'Ms.', 'Elizabeth', 'Keyser'), (2, '', 'Ms.', 'Elizabeth', 'Sullivan'), (2, '', 'Ms.', 'Elsa', 'Leavitt'), (2, '', 'Ms.', 'Elsie', 'Lewin'), (2, '', 'Ms.', 'Erin', 'Hagens'), (2, '', 'Ms.', 'Esther', 'Valle'), (2, '', 'Ms.', 'Eva', 'Corets'), (2, '', 'Ms.', 'Frances', 'Adams'), (2, '', 'Ms.', 'Gabriel', 'Bockenkamp'), (2, '', 'Ms.', 'Gabriele', 'Dickmann'), (2, '', 'Ms.', 'Gail', 'Erickson'), (2, '', 'Ms.', 'Geri', 'Farrell'), (1, '', 'Ms.', 'Gladys', 'Mendiola'), (2, '', 'Ms.', 'Hattie', 'Haemon'), (2, '', 'Ms.', 'Helen', 'Meyer'), (2, '', 'Ms.', 'Helge', 'Hoeing'), (1, '', 'Ms.', 'Holly', 'Holt'), (1, '', 'Ms.', 'Ingrid', 'Burkhardt'), (2, '', 'Ms.', 'Irene', 'Hernandez'), (2, '', 'Ms.', 'Jackie', 'Blackwell'), (2, '', 'Ms.', 'Jane', 'Carmichael'), (2, '', 'Ms.', 'Jane', 'Clayton'), (2, '', 'Ms.', 'Jane', 'Greer'), (2, '', 'Ms.', 'Jane', 'McCarty'), (2, '', 'Ms.', 'Janet', 'Gates'), (2, '', 'Ms.', 'Janet', 'Gilliat'), (2, '', 'Ms.', 'Janice', 'Hows'), (2, '', 'Ms.', 'Jauna', 'Elson'), (2, '', 'Ms.', 'Jean', 'Handley'), (2, '', 'Ms.', 'Jean', 'Holloway'), (2, '', 'Ms.', 'Jean', 'Jordan'), (2, '', 'Ms.', 'Jennifer', 'Maxham'), (2, '', 'Ms.', 'Jill', 'Christie'), (1, '', 'Ms.', 'Jill', 'Markwood'), (2, '', 'Ms.', 'Joan', 'Campbell'), (2, '', 'Ms.', 'Jodan', 'Jacobson'), (2, '', 'Ms.', 'Jolie', 'Lenehan'), (2, '', 'Ms.', 'Jovita', 'Carmody'), (2, '', 'Ms.', 'Joy', 'Koski'), (2, '', 'Ms.', 'Joyce', 'Jarvis'), (2, '', 'Ms.', 'Juanita', 'Holman'), (2, '', 'Ms.', 'Judy', 'Lundahl'), (2, '', 'Ms.', 'Judy', 'Thames'), (2, '', 'Ms.', 'Julie', 'Taft-Rider'), (2, '', 'Ms.', 'June', 'Brunner'), (2, '', 'Ms.', 'Kara', 'Vanderlinden'), (2, '', 'Ms.', 'Karan', 'Khanna'), (2, '', 'Ms.', 'Karren', 'Burkhardt'), (2, '', 'Ms.', 'Katherine', 'Harding'), (2, '', 'Ms.', 'Katherine', 'Swan'), (2, '', 'Ms.', 'Kathie', 'Flood'), (2, '', 'Ms.', 'Kathleen', 'Garza'), (2, '', 'Ms.', 'Kathy', 'Marcovecchio'), (2, '', 'Ms.', 'Kay', 'Krane'), (2, '', 'Ms.', 'Kayla', 'Stotler'), (2, '', 'Ms.', 'Kelly', 'Focht'), (2, '', 'Ms.', 'Kendra', 'Thompson'), (2, '', 'Ms.', 'Kim', 'Abercrombie'), (2, '', 'Ms.', 'Laura', 'Steele'), (2, '', 'Ms.', 'Linda', 'Burnett'), (2, '', 'Ms.', 'Linda', 'Ecoffey'), (2, '', 'Ms.', 'Linda', 'Leste'), (2, '', 'Ms.', 'Linda', 'Martin'), (2, '', 'Ms.', 'Linda', 'Mitchell'), (2, '', 'Ms.', 'Lindsey', 'Camacho'), (2, '', 'Ms.', 'Liza Marie', 'Stevens'), (2, '', 'Ms.', 'Lola', 'McCarthy'), (2, '', 'Ms.', 'Lori', 'Kane'), (2, '', 'Ms.', 'Mae', 'Black'), (2, '', 'Ms.', 'Marcia', 'Sultan'), (2, '', 'Ms.', 'Margaret', 'Krupka'), (2, '', 'Ms.', 'Margaret', 'Smith'), (2, '', 'Ms.', 'Margaret', 'Vanderkamp'), (2, '', 'Ms.', 'Mari', 'Caldwell'), (1, '', 'Ms.', 'Marian', 'Berch'), (2, '', 'Ms.', 'Marjorie', 'Lee'), (2, '', 'Ms.', 'Martha', 'Espinoza'), (2, '', 'Ms.', 'Mary', 'Alexander'), (2, '', 'Ms.', 'Mary', 'Browning'), (2, '', 'Ms.', 'Mary', 'Gimmi'), (2, '', 'Ms.', 'Mary', 'Kesslep'), (2, '', 'Ms.', 'Megan', 'Burke'), (2, '', 'Ms.', 'Megan', 'Davis'), (2, '', 'Ms.', 'Melissa', 'Marple'), (2, '', 'Ms.', 'Michelle', 'Alexander'), (2, '', 'Ms.', 'Nancy', 'McPhearson'), (2, '', 'Ms.', 'Neva', 'Mitchell'), (2, '', 'Ms.', 'Nicky', 'Chesnut'), (2, '', 'Ms.', 'Nkenge', 'McLin'), (1, '', 'Ms.', 'Olga', 'Trau'), (2, '', 'Ms.', 'Pamala', 'Kotc'), (2, '', 'Ms.', 'Patricia', 'Doyle'), (2, '', 'Ms.', 'Patricia', 'Vasquez'), (2, '', 'Ms.', 'Peggy', 'Justice'), (2, '', 'Ms.', 'Phyllis', 'Huntsman'), (2, '', 'Ms.', 'Phyllis', 'Thomas'), (2, '', 'Ms.', 'Phyllis', 'Tuffield'), (2, '', 'Ms.', 'Ramona', 'Antrim'), (2, '', 'Ms.', 'Raquel', 'Mello'), (2, '', 'Ms.', 'Rebecca', 'Laszlo'), (2, '', 'Ms.', 'Rhoda', 'Finley'), (2, '', 'Ms.', 'Robin', 'McGuigan'), (2, '', 'Ms.', 'Rose', 'Vandenouer'), (2, '', 'Ms.', 'Rosmarie', 'Carroll'), (2, '', 'Ms.', 'Ruby Sue', 'Styles'), (2, '', 'Ms.', 'Ruth', 'Choin'), (2, '', 'Ms.', 'Ruth', 'Suffin'), (2, '', 'Ms.', 'Sandra', 'Kitt'), (1, '', 'Ms.', 'Sandra', 'Martinez'), (2, '', 'Ms.', 'Sandra', 'Maynard'), (2, '', 'Ms.', 'Shanay', 'Steelman'), (2, '', 'Ms.', 'Shannon', 'Elliott'), (1, '', 'Ms.', 'Sharon', 'Crow'), (2, '', 'Ms.', 'Sharon', 'Looney'), (2, '', 'Ms.', 'Shirley', 'Bruner'), (2, '', 'Ms.', 'Stacey', 'Cereghino'), (2, '', 'Ms.', 'Susan', 'French'), (2, '', 'Ms.', 'Suzana De Abreu', 'Canuto'), (1, '', 'Ms.', 'Tammy', 'Khan'), (1, '', 'Ms.', 'Teanna', 'Cobb'), (2, '', 'Ms.', 'Teresa', 'Atkinson'), (2, '', 'Ms.', 'Twanna', 'Evans'), (2, '', 'Ms.', 'Valerie', 'Hendricks'), (2, '', 'Ms.', 'Vance', 'Johns'), (2, '', 'Ms.', 'Vanessa', 'Tench'), (2, '', 'Ms.', 'Virginia', 'Miller'), (2, '', 'Ms.', 'Wanda', 'Vernon'), (2, '', 'Ms.', 'Wathalee', 'Steuber'), (2, '', 'Ms.', 'Yuhong', 'Li'), (2, '', 'Ms.', 'Yuping', 'Tian'), (2, '', 'Ms.', 'Yvonne', 'McKay'), (2, '', 'Sr.', 'Alvaro', 'De Matos Miranda Filho'), (2, '', 'Sr.', 'Gustavo', 'Camargo'), (2, '', 'Sr.', 'Luis', 'Bonifaz'), (2, '', 'Sra.', 'Janaina Barreiro Gambaro', 'Bueno'), (2, '', 'Sra.', 'Janeth', 'Esteves'), (2, 'II', 'Mr.', 'Alexander', 'Berger'), (2, 'II', 'Mr.', 'Glenn', 'Track'), (2, 'II', 'Mr.', 'James', 'McCoy'), (2, 'II', 'Mr.', 'Nieves', 'Vargas'), (2, 'II', 'Mr.', 'Tomas', 'Manzanares'), (1, 'IV', 'Mr.', 'Martin', 'Svoboda'), (2, 'IV', 'Mr.', 'Steven', 'Brown'), (2, 'IV', 'Mr.', 'Walter', 'Brian'), (2, 'Jr.', 'Mr.', 'Christopher', 'Beck'), (2, 'Jr.', 'Mr.', 'Douglas', 'Baldwin'), (2, 'Jr.', 'Mr.', 'Gregory', 'Vanderbout'), (2, 'Jr.', 'Mr.', 'James', 'Bailey'), (2, 'Jr.', 'Mr.', 'James', 'Haugh'), (2, 'Jr.', 'Mr.', 'John', 'Berger'), (2, 'Jr.', 'Mr.', 'Johnny', 'Caprio'), (2, 'Jr.', 'Mr.', 'Joseph', 'Mitzner'), (1, 'Jr.', 'Mr.', 'Richard', 'Bentley'), (2, 'Jr.', 'Mr.', 'Stanley', 'Alan'), (2, 'Jr.', 'Mr.', 'Thomas', 'Armstrong'), (2, 'Jr.', 'Mr.', 'Timothy', 'Burnett'), (2, 'Jr.', 'Mr.', 'Willie', 'Brooks'), (2, 'PhD', 'Ms.', 'Jeanie', 'Glenn'), (2, 'Sr.', 'Mr.', 'Lester', 'Bowman'), (2, 'Sr.', 'Mr.', 'Rudolph', 'Dillon'), (2, 'Sr.', 'Mr.', 'Walter', 'Mays')]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List all products that cost more than 1000
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Product.Name', 'Product.ListPrice'], 'conditions': ['Product.ListPrice > 1000'], 'requires_distinct': False, 'limit': None, 'aggregations': [], 'ordering': []}
+Step: Columns Needed
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: ['Product.ListPrice']
+Step: Aggregation Columns
+Data: []
+Step: Ordering Columns
+Data: []
+Step: All Columns
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Reflected SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE ListPrice > 1000;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('HL Road Frame - Black, 58', 1431.5), ('HL Road Frame - Red, 58', 1431.5), ('HL Road Frame - Red, 62', 1431.5), ('HL Road Frame - Red, 44', 1431.5), ('HL Road Frame - Red, 48', 1431.5), ('HL Road Frame - Red, 52', 1431.5), ('HL Road Frame - Red, 56', 1431.5), ('HL Mountain Frame - Silver, 42', 1364.5), ('HL Mountain Frame - Silver, 44', 1364.5), ('HL Mountain Frame - Silver, 48', 1364.5), ('HL Mountain Frame - Silver, 46', 1364.5), ('HL Mountain Frame - Black, 42', 1349.6), ('HL Mountain Frame - Black, 44', 1349.6), ('HL Mountain Frame - Black, 48', 1349.6), ('HL Mountain Frame - Black, 46', 1349.6), ('HL Mountain Frame - Black, 38', 1349.6), ('HL Mountain Frame - Silver, 38', 1364.5), ('Road-150 Red, 62', 3578.27), ('Road-150 Red, 44', 3578.27), ('Road-150 Red, 48', 3578.27), ('Road-150 Red, 52', 3578.27), ('Road-150 Red, 56', 3578.27), ('Road-450 Red, 58', 1457.99), ('Road-450 Red, 60', 1457.99), ('Road-450 Red, 44', 1457.99), ('Road-450 Red, 48', 1457.99), ('Road-450 Red, 52', 1457.99), ('Mountain-100 Silver, 38', 3399.99), ('Mountain-100 Silver, 42', 3399.99), ('Mountain-100 Silver, 44', 3399.99), ('Mountain-100 Silver, 48', 3399.99), ('Mountain-100 Black, 38', 3374.99), ('Mountain-100 Black, 42', 3374.99), ('Mountain-100 Black, 44', 3374.99), ('Mountain-100 Black, 48', 3374.99), ('Mountain-200 Silver, 38', 2319.99), ('Mountain-200 Silver, 42', 2319.99), ('Mountain-200 Silver, 46', 2319.99), ('Mountain-200 Black, 38', 2294.99), ('Mountain-200 Black, 42', 2294.99), ('Mountain-200 Black, 46', 2294.99), ('Mountain-300 Black, 38', 1079.99), ('Mountain-300 Black, 40', 1079.99), ('Mountain-300 Black, 44', 1079.99), ('Mountain-300 Black, 48', 1079.99), ('Road-250 Red, 44', 2443.35), ('Road-250 Red, 48', 2443.35), ('Road-250 Red, 52', 2443.35), ('Road-250 Red, 58', 2443.35), ('Road-250 Black, 44', 2443.35), ('Road-250 Black, 48', 2443.35), ('Road-250 Black, 52', 2443.35), ('Road-250 Black, 58', 2443.35), ('Road-550-W Yellow, 38', 1120.49), ('Road-550-W Yellow, 40', 1120.49), ('Road-550-W Yellow, 42', 1120.49), ('Road-550-W Yellow, 44', 1120.49), ('Road-550-W Yellow, 48', 1120.49), ('HL Road Frame - Black, 62', 1431.5), ('HL Road Frame - Black, 44', 1431.5), ('HL Road Frame - Black, 48', 1431.5), ('HL Road Frame - Black, 52', 1431.5), ('HL Touring Frame - Yellow, 60', 1003.91), ('HL Touring Frame - Yellow, 46', 1003.91), ('HL Touring Frame - Yellow, 50', 1003.91), ('HL Touring Frame - Yellow, 54', 1003.91), ('HL Touring Frame - Blue, 46', 1003.91), ('HL Touring Frame - Blue, 50', 1003.91), ('HL Touring Frame - Blue, 54', 1003.91), ('HL Touring Frame - Blue, 60', 1003.91), ('Touring-2000 Blue, 60', 1214.85), ('Touring-1000 Yellow, 46', 2384.07), ('Touring-1000 Yellow, 50', 2384.07), ('Touring-1000 Yellow, 54', 2384.07), ('Touring-1000 Yellow, 60', 2384.07), ('Touring-1000 Blue, 46', 2384.07), ('Touring-1000 Blue, 50', 2384.07), ('Touring-1000 Blue, 54', 2384.07), ('Touring-1000 Blue, 60', 2384.07), ('Touring-2000 Blue, 46', 1214.85), ('Touring-2000 Blue, 50', 1214.85), ('Touring-2000 Blue, 54', 1214.85), ('Road-350-W Yellow, 40', 1700.99), ('Road-350-W Yellow, 42', 1700.99), ('Road-350-W Yellow, 44', 1700.99), ('Road-350-W Yellow, 48', 1700.99)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Which city has the most addresses?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Address.City'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Address.AddressID', 'distinct': False}], 'ordering': [{'column': 'COUNT(Address.AddressID)', 'direction': 'DESC'}]}
+Step: Columns Needed
+Data: ['Address.City']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Address.AddressID']
+Step: Ordering Columns
+Data: ['COUNT(Address.AddressID)']
+Step: All Columns
+Data: ['Address.AddressID', 'COUNT(Address.AddressID)', 'Address.City']
+Step: Resolved Tables
+Data: ['Address']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Reflected SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Toronto',)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: What are the top 5 most expensive products?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Product.Name', 'Product.ListPrice'], 'conditions': [], 'requires_distinct': False, 'limit': 5, 'aggregations': [{'function': 'MAX', 'column': 'Product.ListPrice', 'distinct': False}], 'ordering': [{'column': 'Product.ListPrice', 'direction': 'DESC'}]}
+Step: Columns Needed
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Product.ListPrice']
+Step: Ordering Columns
+Data: ['Product.ListPrice']
+Step: All Columns
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+Step: Reflected SQL
+Data: SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Name, ListPrice
+FROM Product
+ORDER BY ListPrice DESC
+LIMIT 5;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('Road-150 Red, 62', 3578.27), ('Road-150 Red, 44', 3578.27), ('Road-150 Red, 48', 3578.27), ('Road-150 Red, 52', 3578.27), ('Road-150 Red, 56', 3578.27)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: How many employees do we have?
+Step: Query Type
+Data: AGGREGATION
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['HumanResources.Employee.BusinessEntityID'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'HumanResources.Employee.BusinessEntityID', 'distinct': True}], 'ordering': []}
+Step: Columns Needed
+Data: ['HumanResources.Employee.BusinessEntityID']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['HumanResources.Employee.BusinessEntityID']
+Step: Ordering Columns
+Data: []
+Step: All Columns
+Data: ['HumanResources.Employee.BusinessEntityID']
+Step: Resolved Tables
+Data: []
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT COUNT(BusinessEntityID)
+FROM HumanResources.Employee;
+Step: Reflected SQL
+Data: -- Do NOT output the text "FINAL SQL HERE". Output your actual SQL query directly.
+SELECT COUNT(BusinessEntityID)
+FROM HumanResources.Employee;
+Step: Generated SQL Valid?
+Data: False
+Step: Reflected SQL Valid?
+Data: False
+Step: Retrying with feedback
+Data: Generated SQL error: no such table: HumanResources.Employee
+Reflected SQL error: Only SELECT queries are allowed
+Step: Retry Generated SQL Valid?
+Data: False
+Step: Retry Reflected SQL Valid?
+Data: False
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List all products that cost more than 1000
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Product.Name', 'Product.ListPrice'], 'conditions': ['Product.StandardCost > 1000'], 'requires_distinct': False, 'limit': None, 'aggregations': [], 'ordering': []}
+Step: Columns Needed
+Data: ['Product.Name', 'Product.ListPrice']
+Step: Condition Columns
+Data: ['Product.StandardCost']
+Step: Aggregation Columns
+Data: []
+Step: Ordering Columns
+Data: []
+Step: All Columns
+Data: ['Product.StandardCost', 'Product.Name', 'Product.ListPrice']
+Step: Resolved Tables
+Data: ['Product']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE StandardCost > 1000;
+Step: Reflected SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE StandardCost > 1000;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: True
+Step: Final SQL
+Data: SELECT Name, ListPrice
+FROM Product
+WHERE StandardCost > 1000;
+Step: Selected SQL Source
+Data: reflection
+Step: Execution Result
+Data: [('HL Road Frame - Black, 58', 1431.5), ('HL Road Frame - Red, 58', 1431.5), ('Road-150 Red, 62', 3578.27), ('Road-150 Red, 44', 3578.27), ('Road-150 Red, 48', 3578.27), ('Road-150 Red, 52', 3578.27), ('Road-150 Red, 56', 3578.27), ('Mountain-100 Silver, 38', 3399.99), ('Mountain-100 Silver, 42', 3399.99), ('Mountain-100 Silver, 44', 3399.99), ('Mountain-100 Silver, 48', 3399.99), ('Mountain-100 Black, 38', 3374.99), ('Mountain-100 Black, 42', 3374.99), ('Mountain-100 Black, 44', 3374.99), ('Mountain-100 Black, 48', 3374.99), ('Mountain-200 Silver, 38', 2319.99), ('Mountain-200 Silver, 42', 2319.99), ('Mountain-200 Silver, 46', 2319.99), ('Mountain-200 Black, 38', 2294.99), ('Mountain-200 Black, 42', 2294.99), ('Mountain-200 Black, 46', 2294.99), ('Road-250 Red, 44', 2443.35), ('Road-250 Red, 48', 2443.35), ('Road-250 Red, 52', 2443.35), ('Road-250 Red, 58', 2443.35), ('Road-250 Black, 44', 2443.35), ('Road-250 Black, 48', 2443.35), ('Road-250 Black, 52', 2443.35), ('Road-250 Black, 58', 2443.35), ('Touring-1000 Yellow, 46', 2384.07), ('Touring-1000 Yellow, 50', 2384.07), ('Touring-1000 Yellow, 54', 2384.07), ('Touring-1000 Yellow, 60', 2384.07), ('Touring-1000 Blue, 46', 2384.07), ('Touring-1000 Blue, 50', 2384.07), ('Touring-1000 Blue, 54', 2384.07), ('Touring-1000 Blue, 60', 2384.07), ('Road-350-W Yellow, 40', 1700.99), ('Road-350-W Yellow, 42', 1700.99), ('Road-350-W Yellow, 44', 1700.99), ('Road-350-W Yellow, 48', 1700.99)]
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Which city has the most addresses?
+Step: Query Type
+Data: SIMPLE_SELECT
+Step: Column to Table Map
+Data: {'ErrorLogID': ['ErrorLog'], 'ErrorTime': ['ErrorLog'], 'UserName': ['ErrorLog'], 'ErrorNumber': ['ErrorLog'], 'ErrorSeverity': ['ErrorLog'], 'ErrorState': ['ErrorLog'], 'ErrorProcedure': ['ErrorLog'], 'ErrorLine': ['ErrorLog'], 'ErrorMessage': ['ErrorLog'], 'name': ['sqlite_sequence'], 'seq': ['sqlite_sequence'], 'SystemInformationID': ['BuildVersion'], 'Database Version': ['BuildVersion'], 'VersionDate': ['BuildVersion'], 'ModifiedDate': ['BuildVersion', 'Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'AddressID': ['Address', 'CustomerAddress'], 'AddressLine1': ['Address'], 'AddressLine2': ['Address'], 'City': ['Address'], 'StateProvince': ['Address'], 'CountryRegion': ['Address'], 'PostalCode': ['Address'], 'rowguid': ['Address', 'Customer', 'CustomerAddress', 'Product', 'ProductCategory', 'ProductDescription', 'ProductModel', 'ProductModelProductDescription', 'SalesOrderDetail', 'SalesOrderHeader'], 'CustomerID': ['Customer', 'CustomerAddress', 'SalesOrderHeader'], 'NameStyle': ['Customer'], 'Title': ['Customer'], 'FirstName': ['Customer'], 'MiddleName': ['Customer'], 'LastName': ['Customer'], 'Suffix': ['Customer'], 'CompanyName': ['Customer'], 'SalesPerson': ['Customer'], 'EmailAddress': ['Customer'], 'Phone': ['Customer'], 'PasswordHash': ['Customer'], 'PasswordSalt': ['Customer'], 'AddressType': ['CustomerAddress'], 'ProductID': ['Product', 'SalesOrderDetail'], 'Name': ['Product', 'ProductCategory', 'ProductModel'], 'ProductNumber': ['Product'], 'Color': ['Product'], 'StandardCost': ['Product'], 'ListPrice': ['Product'], 'Size': ['Product'], 'Weight': ['Product'], 'ProductCategoryID': ['Product', 'ProductCategory'], 'ProductModelID': ['Product', 'ProductModel', 'ProductModelProductDescription'], 'SellStartDate': ['Product'], 'SellEndDate': ['Product'], 'DiscontinuedDate': ['Product'], 'ThumbNailPhoto': ['Product'], 'ThumbnailPhotoFileName': ['Product'], 'ParentProductCategoryID': ['ProductCategory'], 'ProductDescriptionID': ['ProductDescription', 'ProductModelProductDescription'], 'Description': ['ProductDescription'], 'CatalogDescription': ['ProductModel'], 'Culture': ['ProductModelProductDescription'], 'SalesOrderID': ['SalesOrderDetail', 'SalesOrderHeader'], 'SalesOrderDetailID': ['SalesOrderDetail'], 'OrderQty': ['SalesOrderDetail'], 'UnitPrice': ['SalesOrderDetail'], 'UnitPriceDiscount': ['SalesOrderDetail'], 'LineTotal': ['SalesOrderDetail'], 'RevisionNumber': ['SalesOrderHeader'], 'OrderDate': ['SalesOrderHeader'], 'DueDate': ['SalesOrderHeader'], 'ShipDate': ['SalesOrderHeader'], 'Status': ['SalesOrderHeader'], 'OnlineOrderFlag': ['SalesOrderHeader'], 'SalesOrderNumber': ['SalesOrderHeader'], 'PurchaseOrderNumber': ['SalesOrderHeader'], 'AccountNumber': ['SalesOrderHeader'], 'ShipToAddressID': ['SalesOrderHeader'], 'BillToAddressID': ['SalesOrderHeader'], 'ShipMethod': ['SalesOrderHeader'], 'CreditCardApprovalCode': ['SalesOrderHeader'], 'SubTotal': ['SalesOrderHeader'], 'TaxAmt': ['SalesOrderHeader'], 'Freight': ['SalesOrderHeader'], 'TotalDue': ['SalesOrderHeader'], 'Comment': ['SalesOrderHeader']}
+Step: Query Plan
+Data: {'columns_needed': ['Address.City'], 'conditions': [], 'requires_distinct': False, 'limit': None, 'aggregations': [{'function': 'COUNT', 'column': 'Address.AddressID', 'distinct': False}], 'ordering': [{'column': 'COUNT(Address.AddressID)', 'direction': 'DESC'}]}
+Step: Columns Needed
+Data: ['Address.City']
+Step: Condition Columns
+Data: []
+Step: Aggregation Columns
+Data: ['Address.AddressID']
+Step: Ordering Columns
+Data: ['COUNT(Address.AddressID)']
+Step: All Columns
+Data: ['COUNT(Address.AddressID)', 'Address.City', 'Address.AddressID']
+Step: Resolved Tables
+Data: ['Address']
+Step: Generated Joins
+Data: 
+Step: Generated SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Reflected SQL
+Data: <thought>
+The provided SQL query is correct and aligns with the given QUERY PLAN. It uses `GROUP BY`, applies the necessary aggregation, includes the required ordering, and limits the result to 1 row.
+</thought>
+
+SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Generated SQL Valid?
+Data: True
+Step: Reflected SQL Valid?
+Data: False
+Step: Final SQL
+Data: SELECT Address.City
+FROM Address
+GROUP BY Address.City
+ORDER BY COUNT(Address.AddressID) DESC
+LIMIT 1;
+Step: Selected SQL Source
+Data: generator
+Step: Execution Result
+Data: [('Toronto',)]

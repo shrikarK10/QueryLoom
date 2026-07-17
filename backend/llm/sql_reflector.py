@@ -58,7 +58,9 @@ STRICT RULES:
 - DO NOT add new tables
 - DO NOT invent columns
 
-- You MUST preserve the provided JOIN logic
+- If requires_distinct is true in the QUERY PLAN, you MUST ensure that the SQL query uses DISTINCT in its SELECT clause (e.g. SELECT DISTINCT ...). If it is missing, you MUST correct it to include DISTINCT.
+- Ensure any limit specified in the QUERY PLAN is properly applied in the SQL
+- Ensure any ordering/sorting specified in the QUERY PLAN "ordering" array is correctly implemented in the SQL (using ORDER BY)
 - Only fix:
   • syntax errors
   • wrong column usage
@@ -66,9 +68,15 @@ STRICT RULES:
   • missing GROUP BY
   • incorrect filters
 
-- Ensure query aligns with QUERY PLAN
+- Ensure query aligns with QUERY PLAN (including columns_needed, conditions, requires_distinct, limit, aggregations, and ordering)
+- In SQLite, backslash (\) is treated as a literal character in string literals. Do NOT double-escape it (use 'adventure-works\pamela0', NOT 'adventure-works\\pamela0').
+- If all required columns and conditions come from a single table, simplify the query by removing any unnecessary JOIN clauses.
+- Remove uncorrelated EXISTS clauses. Simplify subqueries/EXISTS clauses into direct flat WHERE clauses on the joined tables where possible.
+- If the query intent is "purchased", "sold", "most purchased", or "tracks sold" and the generated SQL uses COUNT(InvoiceLine.InvoiceLineId) or COUNT(TrackId), correct it to SUM(InvoiceLine.Quantity) instead.
+- If a GROUP BY key is an ID column (e.g. GenreId, ArtistId) but the SELECT outputs the same ID instead of its Name, correct the SELECT to output the human-readable Name column.
 
 - Keep query SIMPLE and correct
+
 
 ---------------------
 
@@ -79,7 +87,8 @@ Brief reasoning (1-2 lines)
 </thought>
 
 <sql>
-FINAL SQL HERE
+-- Do NOT output the text "FINAL SQL HERE". Output your actual SQL query directly.
+SELECT ...
 </sql>
 
 ---------------------

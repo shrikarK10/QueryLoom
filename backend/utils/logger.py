@@ -1,6 +1,14 @@
 import sys
 
+SILENT_MODE = False
+
+def set_silent_mode(silent: bool):
+    global SILENT_MODE
+    SILENT_MODE = silent
+
 def logger(step , data=None):
+    if SILENT_MODE:
+        return
     try:
         print(f"Step: {step}")
         if data is not None:

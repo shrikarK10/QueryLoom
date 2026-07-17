@@ -48,23 +48,20 @@ def _extract_limit_from_query(query: str) -> int | None:
     return None
 
 
-def _enforce_simple_limit(sql: str, query: str, query_type: str) -> str:
-    if query_type != "SIMPLE_SELECT":
+def _enforce_simple_limit(sql: str, query: str, query_type: str, plan_limit: int | None = None) -> str:
+    if query_type != "SIMPLE_SELECT" and plan_limit is None:
         return sql
 
     lower_sql = sql.lower()
     if "limit" in lower_sql:
         return sql
     if any(token in lower_sql for token in ["count(", "sum(", "avg(", "group by"]):
-        return sql
-
-    requested_limit = _extract_limit_from_query(query)
-    if requested_limit is None:
-        if "all" in query.lower():
+        if plan_limit is None:
             return sql
-        if any(token in query.lower() for token in ["list", "show"]):
-            requested_limit = 20
-            
+
+    # Only apply a limit when explicitly requested in the query text or planner plan
+    requested_limit = plan_limit if plan_limit is not None else _extract_limit_from_query(query)
+
     if requested_limit is None:
         return sql
 
@@ -142,6 +139,8 @@ def get_tables_from_columns(columns, column_to_table, schema, graph, query):
             col_part = parts[-1]
             if table_part in schema:
                 tables.add(table_part)
+                # If fully qualified and matched, we do not need to fallback to heuristics!
+                continue
             col = col_part
 
         if col in column_to_table:
@@ -153,9 +152,103 @@ def get_tables_from_columns(columns, column_to_table, schema, graph, query):
     return list(tables)
 
 
-# ---------------------------
-# MAIN PIPELINE
-# ---------------------------
+def repair_query_plan(query_plan, schema, column_to_table):
+    def repair_col(col_str):
+        if not col_str:
+            return col_str
+            
+        # 1. Match func(table.col)
+        m_func_qual = re.match(r"^([A-Za-z0-9_]+)\(([A-Za-z0-9_]+)\.([A-Za-z0-9_]+)\)$", col_str)
+        if m_func_qual:
+            func, table, col = m_func_qual.groups()
+            if table in schema and col in schema[table]:
+                return col_str
+            if col in column_to_table and column_to_table[col]:
+                correct_table = column_to_table[col][0]
+                return f"{func}({correct_table}.{col})"
+            return col_str
+
+        # 2. Match func(col)
+        m_func_unqual = re.match(r"^([A-Za-z0-9_]+)\(([A-Za-z0-9_]+)\)$", col_str)
+        if m_func_unqual:
+            func, col = m_func_unqual.groups()
+            if col in column_to_table and column_to_table[col]:
+                correct_table = column_to_table[col][0]
+                return f"{func}({correct_table}.{col})"
+            return col_str
+
+        # 3. Match table.col
+        m_qual = re.match(r"^([A-Za-z0-9_]+)\.([A-Za-z0-9_]+)$", col_str)
+        if m_qual:
+            table, col = m_qual.groups()
+            if table in schema and col in schema[table]:
+                return col_str
+            if col in column_to_table and column_to_table[col]:
+                correct_table = column_to_table[col][0]
+                return f"{correct_table}.{col}"
+            return col_str
+
+        # 4. Match plain col
+        m_unqual = re.match(r"^([A-Za-z0-9_]+)$", col_str)
+        if m_unqual:
+            col = m_unqual.group(1)
+            if col in column_to_table and column_to_table[col]:
+                correct_table = column_to_table[col][0]
+                return f"{correct_table}.{col}"
+            return col_str
+
+        return col_str
+
+    def repair_condition(cond):
+        if not cond or cond == "NONE":
+            return cond
+            
+        # Replace qualified columns that are wrong
+        found_qualified = re.findall(r"\b([A-Za-z0-9_]+)\.([A-Za-z0-9_]+)\b", cond)
+        for tb, col in found_qualified:
+            if tb not in schema or col not in schema[tb]:
+                if col in column_to_table and column_to_table[col]:
+                    correct_table = column_to_table[col][0]
+                    cond = re.sub(rf"\b{tb}\.{col}\b", f"{correct_table}.{col}", cond)
+                    
+        # Now qualify unqualified columns
+        parts = re.split(r"('[^']*'|\"[^\"]*\")", cond)
+        for i in range(len(parts)):
+            if not (parts[i].startswith("'") or parts[i].startswith('"')):
+                words = re.findall(r"\b[A-Za-z0-9_]+\b", parts[i])
+                for word in words:
+                    if word.upper() in ["AND", "OR", "NOT", "LIKE", "IN", "IS", "NULL", "EXISTS", "SUM", "AVG", "COUNT", "MIN", "MAX", "BETWEEN", "ON", "JOIN", "WHERE", "SELECT", "FROM"]:
+                        continue
+                    dot_before = re.search(r"\.\s*" + re.escape(word) + r"\b", parts[i])
+                    dot_after = re.search(r"\b" + re.escape(word) + r"\s*\.", parts[i])
+                    if dot_before or dot_after:
+                        continue
+                        
+                    if word in column_to_table and column_to_table[word]:
+                        correct_table = column_to_table[word][0]
+                        parts[i] = re.sub(r"\b" + re.escape(word) + r"\b", f"{correct_table}.{word}", parts[i])
+                        
+        return "".join(parts)
+
+    if "columns_needed" in query_plan and isinstance(query_plan["columns_needed"], list):
+        query_plan["columns_needed"] = [repair_col(c) for c in query_plan["columns_needed"]]
+
+    if "conditions" in query_plan and isinstance(query_plan["conditions"], list):
+        query_plan["conditions"] = [repair_condition(c) for c in query_plan["conditions"]]
+
+    if "aggregations" in query_plan and isinstance(query_plan["aggregations"], list):
+        for agg in query_plan["aggregations"]:
+            if isinstance(agg, dict) and "column" in agg:
+                agg["column"] = repair_col(agg["column"])
+
+    if "ordering" in query_plan and isinstance(query_plan["ordering"], list):
+        for ord_item in query_plan["ordering"]:
+            if isinstance(ord_item, dict) and "column" in ord_item:
+                ord_item["column"] = repair_col(ord_item["column"])
+
+    return query_plan
+
+
 
 def run_querymind(query: str, connector):
     file_logger("Start", "")
@@ -188,22 +281,57 @@ def run_querymind(query: str, connector):
     query_plan_raw = plan_query(query, formatted_schema, column_mapping)
     query_plan = json.loads(query_plan_raw)
 
-    log("Query Plan", query_plan)
-    file_logger("Query Plan", query_plan)
-
     # ---------------------------
     # COLUMN → TABLE RESOLUTION (NEW CORE)
     # ---------------------------
     column_to_table = build_column_to_table_map(schema)
     file_logger("Column to Table Map", column_to_table)
+
+    # Deterministic Repair
+    query_plan = repair_query_plan(query_plan, schema, column_to_table)
+
+    log("Query Plan", query_plan)
+    file_logger("Query Plan", query_plan)
     
-    columns = query_plan["columns_needed"]
+    columns = query_plan.get("columns_needed", [])
     file_logger("Columns Needed", columns)
     
-    condition_cols = extract_columns_from_condition(query_plan["conditions"], column_to_table)
+    # Extract columns from conditions list
+    condition_cols = []
+    conditions_list = query_plan.get("conditions", [])
+    if isinstance(conditions_list, str):
+        conditions_list = [conditions_list]
+    for cond in conditions_list:
+        if cond and cond != "NONE":
+            found_cols = re.findall(r"\b([A-Za-z_0-9]+\.[A-Za-z_0-9]+|[A-Za-z_0-9]+)\b", cond)
+            for col in found_cols:
+                if "." in col or (col in column_to_table):
+                    condition_cols.append(col)
     file_logger("Condition Columns", condition_cols)
     
-    all_columns = list(set(columns + condition_cols))
+    # Extract columns from aggregations list of dicts
+    agg_cols = []
+    aggregations_list = query_plan.get("aggregations", [])
+    if isinstance(aggregations_list, list):
+        for agg in aggregations_list:
+            if isinstance(agg, dict):
+                col = agg.get("column")
+                if col:
+                    agg_cols.append(col)
+    file_logger("Aggregation Columns", agg_cols)
+    
+    # Extract columns from ordering list of dicts
+    order_cols = []
+    ordering_list = query_plan.get("ordering", [])
+    if isinstance(ordering_list, list):
+        for ord in ordering_list:
+            if isinstance(ord, dict):
+                col = ord.get("column")
+                if col:
+                    order_cols.append(col)
+    file_logger("Ordering Columns", order_cols)
+    
+    all_columns = list(set(columns + condition_cols + agg_cols + order_cols))
     file_logger("All Columns", all_columns)
     
     tables = get_tables_from_columns(all_columns, column_to_table, schema, graph, query)
@@ -267,6 +395,8 @@ def run_querymind(query: str, connector):
     # ---------------------------
     # GENERATOR
     # ---------------------------
+    plan_limit = query_plan.get("limit")
+    
     sql_query = generate_sql(
         query,
         formatted_schema,
@@ -276,7 +406,8 @@ def run_querymind(query: str, connector):
         query_type=query_type
     )
 
-    sql_query = _enforce_simple_limit(sql_query, query, query_type)
+    sql_query = _enforce_simple_limit(sql_query, query, query_type, plan_limit=plan_limit)
+    sql_query = sql_query.replace("\\\\", "\\")
 
     log("Generated SQL", sql_query)
     file_logger("Generated SQL", sql_query)
@@ -294,7 +425,8 @@ def run_querymind(query: str, connector):
         query_type=query_type
     )
 
-    corrected_sql = _enforce_simple_limit(corrected_sql, query, query_type)
+    corrected_sql = _enforce_simple_limit(corrected_sql, query, query_type, plan_limit=plan_limit)
+    corrected_sql = corrected_sql.replace("\\\\", "\\")
 
     log("Reflected SQL", corrected_sql)
     file_logger("Reflected SQL", corrected_sql)
@@ -341,8 +473,10 @@ def run_querymind(query: str, connector):
             previous_error=retry_error
         )
 
-        sql_query = _enforce_simple_limit(sql_query, query, query_type)
-        corrected_sql = _enforce_simple_limit(corrected_sql, query, query_type)
+        sql_query = _enforce_simple_limit(sql_query, query, query_type, plan_limit=plan_limit)
+        corrected_sql = _enforce_simple_limit(corrected_sql, query, query_type, plan_limit=plan_limit)
+        sql_query = sql_query.replace("\\\\", "\\")
+        corrected_sql = corrected_sql.replace("\\\\", "\\")
 
         valid_gen, err_gen = validate_sql(connector, sql_query)
         valid_ref, err_ref = validate_sql(connector, corrected_sql)

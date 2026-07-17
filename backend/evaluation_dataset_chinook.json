@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "question": "List the Name of all artists ordered alphabetically.",
+    "difficulty": "simple",
+    "expected_sql": "SELECT Name FROM Artist ORDER BY Name ASC;"
+  },
+  {
+    "id": 2,
+    "question": "Show the Title of the top 5 longest tracks.",
+    "difficulty": "simple",
+    "expected_sql": "SELECT Name FROM Track ORDER BY Milliseconds DESC LIMIT 5;"
+  },
+  {
+    "id": 3,
+    "question": "List all distinct genres.",
+    "difficulty": "simple",
+    "expected_sql": "SELECT DISTINCT Name FROM Genre;"
+  },
+  {
+    "id": 4,
+    "question": "Show the FirstName and LastName of all customers from Brazil.",
+    "difficulty": "simple",
+    "expected_sql": "SELECT FirstName, LastName FROM Customer WHERE Country = 'Brazil';"
+  },
+  {
+    "id": 5,
+    "question": "List the names of all playlists.",
+    "difficulty": "simple",
+    "expected_sql": "SELECT Name FROM Playlist;"
+  },
+  {
+    "id": 6,
+    "question": "Find the email address of customer named Luís Gonçalves.",
+    "difficulty": "simple",
+    "expected_sql": "SELECT Email FROM Customer WHERE FirstName = 'Luís' AND LastName = 'Gonçalves';"
+  },
+  {
+    "id": 7,
+    "question": "Show the names of all media types.",
+    "difficulty": "simple",
+    "expected_sql": "SELECT Name FROM MediaType;"
+  },
+  {
+    "id": 8,
+    "question": "List the top 10 most expensive tracks.",
+    "difficulty": "simple",
+    "expected_sql": "SELECT Name, UnitPrice FROM Track ORDER BY UnitPrice DESC LIMIT 10;"
+  },
+  {
+    "id": 9,
+    "question": "Show all employees ordered by their HireDate.",
+    "difficulty": "simple",
+    "expected_sql": "SELECT FirstName, LastName, HireDate FROM Employee ORDER BY HireDate ASC;"
+  },
+  {
+    "id": 10,
+    "question": "List the names of tracks longer than 5 minutes.",
+    "difficulty": "simple",
+    "expected_sql": "SELECT Name FROM Track WHERE Milliseconds > 300000;"
+  },
+  {
+    "id": 11,
+    "question": "Show the Title of albums created by the artist AC/DC.",
+    "difficulty": "medium",
+    "expected_sql": "SELECT Album.Title FROM Album JOIN Artist ON Album.ArtistId = Artist.ArtistId WHERE Artist.Name = 'AC/DC';"
+  },
+  {
+    "id": 12,
+    "question": "List the Name of tracks and their genre.",
+    "difficulty": "medium",
+    "expected_sql": "SELECT Track.Name, Genre.Name FROM Track JOIN Genre ON Track.GenreId = Genre.GenreId;"
+  },
+  {
+    "id": 13,
+    "question": "Find the customers who have placed invoices worth more than $10.",
+    "difficulty": "medium",
+    "expected_sql": "SELECT DISTINCT c.FirstName, c.LastName FROM Customer c JOIN Invoice i ON c.CustomerId = i.CustomerId WHERE i.Total > 10;"
+  },
+  {
+    "id": 14,
+    "question": "Show all tracks that belong to the Rock genre.",
+    "difficulty": "medium",
+    "expected_sql": "SELECT Track.Name FROM Track JOIN Genre ON Track.GenreId = Genre.GenreId WHERE Genre.Name = 'Rock';"
+  },
+  {
+    "id": 15,
+    "question": "List customer names and the total amount they spent.",
+    "difficulty": "medium",
+    "expected_sql": "SELECT c.FirstName, c.LastName, SUM(i.Total) AS TotalSpent FROM Customer c JOIN Invoice i ON c.CustomerId = i.CustomerId GROUP BY c.CustomerId, c.FirstName, c.LastName;"
+  },
+  {
+    "id": 16,
+    "question": "Find all tracks in the playlist named Music.",
+    "difficulty": "medium",
+    "expected_sql": "SELECT Track.Name FROM Track JOIN PlaylistTrack ON Track.TrackId = PlaylistTrack.TrackId JOIN Playlist ON PlaylistTrack.PlaylistId = Playlist.PlaylistId WHERE Playlist.Name = 'Music';"
+  },
+  {
+    "id": 17,
+    "question": "Show the employee and the customers assigned to them.",
+    "difficulty": "medium",
+    "expected_sql": "SELECT e.FirstName, e.LastName, c.FirstName, c.LastName FROM Employee e JOIN Customer c ON e.EmployeeId = c.SupportRepId;"
+  },
+  {
+    "id": 18,
+    "question": "List the artists and the number of albums they have.",
+    "difficulty": "medium",
+    "expected_sql": "SELECT Artist.Name, COUNT(Album.AlbumId) AS AlbumCount FROM Artist JOIN Album ON Artist.ArtistId = Album.ArtistId GROUP BY Artist.ArtistId, Artist.Name;"
+  },
+  {
+    "id": 19,
+    "question": "Find the countries with more than 5 customers.",
+    "difficulty": "medium",
+    "expected_sql": "SELECT Country FROM Customer GROUP BY Country HAVING COUNT(CustomerId) > 5;"
+  },
+  {
+    "id": 20,
+    "question": "Show the names of albums that contain more than 10 tracks.",
+    "difficulty": "medium",
+    "expected_sql": "SELECT Album.Title FROM Album JOIN Track ON Album.AlbumId = Track.AlbumId GROUP BY Album.AlbumId, Album.Title HAVING COUNT(Track.TrackId) > 10;"
+  },
+  {
+    "id": 21,
+    "question": "Find the top 5 customers by total spending.",
+    "difficulty": "hard",
+    "expected_sql": "SELECT c.FirstName, c.LastName, SUM(i.Total) AS TotalSpent FROM Customer c JOIN Invoice i ON c.CustomerId = i.CustomerId GROUP BY c.CustomerId, c.FirstName, c.LastName ORDER BY TotalSpent DESC LIMIT 5;"
+  },
+  {
+    "id": 22,
+    "question": "Show the artist whose tracks generated the highest revenue.",
+    "difficulty": "hard",
+    "expected_sql": "SELECT Artist.Name, SUM(InvoiceLine.UnitPrice * InvoiceLine.Quantity) AS Revenue FROM Artist JOIN Album ON Artist.ArtistId = Album.ArtistId JOIN Track ON Album.AlbumId = Track.AlbumId JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId GROUP BY Artist.ArtistId, Artist.Name ORDER BY Revenue DESC LIMIT 1;"
+  },
+  {
+    "id": 23,
+    "question": "Find the genre with the highest number of purchases.",
+    "difficulty": "hard",
+    "expected_sql": "SELECT Genre.Name, SUM(InvoiceLine.Quantity) AS TotalPurchased FROM Genre JOIN Track ON Genre.GenreId = Track.GenreId JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId GROUP BY Genre.GenreId, Genre.Name ORDER BY TotalPurchased DESC LIMIT 1;"
+  },
+  {
+    "id": 24,
+    "question": "List customers who purchased tracks from more than 3 different genres.",
+    "difficulty": "hard",
+    "expected_sql": "SELECT c.FirstName, c.LastName FROM Customer c JOIN Invoice i ON c.CustomerId = i.CustomerId JOIN InvoiceLine il ON i.InvoiceId = il.InvoiceId JOIN Track t ON il.TrackId = t.TrackId GROUP BY c.CustomerId, c.FirstName, c.LastName HAVING COUNT(DISTINCT t.GenreId) > 3;"
+  },
+  {
+    "id": 25,
+    "question": "Find the total sales amount for each year.",
+    "difficulty": "hard",
+    "expected_sql": "SELECT strftime('%Y', InvoiceDate) AS SalesYear, SUM(Total) AS TotalSales FROM Invoice GROUP BY SalesYear;"
+  },
+  {
+    "id": 26,
+    "question": "Show the most purchased track.",
+    "difficulty": "hard",
+    "expected_sql": "SELECT Track.Name, SUM(InvoiceLine.Quantity) AS TotalPurchased FROM Track JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId GROUP BY Track.TrackId, Track.Name ORDER BY TotalPurchased DESC LIMIT 1;"
+  },
+  {
+    "id": 27,
+    "question": "Find the average track price for each genre.",
+    "difficulty": "hard",
+    "expected_sql": "SELECT Genre.Name, AVG(Track.UnitPrice) AS AvgPrice FROM Genre JOIN Track ON Genre.GenreId = Track.GenreId GROUP BY Genre.GenreId, Genre.Name;"
+  },
+  {
+    "id": 28,
+    "question": "List artists that have tracks in more than 2 playlists.",
+    "difficulty": "hard",
+    "expected_sql": "SELECT Artist.Name FROM Artist JOIN Album ON Artist.ArtistId = Album.ArtistId JOIN Track ON Album.AlbumId = Track.AlbumId JOIN PlaylistTrack ON Track.TrackId = PlaylistTrack.TrackId GROUP BY Artist.ArtistId, Artist.Name HAVING COUNT(DISTINCT PlaylistTrack.PlaylistId) > 2;"
+  },
+  {
+    "id": 29,
+    "question": "Show the country that generated the highest revenue.",
+    "difficulty": "hard",
+    "expected_sql": "SELECT BillingCountry, SUM(Total) AS TotalRevenue FROM Invoice GROUP BY BillingCountry ORDER BY TotalRevenue DESC LIMIT 1;"
+  },
+  {
+    "id": 30,
+    "question": "Find customers who never made a purchase.",
+    "difficulty": "hard",
+    "expected_sql": "SELECT Customer.FirstName, Customer.LastName FROM Customer LEFT JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId WHERE Invoice.InvoiceId IS NULL;"
+  },
+  {
+    "id": 31,
+    "question": "Find the employee who manages the customers with the highest total spending.",
+    "difficulty": "very hard",
+    "expected_sql": "SELECT e.FirstName, e.LastName, SUM(i.Total) AS TotalSpending FROM Employee e JOIN Customer c ON e.EmployeeId = c.SupportRepId JOIN Invoice i ON c.CustomerId = i.CustomerId GROUP BY e.EmployeeId, e.FirstName, e.LastName ORDER BY TotalSpending DESC LIMIT 1;"
+  },
+  {
+    "id": 32,
+    "question": "List the top 3 artists by number of tracks sold.",
+    "difficulty": "very hard",
+    "expected_sql": "SELECT Artist.Name, SUM(InvoiceLine.Quantity) AS TracksSold FROM Artist JOIN Album ON Artist.ArtistId = Album.ArtistId JOIN Track ON Album.AlbumId = Track.AlbumId JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId GROUP BY Artist.ArtistId, Artist.Name ORDER BY TracksSold DESC LIMIT 3;"
+  },
+  {
+    "id": 33,
+    "question": "Show playlists that contain tracks from more than 5 genres.",
+    "difficulty": "very hard",
+    "expected_sql": "SELECT Playlist.Name FROM Playlist JOIN PlaylistTrack ON Playlist.PlaylistId = PlaylistTrack.PlaylistId JOIN Track ON PlaylistTrack.TrackId = Track.TrackId GROUP BY Playlist.PlaylistId, Playlist.Name HAVING COUNT(DISTINCT Track.GenreId) > 5;"
+  },
+  {
+    "id": 34,
+    "question": "Find customers who purchased every track from a specific album.",
+    "difficulty": "very hard",
+    "expected_sql": "SELECT DISTINCT c.FirstName, c.LastName, alb.Title FROM Customer c JOIN Invoice i ON c.CustomerId = i.CustomerId JOIN InvoiceLine il ON i.InvoiceId = il.InvoiceId JOIN Track t ON il.TrackId = t.TrackId JOIN Album alb ON t.AlbumId = alb.AlbumId GROUP BY c.CustomerId, alb.AlbumId HAVING COUNT(DISTINCT t.TrackId) = (SELECT COUNT(TrackId) FROM Track WHERE AlbumId = alb.AlbumId);"
+  },
+  {
+    "id": 35,
+    "question": "Find artists that have never had a track purchased.",
+    "difficulty": "very hard",
+    "expected_sql": "SELECT Artist.Name FROM Artist LEFT JOIN Album ON Artist.ArtistId = Album.ArtistId LEFT JOIN Track ON Album.AlbumId = Track.AlbumId LEFT JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId GROUP BY Artist.ArtistId, Artist.Name HAVING COUNT(InvoiceLine.InvoiceLineId) = 0;"
+  }
+]

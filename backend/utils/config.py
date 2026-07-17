@@ -4,8 +4,10 @@ MODEL_NAME = "qwen2.5"
 DATABASE_LANGUAGE = "SQLite"
 
 _backend_root = Path(__file__).resolve().parents[1]
-_primary_db = _backend_root / "AdventureWorks-sqlite.db"
-_fallback_db = _backend_root / "api" / "AdventureWorks-sqlite.db"
+# _primary_db = _backend_root / "AdventureWorks-sqlite.db"
+# _fallback_db = _backend_root / "api" / "AdventureWorks-sqlite.db"
+_primary_db = _backend_root / "Chinook_Sqlite.sqlite"
+_fallback_db = _backend_root / "api" / "Chinook_Sqlite.sqlite"
 
 if _primary_db.exists() and _primary_db.stat().st_size > 0:
     DB_PATH = str(_primary_db)
