@@ -1,4 +1,4 @@
-# 🧵 QueryLoom
+# QueryLoom
 
 QueryLoom is a hybrid, AI-powered Text-to-SQL system designed to translate natural language questions into precise, executable SQL queries. 
 
@@ -30,7 +30,7 @@ Unlike purely prompt-driven architectures, QueryLoom couples Large Language Mode
 
 ---
 
-## 🎯 Motivation: Why QueryLoom?
+##  Motivation: Why QueryLoom?
 
 Standard Text-to-SQL applications rely entirely on massive system prompts to guide LLMs through complex database schemas. While LLMs are excellent at semantic understanding and logical breakdown, this "pure prompting" approach frequently suffers from critical production failures:
 
@@ -45,7 +45,7 @@ Standard Text-to-SQL applications rely entirely on massive system prompts to gui
 
 ---
 
-## 🚀 Core Features
+##  Core Features
 
 - **Multi-Agent Pipeline:** Features a structured **Planner → Generator → Reflector** multi-agent cascade for parsing intent, writing queries, and refining syntax.
 - **Dynamic Schema Extraction & Repair:** Dynamically inspects table schemas to automatically map and correct column hallucinations.
@@ -57,7 +57,7 @@ Standard Text-to-SQL applications rely entirely on massive system prompts to gui
 
 ---
 
-## 📐 Architecture Overview
+##  Architecture Overview
 
 QueryLoom splits execution into semantic parsing (using an LLM) and relational stitching (using graph algorithms).
 
@@ -125,7 +125,7 @@ QueryLoom splits execution into semantic parsing (using an LLM) and relational s
                       └──────────────────────┘
 ```
 
-### 🖼️ Demonstration & Architecture Artifacts
+### Demonstration & Architecture Artifacts
 
 *A high-level animation of QueryLoom processing a complex analytical query and returning data:*
 
@@ -137,7 +137,7 @@ QueryLoom splits execution into semantic parsing (using an LLM) and relational s
 
 ---
 
-## 📝 Example Run: Query & Generated SQL
+## Example Run: Query & Generated SQL
 
 To demonstrate the hybrid execution flow, consider the following question run on the **AdventureWorks** database:
 
@@ -194,7 +194,7 @@ ORDER BY TotalQuantity DESC;
 
 ---
 
-## 📊 Evaluation Results
+## Evaluation Results
 
 QueryLoom was thoroughly benchmarked on two SQLite databases. Performance numbers demonstrate that the system **generalizes effectively to unseen schemas** without overfitting.
 
@@ -234,7 +234,7 @@ QueryLoom was thoroughly benchmarked on two SQLite databases. Performance number
 
 ---
 
-## 📈 Project Evolution
+## Project Evolution
 
 ```
 ┌────────────────────────────────┐
@@ -258,7 +258,7 @@ QueryLoom was thoroughly benchmarked on two SQLite databases. Performance number
 
 ---
 
-## 🛠️ Installation
+## Installation
 
 ### Prerequisites
 - Python 3.10 or 3.11
@@ -293,7 +293,7 @@ ollama pull qwen2.5
 
 ---
 
-## 💻 Usage
+## Usage
 
 ### 1. Launching the API Server
 Run the FastAPI application from the `backend` directory using Uvicorn:
@@ -341,7 +341,7 @@ python run_tests.py
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 QueryLoom/
@@ -379,7 +379,7 @@ QueryLoom/
 
 ---
 
-## ⚠️ Current Limitations
+## Current Limitations
 
 - **SELECT Operations Only:** The engine restricts inputs to read-only queries by validating that SQL queries begin with `SELECT` and running `EXPLAIN QUERY PLAN` prior to actual database execution.
 - **Dialect Specificity:** The system uses SQLite constructs (e.g., `strftime` and `LIMIT` syntax). Generalizing to other dialects requires extending connector formatting.
@@ -388,7 +388,7 @@ QueryLoom/
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] **Multi-Dialect Support:** Extend connectors to support PostgreSQL, MySQL, and BigQuery.
 - [ ] **Semantic Schema Enrichment:** Support graph relationship inference for databases lacking explicit foreign keys (using semantic text alignment of column names).
@@ -397,7 +397,7 @@ QueryLoom/
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps to propose changes:
 
@@ -409,13 +409,13 @@ Contributions are welcome! Please follow these steps to propose changes:
 
 ---
 
-## 📄 License
+## License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 ---
 
-## 🏷️ Citation
+## Citation
 
 If you use this system or hybrid concept in research, please cite:
 
