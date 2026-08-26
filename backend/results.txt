@@ -22819,3 +22819,273 @@ Step: Selected SQL Source
 Data: generator
 Step: Execution Result
 Data: []
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List the Name of all artists ordered alphabetically.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show the Title of the top 5 longest tracks.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List all distinct genres.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show the FirstName and LastName of all customers from Brazil.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List the names of all playlists.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Find the email address of customer named Luís Gonçalves.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show the names of all media types.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List the top 10 most expensive tracks.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show all employees ordered by their HireDate.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List the names of tracks longer than 5 minutes.
+Step: Query Type
+Data: AGGREGATION
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show the Title of albums created by the artist AC/DC.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List the Name of tracks and their genre.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Find the customers who have placed invoices worth more than $10.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show all tracks that belong to the Rock genre.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List customer names and the total amount they spent.
+Step: Query Type
+Data: AGGREGATION
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Find all tracks in the playlist named Music.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show the employee and the customers assigned to them.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List the artists and the number of albums they have.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Find the countries with more than 5 customers.
+Step: Query Type
+Data: AGGREGATION
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show the names of albums that contain more than 10 tracks.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Find the top 5 customers by total spending.
+Step: Query Type
+Data: AGGREGATION
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show the artist whose tracks generated the highest revenue.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Find the genre with the highest number of purchases.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List customers who purchased tracks from more than 3 different genres.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Find the total sales amount for each year.
+Step: Query Type
+Data: ANALYTICAL
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show the most purchased track.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Find the average track price for each genre.
+Step: Query Type
+Data: ANALYTICAL
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: List artists that have tracks in more than 2 playlists.
+Step: Query Type
+Data: SIMPLE_SELECT
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Show the country that generated the highest revenue.
+Step: Query Type
+Data: AGGREGATION
+
+================================================================================
+
+Step: Start
+Data: 
+Step: User Query
+Data: Find customers who never made a purchase.
+Step: Query Type
+Data: SIMPLE_SELECT

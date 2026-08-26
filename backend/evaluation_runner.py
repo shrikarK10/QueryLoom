@@ -145,8 +145,9 @@ def main():
         
         pct = int((idx / len(test_cases)) * 100)
         filled = int(20 * idx // len(test_cases))
-        bar = '█' * filled + '░' * (20 - filled)
+        bar = '=' * filled + '-' * (20 - filled)
         print(f"\nProgress: [{bar}] {pct}% | Query {idx}/{len(test_cases)} (ID: {q_id}, {difficulty})")
+
         print(f"Question: {question}")
         
         # 1. Get ground truth

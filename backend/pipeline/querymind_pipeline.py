@@ -11,6 +11,8 @@ from utils.relationship_extractor import (
     build_joins
 )
 from utils.column_mapper import build_column_to_table_map
+from schema.schema_catalog import SchemaCatalog
+
 
 import re
 import json
@@ -260,20 +262,17 @@ def run_querymind(query: str, connector):
     log("Query Type", query_type)
     file_logger("Query Type", query_type)
 
-    # Schema
-    schema = connector.get_schema()
+    # Schema Catalog initialization
+    catalog = SchemaCatalog(connector)
+    schema = catalog.raw_schema
+    relationships = catalog.relationships
+    graph = catalog.relationship_graph
+    formatted_schema = catalog.formatted_schema
+    column_mapping = catalog.column_mapping
 
-    # Relationships (dynamic)
-    relationships = extract_relationships(connector)
-    graph = build_relationship_graph(relationships)
-
-    # Format schema
-    formatted_schema = format_schema(schema)
     log("Schema Extracted", formatted_schema)
-
-    # Column mapping (LLM use only)
-    column_mapping = build_column_mapping(schema)
     log("Column Mapping", column_mapping)
+
 
     # ---------------------------
     # PLANNER
